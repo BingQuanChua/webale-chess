@@ -7,11 +7,22 @@ public class ChessTiles extends JLabel
 {
 	private int coordinateX;
 	private int coordinateY;
+	private Coordinate coordinate;
+	private Piece piece;
 
-	ChessTiles(int coordinateX, int coordinateY)
+	public ChessTiles(int coordinateX, int coordinateY)
 	{
 		this.coordinateX =  coordinateX;
 		this.coordinateY =  coordinateY;
+	}
+
+	public ChessTiles(Coordinate coordinate){
+		this(coordinate, null);
+	}
+
+	public ChessTiles(Coordinate coordinate, Piece chesspiece){
+		this.coordinate = coordinate;
+		this.piece = chesspiece;
 	}
 
 	//Get the x coordinate relative to other ChessTiles.

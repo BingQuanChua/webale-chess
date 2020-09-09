@@ -13,76 +13,9 @@ import java.io.BufferedWriter;
 public class Game
 {
 	private static int roundCount;
-	private Coordinate coordinate[][] = new Coordinate[8][7];
-	private Piece blue_pieces[] = new Piece[5];
-	private Piece red_pieces[] = new Piece[5];
 	
-	public Game(){
-		blue_pieces[0] = new Piece("sun", "blue", true);
-		blue_pieces[1] = new Piece("chevron", "blue", true);
-		blue_pieces[2] = new Piece("triangle", "blue", true);
-		blue_pieces[3] = new Piece("plus", "blue", true);
-		blue_pieces[4] = new Piece("arrow", "blue", true);
-
-		red_pieces[0] = new Piece("sun", "red", true);
-		red_pieces[1] = new Piece("chevron", "red", true);
-		red_pieces[2] = new Piece("triangle", "red", true);
-		red_pieces[3] = new Piece("plus", "red", true);
-		red_pieces[4] = new Piece("arrow", "red", true);
-
-		blue_pieces[0].setIcon("./Foward_Img/blue_sun.png");
-		blue_pieces[1].setIcon("./Foward_Img/blue_chevron.png");
-		blue_pieces[2].setIcon("./Foward_Img/blue_triangle.png");
-		blue_pieces[3].setIcon("./Foward_Img/blue_plus.png");
-		blue_pieces[4].setIcon("./Foward_Img/blue_arrow.png");
-		
-		red_pieces[0].setIcon("./Foward_Img/red_sun.png");
-		red_pieces[1].setIcon("./Foward_Img/red_chevron.png");
-		red_pieces[2].setIcon("./Foward_Img/red_triangle.png");
-		red_pieces[3].setIcon("./Foward_Img/red_plus.png");
-		red_pieces[4].setIcon("./Foward_Img/red_arrow.png");
-
-		coordinate[0][0] = new Coordinate(7,0, red_pieces[3]);
-		coordinate[0][1] = new Coordinate(7,1, red_pieces[2]);
-		coordinate[0][2] = new Coordinate(7,2, red_pieces[1]);
-		coordinate[0][3] = new Coordinate(7,3, red_pieces[0]);
-		coordinate[0][4] = new Coordinate(7,4, red_pieces[1]);
-		coordinate[0][5] = new Coordinate(7,5, red_pieces[2]);
-		coordinate[0][6] = new Coordinate(7,6, red_pieces[3]);
-
-		coordinate[1][0] = new Coordinate(7,0, red_pieces[4]);
-		coordinate[1][1] = new Coordinate(7,1);
-		coordinate[1][2] = new Coordinate(7,2, red_pieces[4]);
-		coordinate[1][3] = new Coordinate(7,3);
-		coordinate[1][4] = new Coordinate(7,4, red_pieces[4]);
-		coordinate[1][5] = new Coordinate(7,5);
-		coordinate[1][6] = new Coordinate(7,6, red_pieces[4]);
-
-		coordinate[0][0] = new Coordinate(0,0, blue_pieces[3]);
-		coordinate[0][1] = new Coordinate(0,1, blue_pieces[2]);
-		coordinate[0][2] = new Coordinate(0,2, blue_pieces[1]);
-		coordinate[0][3] = new Coordinate(0,3, blue_pieces[0]);
-		coordinate[0][4] = new Coordinate(0,4, blue_pieces[1]);
-		coordinate[0][5] = new Coordinate(0,5, blue_pieces[2]);
-		coordinate[0][6] = new Coordinate(0,6, blue_pieces[3]);
-
-		coordinate[1][0] = new Coordinate(1,0, blue_pieces[4]);
-		coordinate[1][1] = new Coordinate(1,1);
-		coordinate[1][2] = new Coordinate(1,2, blue_pieces[4]);
-		coordinate[1][3] = new Coordinate(1,3);
-		coordinate[1][4] = new Coordinate(1,4, blue_pieces[4]);
-		coordinate[1][5] = new Coordinate(1,5);
-		coordinate[1][6] = new Coordinate(1,6, blue_pieces[4]);
-
-		for(int i = 2; i < 6; i ++){
-			for(int k = 0; k < 7; k ++){
-				coordinate[i][k] = new Coordinate(i,k);
-			}
-		}
-	}
-
-	public static void main(String [] args){
-		//new GameBoard(coordinate);
+	public static void main(String [] args) throws IOException {
+		new GameBoard();
 		new Game();
 	}
 

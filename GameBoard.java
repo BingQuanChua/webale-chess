@@ -3,18 +3,73 @@ package OurAssignment;
 import java.awt.*;
 import javax.swing.*;
 import java.awt.image.*;
+import java.io.IOException;
+
 import javax.imageio.ImageIO;
 
 public class GameBoard extends JPanel {
 
     JFrame f = new JFrame();
-
+    private ChessTiles[][] Tiles;
     private JButton[][] tileArray = new JButton[8][7];
     Boolean flipped = false;
 
     Graphics2D ig2d;
 
-    public GameBoard(Coordinate coordinate[][]) {
+    private static int roundCount;
+    private Coordinate coordinate[][] = new Coordinate[8][7];
+    private Piece pieces[] = new Piece[10];
+
+    public GameBoard() throws IOException {
+        pieces[0] = new Piece("sun", "blue", true, "./Forward_Img/blue_sun.png");
+		pieces[1] = new Piece("chevron", "blue", true, "./Forward_Img/blue_chevron.png");
+		pieces[2] = new Piece("triangle", "blue", true, "./Forward_Img/blue_triangle.png");
+		pieces[3] = new Piece("plus", "blue", true, "./Forward_Img/blue_plus.png");
+		pieces[4] = new Piece("arrow", "blue", true, "./Forward_Img/blue_arrow.png");
+		pieces[5] = new Piece("sun", "red", true, "./Forward_Img/red_sun.png");
+		pieces[6] = new Piece("chevron", "red", true, "./Forward_Img/red_chevron.png");
+		pieces[7] = new Piece("triangle", "red", true, "./Forward_Img/red_triangle.png");
+		pieces[8] = new Piece("plus", "red", true,"./Forward_Img/red_plus.png");
+        pieces[9] = new Piece("arrow", "red", true, "./Forward_Img/red_arrow.png");
+        
+        coordinate[0][0] = new Coordinate(7,0, pieces[3]);
+		coordinate[0][1] = new Coordinate(7,1, pieces[2]);
+		coordinate[0][2] = new Coordinate(7,2, pieces[1]);
+		coordinate[0][3] = new Coordinate(7,3, pieces[0]);
+		coordinate[0][4] = new Coordinate(7,4, pieces[1]);
+		coordinate[0][5] = new Coordinate(7,5, pieces[2]);
+		coordinate[0][6] = new Coordinate(7,6, pieces[3]);
+
+		coordinate[1][0] = new Coordinate(7,0, pieces[4]);
+		coordinate[1][1] = new Coordinate(7,1, null);
+		coordinate[1][2] = new Coordinate(7,2, pieces[4]);
+		coordinate[1][3] = new Coordinate(7,3, null);
+		coordinate[1][4] = new Coordinate(7,4, pieces[4]);
+		coordinate[1][5] = new Coordinate(7,5, null);
+		coordinate[1][6] = new Coordinate(7,6, pieces[4]);
+
+		coordinate[7][0] = new Coordinate(0,0, pieces[8]);
+		coordinate[7][1] = new Coordinate(0,1, pieces[7]);
+		coordinate[7][2] = new Coordinate(0,2, pieces[6]);
+		coordinate[7][3] = new Coordinate(0,3, pieces[5]);
+		coordinate[7][4] = new Coordinate(0,4, pieces[6]);
+		coordinate[7][5] = new Coordinate(0,5, pieces[7]);
+		coordinate[7][6] = new Coordinate(0,6, pieces[8]);
+
+		coordinate[6][0] = new Coordinate(1,0, pieces[9]);
+		coordinate[6][1] = new Coordinate(1,1, null);
+		coordinate[6][2] = new Coordinate(1,2, pieces[9]);
+		coordinate[6][3] = new Coordinate(1,3, null);
+		coordinate[6][4] = new Coordinate(1,4, pieces[9]);
+		coordinate[6][5] = new Coordinate(1,5, null);
+		coordinate[6][6] = new Coordinate(1,6, pieces[9]);
+
+		for(int i = 2; i < 6; i ++){
+			for(int k = 0; k < 7; k ++){
+				coordinate[i][k] = new Coordinate(i, k, null);
+			}
+        }
+
         f.setLayout(new BorderLayout());
         JButton b = new JButton("rotate");
 
@@ -24,14 +79,23 @@ public class GameBoard extends JPanel {
         for (int i = 0; i <= 7; i++) {
             for (int j = 0; j <= 6; j++) {
                 tileArray[i][j] = new JButton();
-                tileArray[i][j].setOpaque(true);
                 if (((j % 2 == 0) && (i % 2 == 0)) || ((j % 2 == 1) && (i % 2 == 1))) {
                     tileArray[i][j].setBackground(new Color(73, 58, 35));
                 } else
                     tileArray[i][j].setBackground(new Color(238, 219, 190));
+            }
+        }
+
+        for (int i = 0; i <= 7; i++) {
+            for (int j = 0; j <= 6; j++) {
+                if(coordinate[i][j].getChessPiece() != null){
+                    tileArray[i][j].setIcon(new ImageIcon(coordinate[i][j].getChessPiece().getIcon()));
+                }
                 this.add(tileArray[i][j]);
             }
         }
+
+        /*
         try {
             Image piece = ImageIO.read(getClass().getResource("red_triangle.png"));
             tileArray[3][2].setIcon(new ImageIcon(piece));
@@ -39,6 +103,7 @@ public class GameBoard extends JPanel {
         catch (Exception e) {
             System.out.println("Image not found");
         }
+        */
         setLayout(new GridLayout(8, 7));
         f.add(this, BorderLayout.CENTER);
         f.setVisible(true);
@@ -62,40 +127,4 @@ public class GameBoard extends JPanel {
         repaint();
     }
 
-    /*
-    public void rotate2(){
-        for (int y = 0; y < 4; y++) {
-            for (int x = 0; x < 7; x++) {
-                JButton temp = tileArray[y][x];
-                tileArray[y][x] = tileArray[7-y][6-x];
-                tileArray[7-y][6-x] = temp; 
-            }
-        }
-        repaint();
-        revalidate();     
-    }
-
-    public void IhaveNoDream(){
-        contain = f.getContentPane();
-        contain.removeAll();
-        JPanel newPanel = new JPanel(null);
-
-        for (int j = 0, x = 7; j < 8; j++) {
-            for (int i = 7, y = 0; i > 0;  i--) {
-                tileArray1[j][i] = tileArray[x][y];
-                newPanel.add(tileArray1[j][i]);
-                y++;
-            }
-            x--;
-        }
-
-        //tileArray[i][j].setBackground(Color.BLACK);
-        newPanel.setLayout(new GridLayout(8,7));
-        contain.add(newPanel, BorderLayout.CENTER);
-        contain.setVisible(true);
-        contain.validate();
-        contain.repaint();
-
-    }
-*/
 }

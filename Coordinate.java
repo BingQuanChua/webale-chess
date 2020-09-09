@@ -8,6 +8,13 @@ public class Coordinate
 	private int coordinateX;
 	private int coordinateY;
 
+	Coordinate()
+	{
+		this.coordinateX = 0;
+		this.coordinateY = 0;
+		this.chessPiece = null;
+	}
+
 	//initialize the coordinate with its position on the board and the chess piece it will contain
 	Coordinate(int coordinateX, int coordinateY, Piece chessPiece)
 	{
