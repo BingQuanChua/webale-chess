@@ -1,18 +1,10 @@
-<<<<<<< HEAD
 package OurAssignment;
 
-=======
->>>>>>> 363d8231cb5428a3512481bd3935506f63709227
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.*;  
 import javax.swing.*;
-import javax.swing.event.*;
-import java.awt.event.*;
-import java.util.*;
-import javax.imageio.ImageIO;
-import java.io.IOException;
 import java.awt.image.*;
-import java.io.File;
 
 public class HomeFrame {
     JFrame frame =new JFrame("Webale Chess");
@@ -22,18 +14,9 @@ public class HomeFrame {
     JButton loadGame = new JButton ("Load Game");
     JButton instruction = new JButton ("Instruction");
     JButton quitGame = new JButton ("Quit");
-<<<<<<< HEAD
-    private BufferedImage imageIcon;
-=======
-    BufferedImage imageIcon;
->>>>>>> 363d8231cb5428a3512481bd3935506f63709227
-    
+    //private BufferedImage imageIcon;
     
     public HomeFrame(){
-        // startGame.addActionListener(this);
-        // loadGame.addActionListener(this);
-        // instruction.addActionListener(this);
-        // quitGame.addActionListener(this);
         panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(2, 3, 2, 3));
         JPanel layout = new JPanel(new GridBagLayout());
@@ -50,13 +33,28 @@ public class HomeFrame {
         btnPanel.add(loadGame);
         btnPanel.add(instruction);
         btnPanel.add(quitGame);
+        // startGame.addMouseListener(this);
+        // loadGame.addMouseListener(this);
+         instruction.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if(e.getButton()==MouseEvent.BUTTON1){
+                    //load instruction image
+                    ImageIcon instructionPic = new ImageIcon("Instructions_Help.png");
+                    JOptionPane.showMessageDialog(null,"Instruction","Webale-Chess",JOptionPane.INFORMATION_MESSAGE,instructionPic);
+                }
+            }
+        });
+        quitGame.addMouseListener(new MouseAdapter(){
+            @Override
+            public void mouseClicked(MouseEvent e){
+                if(e.getButton()==MouseEvent.BUTTON1){
+                    System.exit(0);
+                }
+            }
+        });
         layout.add(btnPanel);
         panel.add(layout, BorderLayout.CENTER);
-<<<<<<< HEAD
-=======
-        panel.revalidate();
-        panel.repaint();
->>>>>>> 363d8231cb5428a3512481bd3935506f63709227
         
         frame.add(panel);
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -68,15 +66,7 @@ public class HomeFrame {
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         
     }
-<<<<<<< HEAD
-=======
-  
-    //     protected void paintComponent(Graphics g) {
-    //     super.paintComponent(g);
-    //     g.drawImage(imageIcon, 0, 0, panel); // see javadoc for more info on the parameters            
-    // }
->>>>>>> 363d8231cb5428a3512481bd3935506f63709227
-    
+ 
     public static void main (String[] args){
         new HomeFrame();
     }
