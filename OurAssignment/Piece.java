@@ -3,7 +3,6 @@ package OurAssignment;
 import java.awt.Image;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
 import javax.imageio.ImageIO;
 
 public abstract class Piece {

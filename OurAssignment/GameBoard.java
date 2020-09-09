@@ -4,10 +4,8 @@ import java.awt.*;
 import java.awt.event.*;
 
 import javax.swing.*;
-import java.awt.image.*;
 import java.io.IOException;
 
-import javax.imageio.ImageIO;
 
 public class GameBoard extends JPanel {
 

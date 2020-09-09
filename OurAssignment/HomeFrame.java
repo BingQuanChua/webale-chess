@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.*;  
 import javax.swing.*;
 import java.awt.image.*;
+import javax.imageio.ImageIO;
 
 public class HomeFrame {
     JFrame frame =new JFrame("Webale Chess");
@@ -39,9 +40,14 @@ public class HomeFrame {
             @Override
             public void mouseClicked(MouseEvent e){
                 if(e.getButton()==MouseEvent.BUTTON1){
+                    try{
                     //load instruction image
-                    ImageIcon instructionPic = new ImageIcon("Instructions_Help.png");
-                    JOptionPane.showMessageDialog(null,"Instruction","Webale-Chess",JOptionPane.INFORMATION_MESSAGE,instructionPic);
+                    JLabel instructionLabel = new JLabel(new ImageIcon(ImageIO.read(getClass().getResource(("Instructions_Help.png")))));
+                    JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
+                    }
+                    catch (Exception ex) {
+                        System.out.println("Image not found");
+                    }
                 }
             }
         });
