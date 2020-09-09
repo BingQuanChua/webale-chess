@@ -1,5 +1,8 @@
+<<<<<<< HEAD
 package OurAssignment;
 
+=======
+>>>>>>> 363d8231cb5428a3512481bd3935506f63709227
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import javax.swing.*;
@@ -19,7 +22,11 @@ public class HomeFrame {
     JButton loadGame = new JButton ("Load Game");
     JButton instruction = new JButton ("Instruction");
     JButton quitGame = new JButton ("Quit");
+<<<<<<< HEAD
     private BufferedImage imageIcon;
+=======
+    BufferedImage imageIcon;
+>>>>>>> 363d8231cb5428a3512481bd3935506f63709227
     
     
     public HomeFrame(){
@@ -45,6 +52,11 @@ public class HomeFrame {
         btnPanel.add(quitGame);
         layout.add(btnPanel);
         panel.add(layout, BorderLayout.CENTER);
+<<<<<<< HEAD
+=======
+        panel.revalidate();
+        panel.repaint();
+>>>>>>> 363d8231cb5428a3512481bd3935506f63709227
         
         frame.add(panel);
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
@@ -56,6 +68,14 @@ public class HomeFrame {
         frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
         
     }
+<<<<<<< HEAD
+=======
+  
+    //     protected void paintComponent(Graphics g) {
+    //     super.paintComponent(g);
+    //     g.drawImage(imageIcon, 0, 0, panel); // see javadoc for more info on the parameters            
+    // }
+>>>>>>> 363d8231cb5428a3512481bd3935506f63709227
     
     public static void main (String[] args){
         new HomeFrame();
