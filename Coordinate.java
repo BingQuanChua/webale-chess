@@ -50,4 +50,5 @@ public class Coordinate
 		this.chessPiece = chessPiece;
 	}
 
+	
 }

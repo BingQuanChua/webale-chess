@@ -3,7 +3,7 @@
 package OurAssignment;
 import javax.swing.*;  
 
-public class ChessTiles extends JLabel
+public class ChessTiles extends JButton
 {
 	private int coordinateX;
 	private int coordinateY;
