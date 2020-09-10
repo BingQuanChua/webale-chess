@@ -10,6 +10,7 @@ public class HomeFrame {
     JFrame frame =new JFrame("Webale Chess");
     int width = 500;
     int height = 500;
+    JLabel title = new JLabel("Welcome to Webale Chess Game!",SwingConstants.CENTER);
     JButton startGame = new JButton ("Start Game");
     JButton loadGame = new JButton ("Load Game");
     JButton instruction = new JButton ("Instruction");
@@ -22,13 +23,13 @@ public class HomeFrame {
         JPanel layout = new JPanel(new GridBagLayout());
         layout.setBorder(new EmptyBorder(5, 5, 5, 5));
         JPanel btnPanel = new JPanel(new GridLayout(10, 1, 10, 5));
-      
+
     //     try {                
     //       imageIcon = ImageIO.read(getClass().getResource(("logo.png")));
     //    } catch (IOException ex) {
     //         System.out.print("cant load image");
     //    }
-       
+        
         btnPanel.add(startGame);
         btnPanel.add(loadGame);
         btnPanel.add(instruction);
@@ -56,10 +57,13 @@ public class HomeFrame {
         layout.add(btnPanel);
         panel.add(layout, BorderLayout.CENTER);
         
+        title.setFont(new Font("Serif", Font.BOLD, 20));
+        title.setForeground(Color.BLUE);
+        panel.add(title, BorderLayout.NORTH);
         frame.add(panel);
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
         frame.setSize(width, height);
-        frame.setResizable(false);
+        frame.setResizable(true);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setTitle("WEBALE CHESS");
