@@ -8,8 +8,8 @@ import java.awt.image.*;
 
 public class HomeFrame {
     JFrame frame =new JFrame("Webale Chess");
-    JPanel panel = new JPanel();
-   
+    int width = 500;
+    int height = 500;
     JButton startGame = new JButton ("Start Game");
     JButton loadGame = new JButton ("Load Game");
     JButton instruction = new JButton ("Instruction");
@@ -17,7 +17,7 @@ public class HomeFrame {
     //private BufferedImage imageIcon;
     
     public HomeFrame(){
-        panel = new JPanel(new BorderLayout());
+        JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(2, 3, 2, 3));
         JPanel layout = new JPanel(new GridBagLayout());
         layout.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -58,7 +58,7 @@ public class HomeFrame {
         
         frame.add(panel);
         frame.getContentPane().setBackground(Color.LIGHT_GRAY);
-        frame.setSize(500, 500);
+        frame.setSize(width, height);
         frame.setResizable(false);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
