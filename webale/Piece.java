@@ -9,18 +9,18 @@ import javax.imageio.ImageIO;
 public abstract class Piece {
 
 	private String pieceColor;
-	private boolean flippedState;
+	private boolean hasFlipped;
 	private Image image;
 
 	Piece(){
 		this.pieceColor = "";
 		this.image = null;
-		this.flippedState = true;
+		this.hasFlipped = true;
 	}
 
-	Piece(String pieceColor, boolean flippedState, String ImageUrl) throws IOException {
+	Piece(String pieceColor, boolean hasFlipped, String ImageUrl) throws IOException {
 		this.pieceColor = pieceColor;
-		this.flippedState = flippedState;
+		this.hasFlipped = hasFlipped;
 		this.setIcon(ImageUrl);
 	}
 
@@ -39,13 +39,13 @@ public abstract class Piece {
 		return pieceColor;
 	}
 
-	public boolean getFlippedState()
+	public boolean getHasFlipped()
 	{
-		return flippedState;
+		return hasFlipped;
 	}
 
-	public void flipState()
+	public void toggleFlippedState()
 	{
-		flippedState = !flippedState;
+		hasFlipped = !hasFlipped;
 	}
 }
