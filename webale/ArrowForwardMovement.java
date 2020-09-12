@@ -20,9 +20,7 @@ public class ArrowForwardMovement implements Movement
                         if (coordinate[destCoordinateY][destCoordinateX].getChessPiece() != null)
 			{
 				if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
-				{
 					return false;
-				}
                         }
                         else
                         {
@@ -51,5 +49,6 @@ public class ArrowForwardMovement implements Movement
                                 return true;
                         }
                 }
-        }
+        return true;
+        }      
 }
