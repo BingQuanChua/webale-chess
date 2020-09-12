@@ -1,10 +1,11 @@
-package OurAssignment;
+package webale;
 
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;  
 import javax.swing.*;
 import java.awt.image.*;
+import javax.imageio.ImageIO;
 
 public class HomeFrame {
     JFrame frame =new JFrame("Webale Chess");
@@ -36,13 +37,20 @@ public class HomeFrame {
         btnPanel.add(quitGame);
         // startGame.addMouseListener(this);
         // loadGame.addMouseListener(this);
-         instruction.addMouseListener(new MouseAdapter(){
+        instruction.addMouseListener(new MouseAdapter(){
             @Override
             public void mouseClicked(MouseEvent e){
                 if(e.getButton()==MouseEvent.BUTTON1){
-                    //load instruction image
-                    ImageIcon instructionPic = new ImageIcon("Instructions_Help.png");
-                    JOptionPane.showMessageDialog(null,"Instruction","Webale-Chess",JOptionPane.INFORMATION_MESSAGE,instructionPic);
+                    try{
+                        //load instruction image
+                        JLabel instructionLabel = new JLabel(new ImageIcon(ImageIO.read(getClass().getResource("images/Instructions_Help.png"))));
+                        JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
+                        // btnPanel.removeAll();
+                        // btnPanel.add(instructionLabel);
+                    }
+                    catch (Exception ex) {
+                        System.out.println("Image not found");
+                    }
                 }
             }
         });

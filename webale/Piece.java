@@ -1,4 +1,4 @@
-package OurAssignment;
+package webale;
 
 import java.awt.Image;
 import java.io.IOException;
@@ -34,7 +34,7 @@ public abstract class Piece {
         return image;
     }
 
-	public String getColor()
+	public String getColour()
 	{
 		return pieceColor;
 	}

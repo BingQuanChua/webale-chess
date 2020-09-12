@@ -1,0 +1,35 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Game",
+            "request": "launch",
+            "mainClass": "webale.Game",
+            "projectName": "webale-chess_2434418"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HomeFrame",
+            "request": "launch",
+            "mainClass": "webale.HomeFrame",
+            "projectName": "webale-chess_2434418"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - BoardFrame",
+            "request": "launch",
+            "mainClass": "webale.BoardFrame",
+            "projectName": "webale-chess_2434418"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch) - Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        }
+    ]
+}

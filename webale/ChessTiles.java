@@ -1,6 +1,6 @@
 //LOW CHI HAN
 //This class is used by Chessboard class to create chesstiles that would be packed together to form a chessboard.
-package OurAssignment;
+package webale;
 import javax.swing.*;  
 
 public class ChessTiles extends JButton

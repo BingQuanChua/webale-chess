@@ -2,7 +2,7 @@
 //This class is the model class for the game to let the controller class to modify the game value and playingframe to project it. The class will include the initialization
 // of the board, keeping track on the number of move maked by each user, the player to move, to change the state of some of the pieces like excel , tercel , advancer , Trident
 // when it achieve certain point, this class also include the method to save and load the game and flipping the board when its needed.
-package OurAssignment;
+package webale;
 
 import java.util.*;
 import java.io.File;

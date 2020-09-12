@@ -1,11 +1,13 @@
-package OurAssignment;
+package webale;
 
 import java.io.IOException;
 
 public class Sun extends Piece{ 
+	//private Movement movement;
     
 	public Sun(String color, boolean flipState, String ImageURL) throws IOException{
 			super(color, flipState, ImageURL); 
+			//movement = new SunMovement();
 	}
 
 	@Override
@@ -13,7 +15,7 @@ public class Sun extends Piece{
 	{ 
 		// we can't move the piece to a Spot that 
 		// has a piece of the same color 
-		if (endpoint.getChessPiece().getColor() == this.getColor()) { 
+		if (endpoint.getChessPiece().getColour() == this.getColour()) { 
 			return false; 
 		} 
 

@@ -1,4 +1,4 @@
-package OurAssignment;
+package webale;
 
 public interface Movement {
 

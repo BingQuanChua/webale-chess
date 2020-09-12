@@ -1,9 +1,10 @@
-package OurAssignment;
+package webale;
 
 import java.io.IOException;
 
-public class Arrow extends Piece{
-    public Arrow(String color, boolean flipState, String ImageURL) throws IOException {
+public class Triangle extends Piece {
+
+    public Triangle(String color, boolean flipState, String ImageURL) throws IOException {
         super(color, flipState, ImageURL);
     }
 
@@ -17,7 +18,7 @@ public class Arrow extends Piece{
 
         int x = Math.abs(startpoint.getCoorX() - endpoint.getCoorX());
         int y = Math.abs(startpoint.getCoorY() - endpoint.getCoorY());
-        if ((x == 1 && y == 0) || (x == 0 && y == 1)) {
+        if ((x == 1 && y == 2) || (x == 2 && y == 1)) {
             return true;
         } else
             return false;

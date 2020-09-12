@@ -1,4 +1,4 @@
-package OurAssignment;
+package webale;
 
 import java.io.IOException;
 
@@ -11,7 +11,7 @@ public class Plus extends Piece {
 	@Override
 	public boolean canMove(GameBoard gameboard, Coordinate startpoint, Coordinate endpoint) 
 	{ 
-		if (endpoint.getChessPiece().getColor() == this.getColor()) { 
+		if (endpoint.getChessPiece().getColour() == this.getColour()) { 
 			return false; 
 		} 
 

@@ -1,4 +1,4 @@
-package OurAssignment;
+package webale;
 
 import java.awt.*;
 import javax.swing.*;
