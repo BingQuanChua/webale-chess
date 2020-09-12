@@ -12,7 +12,7 @@ public class Triangle extends Piece {
     public boolean canMove(GameBoard gameboard, Coordinate startpoint, Coordinate endpoint) {
         // we can't move the piece to a Spot that
         // has a piece of the same color
-        if (endpoint.getChessPiece().getColor() == this.getColor()) {
+        if (endpoint.getChessPiece().getColour() == this.getColour()) {
             return false;
         }
 
