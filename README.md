@@ -53,6 +53,29 @@ GameBoard + ChessBoard + ToolBar
 <h5>
     To be done
 </h5>
-
 Controller (pass Game, HomeFrame, GameBoard)
 Game (save and load)
+
+
+
+<h2>
+    Save File Format
+</h2>
+
+##########################
+  WEBALE CHESS SAVE FILE
+##########################
+Turn: Red
+Move Count: 0
+##########################
+Blue Plus 0 0
+Blue Triangle 1 0
+:
+:
+Blue Arrow Forward 0 1
+:
+:
+##########################
+
+// scan through the board row by row, top to bottom
+// record pieces that are present
