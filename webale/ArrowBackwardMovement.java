@@ -38,7 +38,9 @@ public class ArrowBackwardMovement implements Movement
                                 if (coordinate[destCoordinateY][destCoordinateX].getChessPiece() != null )
 			        {
 				        if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
-					        return false;
+					{       
+                                                return false;
+                                        }
                                 }
                         }
                         else
