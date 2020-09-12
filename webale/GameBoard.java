@@ -9,18 +9,18 @@ import java.io.IOException;
 
 //import javax.imageio.ImageIO;
 
-public class GameBoard extends JPanel {
+public class GameBoard extends JPanel{
 
     JFrame f = new JFrame("WEBALE CHESS");   
     //                                             y  x
     private JButton[][] tileArray = new ChessTiles[8][7];
-    Boolean flipped = false;
+    Boolean hasFlipped = false;
 
     //private static int roundCount;
     private Coordinate coordinate[][] = new Coordinate[8][7];
     private Piece pieces[] = new Piece[10];
 
-    public GameBoard() throws IOException {
+    public GameBoard(){
 
         //-------------------------------------GUI-----------------------------------------//
        
@@ -78,49 +78,128 @@ public class GameBoard extends JPanel {
             for (int x = 0; x < 7; x++) {
                 tileArray[y][x] = new ChessTiles(x,y);
 
-                tileArray[y][x].addActionListener(new ActionListener(){
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println("The X Coordinate for this tile is " + ((ChessTiles)e.getSource()).getCoorX());
-                        System.out.println("The Y Coordinate for this tile is " + ((ChessTiles)e.getSource()).getCoorY());
-                        System.out.println();
-                    } 
-                });
+                // tileArray[y][x].addActionListener(new ActionListener(){
+                //     int timeClicked = 0;
+                //     Coordinate endPoint = null;
+                //     Coordinate startPoint = null;
+                //     @Override
+                //     public void actionPerformed(ActionEvent e) {
+                //         ChessTiles chessTileClicked = (ChessTiles)e.getSource();
+                //         timeClicked++;
+                //         System.out.println(timeClicked);
+                //         if(timeClicked % 2 == 0){
+                //             endPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
+                //             if(startPoint.getChessPiece().canMove(coordinate, startPoint, endPoint)){
+                //                 endPoint.setChessPiece(startPoint.getChessPiece());
+                //                 startPoint.setChessPiece(null);
+                //                 repaint();
+                //             }
+                //         } else{
+                //             startPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
+                //             return;
+                //         }
+                        
+                //         System.out.println("The X Coordinate for this tile is " + ((ChessTiles)e.getSource()).getCoorX());
+                //         System.out.println("The Y Coordinate for this tile is " + ((ChessTiles)e.getSource()).getCoorY());
+                //         System.out.println();
+                //     } 
+                // });
 
                 if (((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) {
-                    tileArray[y][x].setBackground(new Color(73, 58, 35));
+                    tileArray[y][x].setBackground(new Color(198, 198, 199));
                 } else
-                    tileArray[y][x].setBackground(new Color(238, 219, 190));
+                    tileArray[y][x].setBackground(new Color(112, 108, 117));
             }
         }
+
+        // for (int y = 0; y < 8; y++) {
+        //     for (int x = 0; x < 7; x++) {
+        //         if(coordinate[y][x].getChessPiece() != null){
+        //             tileArray[y][x].setIcon(coordinate[y][x].getChessPiece().getIcon());
+        //         }
+        //         this.add(tileArray[y][x]);
+        //     }
+        // }
 
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
-                if(coordinate[y][x].getChessPiece() != null){
-                    tileArray[y][x].setIcon(new ImageIcon(coordinate[y][x].getChessPiece().getIcon()));
-                }
                 this.add(tileArray[y][x]);
             }
         }
-        
+
         setLayout(new GridLayout(8, 7));
         f.add(this, BorderLayout.CENTER);
         f.setVisible(true);
         f.setSize(1000, 1000);  
     }
 
-    public void rotateBoard(){
-        removeAll();
-        setLayout(new GridLayout(8, 7));
-        for(int i = 0; i <= 7; i++){
-            for(int j = 0; j <= 6; j++){
-                add(tileArray[7-i][6-j]);
+    public void paintComponent(Graphics g){
+        super.paintComponent(g);
+
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 7; x++) {
+                tileArray[y][x].setIcon(null);
+                if(coordinate[y][x].getChessPiece() != null){
+                    tileArray[y][x].setIcon(coordinate[y][x].getChessPiece().getIcon());
+                }
             }
         }
+        
+    }
+
+    public void rotateBoard(){
+        hasFlipped = !hasFlipped;
+        this.removeAll();
+        if(hasFlipped){
+            for(int i = 0; i < 8; i++){
+                for(int j = 0; j < 7; j++){
+                  this.add(tileArray[7-i][6-j]);
+                }
+            }
+        } else{
+            for(int i = 0; i < 8; i++){
+                for(int j = 0; j < 7; j++){
+                  this.add(tileArray[i][j]);
+                }
+            }
+        }
+        
         revalidate();
         repaint();
     }
+
+    Coordinate startPoint = null;
+    Coordinate endPoint = null;
+
+    public boolean movePiece(ChessTiles chessTileClicked, int timeClicked){
+        if(timeClicked % 2 != 0 && coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()].getChessPiece() == null){
+            return false;
+        }
+
+        if(timeClicked % 2 == 0){
+            endPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
+            if(startPoint != null && startPoint.getChessPiece().canMove(coordinate, startPoint, endPoint)){
+                endPoint.setChessPiece(startPoint.getChessPiece());
+                startPoint.setChessPiece(null);
+                revalidate();
+                repaint();
+                return true;
+            }
+        } else{
+            startPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
+            return true;
+        }
+        return true;        
+    }
     
+    public Coordinate[][] getCoordinateArray(){
+        return coordinate;
+    }
+
+    public JButton[][] getTileArray(){
+        return tileArray;
+    }
+
     public void InitPiece(){
         try{
             //-------------------------Initializing the blue pieces-----------------------------//

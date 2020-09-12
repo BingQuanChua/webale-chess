@@ -49,5 +49,9 @@ public class Coordinate
 		this.chessPiece = chessPiece;
 	}
 
+	public String toString(){
+		return "(" + coordinateX + ", " + coordinateY + ")";
+	}
+
 	
 }

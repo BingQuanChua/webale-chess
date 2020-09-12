@@ -4,12 +4,13 @@ import java.awt.Image;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public abstract class Piece {
 
 	private boolean isRedColor;
 	private boolean hasFlipped;
-	private Image image;
+	private ImageIcon image;
 
 	Piece(){
 		this.isRedColor = false;
@@ -26,10 +27,10 @@ public abstract class Piece {
 	abstract public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint);
 
 	public void setIcon(String ImageUrl) throws IOException {
-        image = ImageIO.read(getClass().getResource(ImageUrl));
+        image = new ImageIcon(ImageIO.read(getClass().getResource(ImageUrl)));
     }
 
-    public Image getIcon() {
+    public ImageIcon getIcon() {
         return image;
     }
 
