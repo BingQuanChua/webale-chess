@@ -24,7 +24,7 @@ public abstract class Piece {
 		this.setIcon(ImageUrl);
 	}
 
-	abstract public boolean canMove(GameBoard gameboard, Coordinate startpoint, Coordinate endpoint);
+	abstract public boolean canMove(GameBoard gameBoard, Coordinate startPoint, Coordinate endPoint);
 
 	public void setIcon(String ImageUrl) throws IOException {
         image = ImageIO.read(getClass().getResource(ImageUrl));

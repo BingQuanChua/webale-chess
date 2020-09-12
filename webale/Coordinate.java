@@ -1,4 +1,3 @@
-//edited by Justin Tey
 //This is a class to store the Chess piece and it will also store it position on the board
 package webale;
 
