@@ -1,17 +1,14 @@
-//LOW CHI HAN
 //This class is used by Chessboard class to create chesstiles that would be packed together to form a chessboard.
 package webale;
 import javax.swing.*;  
 
-public class ChessTiles extends JButton
-{
+public class ChessTiles extends JButton {
 	private int coordinateX;
 	private int coordinateY;
 	private Coordinate coordinate;
 	private Piece piece;
 
-	public ChessTiles(int coordinateX, int coordinateY)
-	{
+	public ChessTiles(int coordinateX, int coordinateY) {
 		this.coordinateX =  coordinateX;
 		this.coordinateY =  coordinateY;
 	}
@@ -26,14 +23,12 @@ public class ChessTiles extends JButton
 	}
 
 	//Get the x coordinate relative to other ChessTiles.
-	public int getCoorX()
-	{
+	public int getCoorX() {
 		return coordinateX;
 	}
 
 	//Get the x coordinate relative to other ChessTiles.
-	public int getCoorY()
-	{
+	public int getCoorY() {
 		return coordinateY;
 	}
 

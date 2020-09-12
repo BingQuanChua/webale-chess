@@ -26,7 +26,7 @@ public class Triangle extends Piece {
     //     } else
     //         return false;
     // }
-    public boolean canMove(GameBoard gameBoard, Coordinate startPoint, Coordinate endPoint) { 
-		return movement.move(gameBoard, startPoint, endPoint);
+    public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) { 
+		return movement.move(coordinate, startPoint, endPoint);
 	} 
 }

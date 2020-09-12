@@ -1,7 +1,7 @@
 package webale;
 
 public class SunMovement implements Movement {
-    public boolean move(GameBoard gameBoard, Coordinate startPoint, Coordinate endPoint) {
+    public boolean move(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
 		
 		int sourceCoordinateX = startPoint.getCoorX();
 		int sourceCoordinateY = startPoint.getCoorY();
@@ -12,9 +12,9 @@ public class SunMovement implements Movement {
 		if (destCoordinateX == sourceCoordinateX && destCoordinateY == sourceCoordinateY + 1)
 		{	
 			//check destination got piece, got piece cannot move
-			if (gameBoard[destCoordinateX][destCoordinateY].getChessPiece() != null )
+			if (coordinate[destCoordinateY][destCoordinateX].getChessPiece() != null )
 			{
-				if (coordinate[sourceCoordinateX][sourceCoordinateY].getChessPiece().getIsRedColor().equals(coordinate[destCoordinateX][destCoordinateY].getChessPiece().getIsRedColor()))
+				if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
 				{
 					return false;
 				}
@@ -27,7 +27,7 @@ public class SunMovement implements Movement {
 			//check destination got piece, got piece cannot move
 			if (coordinate[destCoordinateX][destCoordinateY].getChessPiece() != null )
 			{
-				if (coordinate[sourceCoordinateX][sourceCoordinateY].getChessPiece().getIsRedColor().equals(coordinate[destCoordinateX][destCoordinateY].getChessPiece().getIsRedColor()))
+				if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
 				{
 					return false;
 				}
@@ -40,7 +40,7 @@ public class SunMovement implements Movement {
 			//check destination got piece, got piece cannot move
 			if (coordinate[destCoordinateX][destCoordinateY].getChessPiece() != null )
 			{
-				if (coordinate[sourceCoordinateX][sourceCoordinateY].getChessPiece().getIsRedColor().equals(coordinate[destCoordinateX][destCoordinateY].getChessPiece().getIsRedColor()))
+				if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
 				{
 					return false;
 				}
@@ -53,7 +53,7 @@ public class SunMovement implements Movement {
 			//check destination got piece, got piece cannot move
 			if (coordinate[destCoordinateX][destCoordinateY].getChessPiece() != null )
 			{
-				if (coordinate[sourceCoordinateX][sourceCoordinateY].getChessPiece().getIsRedColor().equals(coordinate[destCoordinateX][destCoordinateY].getChessPiece().getIsRedColor()))
+				if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
 				{
 					return false;
 				}
@@ -66,7 +66,7 @@ public class SunMovement implements Movement {
 			//check destination got piece, got piece cannot move
 			if (coordinate[destCoordinateX][destCoordinateY].getChessPiece() != null )
 			{
-				if (coordinate[sourceCoordinateX][sourceCoordinateY].getChessPiece().getIsRedColor().equals(coordinate[destCoordinateX][destCoordinateY].getChessPiece().getIsRedColor()))
+				if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
 				{
 					return false;
 				}
@@ -79,7 +79,7 @@ public class SunMovement implements Movement {
 			//check destination got piece, got piece cannot move
 			if (coordinate[destCoordinateX][destCoordinateY].getChessPiece() != null )
 			{
-				if (coordinate[sourceCoordinateX][sourceCoordinateY].getChessPiece().getIsRedColor().equals(coordinate[destCoordinateX][destCoordinateY].getChessPiece().getIsRedColor()))
+				if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
 				{
 					return false;
 				}
@@ -92,7 +92,7 @@ public class SunMovement implements Movement {
 			//check destination got piece, got piece cannot move
 			if (coordinate[destCoordinateX][destCoordinateY].getChessPiece() != null )
 			{
-				if (coordinate[sourceCoordinateX][sourceCoordinateY].getChessPiece().getIsRedColor().equals(coordinate[destCoordinateX][destCoordinateY].getChessPiece().getIsRedColor()))
+				if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
 				{
 					return false;
 				}
@@ -105,7 +105,7 @@ public class SunMovement implements Movement {
 			//check destination got piece, got piece cannot move
 			if (coordinate[destCoordinateX][destCoordinateY].getChessPiece() != null )
 			{
-				if (coordinate[sourceCoordinateX][sourceCoordinateY].getChessPiece().getIsRedColor().equals(coordinate[destCoordinateX][destCoordinateY].getChessPiece().getIsRedColor()))
+				if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
 				{
 					return false;
 				}

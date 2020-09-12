@@ -3,7 +3,6 @@ package webale;
 import java.awt.Image;
 import java.io.IOException;
 
-import javax.swing.ImageIcon;
 import javax.imageio.ImageIO;
 
 public abstract class Piece {
@@ -24,7 +23,7 @@ public abstract class Piece {
 		this.setIcon(ImageUrl);
 	}
 
-	abstract public boolean canMove(GameBoard gameBoard, Coordinate startPoint, Coordinate endPoint);
+	abstract public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint);
 
 	public void setIcon(String ImageUrl) throws IOException {
         image = ImageIO.read(getClass().getResource(ImageUrl));

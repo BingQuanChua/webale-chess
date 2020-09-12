@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class GameBoard extends JPanel {
 
-    JFrame f = new JFrame();   
+    JFrame f = new JFrame("WEBALE CHESS");   
     //                                             y  x
     private JButton[][] tileArray = new ChessTiles[8][7];
     Boolean flipped = false;
