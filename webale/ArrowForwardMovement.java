@@ -1,9 +1,5 @@
 package webale;
 
-//public class ArrowForwardMovement implements Movement {
-    
-///}
-
 public class ArrowForwardMovement implements Movement 
 {
         public boolean move(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint){
