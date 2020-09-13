@@ -169,32 +169,7 @@ public class GameBoard extends JPanel{
         repaint();
     }
 
-    Coordinate startPoint = null;
-    Coordinate endPoint = null;
-
-    public boolean movePiece(ChessTiles chessTileClicked, int timeClicked){
-        
-        if(timeClicked % 2 != 0 && coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()].getChessPiece() == null){
-            return false;
-        }
-
-        if(timeClicked % 2 == 0){
-            endPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
-            if(startPoint != null && startPoint.getChessPiece().canMove(coordinate, startPoint, endPoint)){
-                endPoint.setChessPiece(startPoint.getChessPiece());
-                startPoint.setChessPiece(null);
-                revalidate();
-                repaint();
-                //if successfully moved return true, if not return false
-                return true;
-            } else{
-                return false;
-            }
-        }
-        else {
-            startPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
-            return true;
-        }
+   
 
         // //same colour cannot move 
         // //发现到有一些同样颜色的piece还是可以吃掉对方 所以这里check多一次 如果movement都有check正确的话这里应该不用check了
@@ -217,8 +192,10 @@ public class GameBoard extends JPanel{
         // } 
 
         //return false;        
-    }
+    //}
     
+
+
     public Coordinate[][] getCoordinateArray(){
         return coordinate;
     }
