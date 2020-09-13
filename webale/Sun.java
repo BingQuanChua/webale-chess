@@ -10,6 +10,9 @@ public class Sun extends Piece{
 			movement = new SunMovement();
 	}
 
+	public Sun(boolean b, String string) {
+	}
+
 	@Override
 	public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) { 
 		return movement.move(coordinate, startPoint, endPoint);

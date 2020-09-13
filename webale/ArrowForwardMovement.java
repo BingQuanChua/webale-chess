@@ -51,6 +51,6 @@ public class ArrowForwardMovement implements Movement
                                 return true;
                         }
                 }
-        return true;
+        return false;
         }      
 }

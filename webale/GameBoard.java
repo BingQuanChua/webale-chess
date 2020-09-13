@@ -3,6 +3,7 @@ package webale;
 import java.awt.*;
 import java.awt.event.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.image.*;
 import java.io.IOException;
@@ -185,11 +186,30 @@ public class GameBoard extends JPanel{
                 repaint();
                 return true;
             }
-        } else{
+        }
+        else {
             startPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
             return true;
         }
-        return true;        
+        
+        if (startPoint == endPoint){
+            return false;
+        }
+        //same colour cannot move 
+        //发现到有一些同样颜色的piece还是可以吃掉对方 所以这里check多一次 如果movement都有check正确的话这里应该不用check了
+        if(startPoint.getChessPiece().getIsRedColor() == endPoint.getChessPiece().getIsRedColor()){
+            timeClicked --;
+            return false;
+        }
+
+
+        //我想check sun赢没有 可是check不到:( 还是在其他地方放method check bah
+        // if (startPoint != null && (endPoint.getChessPiece().equals(pieces[5])) || endPoint.getChessPiece().equals(pieces[0])) {
+        //     System.out.println("The game is END");
+        //     return true;
+        // } 
+
+        return false;        
     }
     
     public Coordinate[][] getCoordinateArray(){
