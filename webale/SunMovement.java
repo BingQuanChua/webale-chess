@@ -1,6 +1,7 @@
 package webale;
 
 public class SunMovement implements Movement {
+	
     public boolean move(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
 		
 		int sourceCoordinateX = startPoint.getCoorX();
@@ -64,6 +65,6 @@ public class SunMovement implements Movement {
 			return true;
 		}
 
-        return true;
+        return false;
     }
 }
