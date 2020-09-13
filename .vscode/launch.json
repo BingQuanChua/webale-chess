@@ -9,6 +9,13 @@
             "name": "CodeLens (Launch) - Game",
             "request": "launch",
             "mainClass": "webale.Game",
+            "projectName": "webale-chess_fdcf0836"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - Game",
+            "request": "launch",
+            "mainClass": "webale.Game",
             "projectName": "webale-chess_98f87e16"
         },
         {
