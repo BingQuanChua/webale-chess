@@ -132,7 +132,7 @@ public class GameController {
                 }
             }
         }
-        boardFrame.getGameBoard().revalidate();
+        //boardFrame.getGameBoard().revalidate();
         boardFrame.getGameBoard().repaint();
     }
 

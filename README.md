@@ -40,6 +40,7 @@ PlusMovement
 (Need design)
 HomeFrame
 GameBoard + ChessBoard + ToolBar
+**design not yet finished
 
 <h5>
     Done (?)
@@ -55,6 +56,7 @@ GameBoard + ChessBoard + ToolBar
 </h5>
 Controller (pass Game, HomeFrame, GameBoard)
 Game (save and load)
+rotate icon
 
 
 
