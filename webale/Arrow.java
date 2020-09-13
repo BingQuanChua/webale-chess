@@ -5,16 +5,17 @@ import java.io.IOException;
 public class Arrow extends Piece{
     private Movement movement;
 
-    public Arrow(boolean isRed, boolean flipState, String imageURL) throws IOException{
+	public Arrow(boolean isRed, boolean flipState, String imageURL) throws IOException
+	{
         super(isRed, flipState, imageURL); 
         movement = new ArrowForwardMovement();
     }
 
-	public Advancer(boolean isRed, boolean flipState, String imageURL, String movement)
+	public Arrow(boolean isRed, boolean flipState, String imageURL, String movement) throws IOException
 	{
 		super(isRed, flipState, imageURL);
 
-		if (movement == "Forward")
+		if (movement.equals("Forward"))
 		{
 			this.movement = new ArrowForwardMovement();
 		}
@@ -46,12 +47,6 @@ public class Arrow extends Piece{
 		return movement.move(coordinate, startPoint, endPoint);
     } 
     
-    // make the type of piece to string for saving
-	public String pieceToString() 
-	{
-		return "Arrow";
-	}
-
 	// make the movement type to string for saving
 	public String movementToString() 
 	{
