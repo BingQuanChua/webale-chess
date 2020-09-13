@@ -4,9 +4,16 @@ import java.awt.event.*;
 
 public class GameController {
     GameBoard gameboard = null;
+    HomeFrame homeFrame = null;
     
     public GameController(GameBoard gameboard){
         this.gameboard = gameboard;
+        setListener();
+    }
+
+    public GameController(GameBoard gameboard, HomeFrame homeFrame){
+        this.gameboard = gameboard;
+        this.homeFrame = homeFrame;
         setListener();
     }
 
@@ -16,6 +23,7 @@ public class GameController {
                 gameboard.getTileArray()[y][x].addActionListener(chessTileListener);
             }
         }
+        
     }
 
     ActionListener chessTileListener = new ActionListener(){

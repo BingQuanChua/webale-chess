@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - BoardFrame",
+            "request": "launch",
+            "mainClass": "webale.BoardFrame",
+            "projectName": "webale-chess_cb5df3ec"
+        },
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - HomeFrame",
+            "request": "launch",
+            "mainClass": "webale.HomeFrame",
+            "projectName": "webale-chess_cb5df3ec"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Game",
             "request": "launch",
             "mainClass": "webale.Game",
