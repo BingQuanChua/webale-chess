@@ -20,28 +20,27 @@ public class GameController {
 
     ActionListener chessTileListener = new ActionListener(){
         int timeClicked = 0;
-        boolean hasPiece = false;
+        boolean isValidMove = false;
 
         @Override
         public void actionPerformed(ActionEvent e){
+            System.out.println(timeClicked);
             if(gameboard != null){
                 timeClicked++;
-                System.out.println(timeClicked);
-                hasPiece = gameboard.movePiece((ChessTiles)e.getSource(), timeClicked);
-                if(!hasPiece){
-                    timeClicked--;
-                }
-
-                //if clicked 2 times, means change another player
-                if (hasPiece && timeClicked % 2 == 0) {
+                isValidMove = gameboard.movePiece((ChessTiles)e.getSource(), timeClicked);
+                //if chesstile clicked for startpoint is empty
+                if(!isValidMove && timeClicked == 1){
                     timeClicked = 0;
-                    gameboard.rotateBoard();
                 }
 
-                if(!hasPiece && gameboard.startPoint.equals(gameboard.endPoint)){
-                    timeClicked = 1;
+                //if chess movement to endpoint is valid
+                else if (timeClicked == 2) {
+                    timeClicked = 0;
+                    if(isValidMove){
+                        gameboard.rotateBoard();
+                    }
+                    
                 }
-
             }
         }
     };

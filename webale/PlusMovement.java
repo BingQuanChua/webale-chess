@@ -18,7 +18,7 @@ public class PlusMovement implements Movement {
         }
 
 		//move vertical, x-axis no change , y-axis coordinate any
-		if (destCoordinateX == sourceCoordinateX)
+		if (destCoordinateX == sourceCoordinateX && destCoordinateY != sourceCoordinateY)
 		{
             int distanceMovedOfY = destCoordinateY - sourceCoordinateY;
             //move upwards
@@ -48,7 +48,7 @@ public class PlusMovement implements Movement {
 		}
 
 		//move horizontal, x-axis coordinate any, y-axis no change
-		else if (destCoordinateY == sourceCoordinateY) 
+		else if (destCoordinateY == sourceCoordinateY && destCoordinateX != sourceCoordinateX) 
 		{
             int distanceMovedOfX = destCoordinateX - sourceCoordinateX;
             //move left
@@ -77,7 +77,7 @@ public class PlusMovement implements Movement {
 			return true;
         }      
         
-        return true;
+        return false;
         
     }
 
