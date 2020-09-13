@@ -34,17 +34,14 @@ public class GameController {
 
                 //if clicked 2 times, means change another player
                 if (hasPiece && timeClicked % 2 == 0) {
-                    timeClicked =0;
+                    timeClicked = 0;
                     gameboard.rotateBoard();
                 }
 
-                if(hasPiece && gameboard.startPoint.equals(gameboard.endPoint)){
-                    timeClicked -= 1;
+                if(!hasPiece && gameboard.startPoint.equals(gameboard.endPoint)){
+                    timeClicked = 1;
                 }
 
-                // if (gameboard.startPoint.getChessPiece().getIsRedColor() == gameboard.endPoint.getChessPiece().getIsRedColor()){
-                //     timeClicked -= 1;
-                // }
             }
         }
     };
