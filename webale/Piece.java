@@ -1,8 +1,6 @@
 package webale;
 
-import java.awt.Image;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
@@ -10,12 +8,12 @@ public abstract class Piece {
 
 	private boolean isRedColor;
 	private boolean hasFlipped;
-	private ImageIcon image;
+	private ImageIcon imageIcon;
 
 	Piece(){
 		this.isRedColor = false;
 		this.hasFlipped = true;
-		this.image = null;
+		this.imageIcon = null;
 	}
 
 	Piece(boolean isRedColor, boolean hasFlipped, String ImageUrl) throws IOException {
@@ -27,12 +25,13 @@ public abstract class Piece {
 	abstract public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint);
 
 	public void setIcon(String ImageUrl) throws IOException {
-        image = new ImageIcon(ImageIO.read(getClass().getResource(ImageUrl)));
-    }
+        imageIcon = new ImageIcon(ImageIO.read(getClass().getResource(ImageUrl)));
+	}
 
     public ImageIcon getIcon() {
-        return image;
-    }
+        return imageIcon;
+	}
+	
 
 	public boolean getIsRedColor() {
 		return isRedColor;

@@ -9,16 +9,28 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedWriter;
-
+import javax.swing.UIManager.*;
+import javax.swing.*;
 
 public class Game
 {
 	private static int roundCount;
 	
 	public static void main(String [] args) throws IOException {
-		//BoardFrame boardFrame = new BoardFrame();
+		// try {
+		// 	for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+		// 		if ("Nimbus".equals(info.getName())) {
+		// 			UIManager.setLookAndFeel(info.getClassName());
+		// 			break;
+		// 		}
+		// 	}
+		// } catch (Exception e) {
+		// 	// If Nimbus is not available, you can set the GUI to another look and feel.
+		// }
+
 		HomeFrame homeFrame = new HomeFrame();
-		GameController gameController = new GameController(homeFrame);
+		BoardFrame boardFrame = new BoardFrame();
+		GameController gameController = new GameController(homeFrame, boardFrame);
 	}
 
 }

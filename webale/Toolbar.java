@@ -3,25 +3,33 @@ import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+
 public class Toolbar extends JPanel{
 
     int width=200;
     int height=200;
     JButton backButton = new JButton("Back");
-    JButton saveButton= new JButton("Save");
-    JButton helpButton= new JButton("Help");
+    JButton saveButton = new JButton("Save");
+    JButton helpButton = new JButton("Help");
     String playerToMove = "RED";
     JLabel playerLabel = new JLabel("Player to Move : " + playerToMove);
-    JPanel btnPanel = new JPanel(new GridLayout(10, 1, 10, 10));
+    Color btnColor = new Color(103, 100, 107);
 
     public Toolbar(){
-        setBorder(new EmptyBorder(2, 3, 2, 3));
-        btnPanel.add(backButton);
-        btnPanel.add(saveButton);
-        btnPanel.add(helpButton);
-        btnPanel.add(playerLabel);
-        add(btnPanel);
-        setPreferredSize(new Dimension(width,height));
+        backButton.setBackground(btnColor);
+        backButton.setForeground(Color.WHITE);
+        saveButton.setBackground(btnColor);
+        saveButton.setForeground(Color.WHITE);
+        helpButton.setBackground(btnColor);
+        helpButton.setForeground(Color.WHITE);
+
+        setBorder(new EmptyBorder(0, 20, 0, 20)); //TLBR
+        setLayout(new GridLayout(10, 1, 0, 10));
+        add(backButton);
+        add(saveButton);
+        add(helpButton);
+        add(playerLabel);
+        //setPreferredSize(new Dimension(width,height));
     }
 
     @Override

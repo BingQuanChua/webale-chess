@@ -10,16 +10,6 @@ public class GameController {
     BoardFrame boardFrame = null;
     HomeFrame homeFrame = null;
     
-    public GameController(BoardFrame boardFrame){
-        this.boardFrame = boardFrame;
-        setListener();
-    }
-
-    public GameController(HomeFrame homeFrame){
-        this.homeFrame = homeFrame;
-        setListener();
-    }
-
     public GameController(HomeFrame homeFrame, BoardFrame boardFrame){
         this.homeFrame = homeFrame;
         this.boardFrame = boardFrame;
@@ -44,7 +34,7 @@ public class GameController {
         @Override
         public void mouseClicked(MouseEvent e){
             if(e.getButton()==MouseEvent.BUTTON1){
-                new BoardFrame();
+                boardFrame.setVisible(true);
             }
         }
     };
@@ -87,7 +77,7 @@ public class GameController {
                 else if (timeClicked == 2) {
                     timeClicked = 0;
                     if(isValidMove){
-                        boardFrame.getGameBoard().rotateBoard();
+                        rotateBoard();
                         togglePlayerTurn();
                     }
                     
@@ -95,6 +85,28 @@ public class GameController {
             }
         }
     };
+
+    Boolean hasFlipped = false;
+
+    public void rotateBoard(){
+        hasFlipped = !hasFlipped;
+        boardFrame.getGameBoard().removeAll();
+        if(hasFlipped){
+            for(int i = 0; i < 8; i++){
+                for(int j = 0; j < 7; j++){
+                  boardFrame.getGameBoard().add(boardFrame.getGameBoard().getTileArray()[7-i][6-j]);
+                }
+            }
+        } else{
+            for(int i = 0; i < 8; i++){
+                for(int j = 0; j < 7; j++){
+                  boardFrame.getGameBoard().add(boardFrame.getGameBoard().getTileArray()[i][j]);
+                }
+            }
+        }
+        boardFrame.getGameBoard().revalidate();
+        boardFrame.getGameBoard().repaint();
+    }
 
     Coordinate startPoint = null;
     Coordinate endPoint = null;

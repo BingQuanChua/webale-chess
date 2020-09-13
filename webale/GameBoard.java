@@ -1,11 +1,7 @@
 package webale;
 
 import java.awt.*;
-import java.awt.event.*;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.image.*;
 import java.io.IOException;
 
 //import javax.imageio.ImageIO;
@@ -13,7 +9,7 @@ import java.io.IOException;
 public class GameBoard extends JPanel{
     //                                             y  x
     private JButton[][] tileArray = new ChessTiles[8][7];
-    Boolean hasFlipped = false;
+    
 
     //private static int roundCount;
     private Coordinate coordinate[][] = new Coordinate[8][7];
@@ -22,8 +18,9 @@ public class GameBoard extends JPanel{
     public GameBoard(){
 
         //-------------------------------------GUI-----------------------------------------//      
-        
-        InitPiece();
+        int width = 700;
+        int height = 600;
+        initPiece();
         //-------------------------Assigning pieces to the coordinate----------------------//
 
 
@@ -68,50 +65,13 @@ public class GameBoard extends JPanel{
 
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
-                tileArray[y][x] = new ChessTiles(x,y);
-
-                // tileArray[y][x].addActionListener(new ActionListener(){
-                //     int timeClicked = 0;
-                //     Coordinate endPoint = null;
-                //     Coordinate startPoint = null;
-                //     @Override
-                //     public void actionPerformed(ActionEvent e) {
-                //         ChessTiles chessTileClicked = (ChessTiles)e.getSource();
-                //         timeClicked++;
-                //         System.out.println(timeClicked);
-                //         if(timeClicked % 2 == 0){
-                //             endPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
-                //             if(startPoint.getChessPiece().canMove(coordinate, startPoint, endPoint)){
-                //                 endPoint.setChessPiece(startPoint.getChessPiece());
-                //                 startPoint.setChessPiece(null);
-                //                 repaint();
-                //             }
-                //         } else{
-                //             startPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
-                //             return;
-                //         }
-                        
-                //         System.out.println("The X Coordinate for this tile is " + ((ChessTiles)e.getSource()).getCoorX());
-                //         System.out.println("The Y Coordinate for this tile is " + ((ChessTiles)e.getSource()).getCoorY());
-                //         System.out.println();
-                //     } 
-                // });
-
+                tileArray[y][x] = new ChessTiles(x,y);                
                 if (((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) {
                     tileArray[y][x].setBackground(new Color(198, 198, 199));
                 } else
                     tileArray[y][x].setBackground(new Color(112, 108, 117));
             }
         }
-
-        // for (int y = 0; y < 8; y++) {
-        //     for (int x = 0; x < 7; x++) {
-        //         if(coordinate[y][x].getChessPiece() != null){
-        //             tileArray[y][x].setIcon(coordinate[y][x].getChessPiece().getIcon());
-        //         }
-        //         this.add(tileArray[y][x]);
-        //     }
-        // }
 
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
@@ -120,11 +80,13 @@ public class GameBoard extends JPanel{
         }
 
         setLayout(new GridLayout(8, 7));
-        setPreferredSize(new Dimension(800,700));
+        setPreferredSize(new Dimension(width,height));
     }
 
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D)g;
+        g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
@@ -134,54 +96,34 @@ public class GameBoard extends JPanel{
                 }
             }
         }
-        
     }
 
-    public void rotateBoard(){
-        hasFlipped = !hasFlipped;
-        this.removeAll();
-        if(hasFlipped){
-            for(int i = 0; i < 8; i++){
-                for(int j = 0; j < 7; j++){
-                  this.add(tileArray[7-i][6-j]);
-                }
-            }
-        } else{
-            for(int i = 0; i < 8; i++){
-                for(int j = 0; j < 7; j++){
-                  this.add(tileArray[i][j]);
-                }
-            }
-        }
-        
-        revalidate();
-        repaint();
-    }
+    // public void rotateBoard(){
+    //     hasFlipped = !hasFlipped;
+    //     this.removeAll();
+    //     if(hasFlipped){
+    //         for(int i = 0; i < 8; i++){
+    //             for(int j = 0; j < 7; j++){
+    //               this.add(tileArray[7-i][6-j]);
+    //             }
+    //         }
+    //     } else{
+    //         for(int i = 0; i < 8; i++){
+    //             for(int j = 0; j < 7; j++){
+    //               this.add(tileArray[i][j]);
+    //             }
+    //         }
+    //     }
+    //     revalidate();
+    //     repaint();
+    // }
 
    
-
-        // //same colour cannot move 
-        // //发现到有一些同样颜色的piece还是可以吃掉对方 所以这里check多一次 如果movement都有check正确的话这里应该不用check了
-        // 
-        // if(startPoint.getChessPiece().getIsRedColor() == endPoint.getChessPiece().getIsRedColor()){
-        //     return false;
-        // }
-        // else if(!startPoint.getChessPiece().getIsRedColor() == !endPoint.getChessPiece().getIsRedColor()){
-        //     return false;
-        // }
-        // else if(startPoint.getChessPiece().getIsRedColor() != endPoint.getChessPiece().getIsRedColor()){
-        //     return true;
-        // }
-
         //我想check sun赢没有 可是check不到:( 还是在其他地方放method check bah 
         //最好不要一次过在同个method做 分开哦哦^^  因为还没做kill piece，这个endpoint是在指那个吃掉sun的piece
         // if (startPoint != null && (endPoint.getChessPiece().equals(pieces[5])) || endPoint.getChessPiece().equals(pieces[0])) {
         //     System.out.println("The game is END");
         //     return true;
-        // } 
-
-        //return false;        
-    //}
     
 
 
@@ -193,7 +135,7 @@ public class GameBoard extends JPanel{
         return tileArray;
     }
 
-    public void InitPiece(){
+    public void initPiece(){
         try{
             //-------------------------Initializing the blue pieces-----------------------------//
 

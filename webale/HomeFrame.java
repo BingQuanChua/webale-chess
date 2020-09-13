@@ -2,7 +2,6 @@ package webale;
 
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;  
 import javax.swing.*;
 import java.awt.image.*;
 import javax.imageio.ImageIO;
@@ -44,10 +43,6 @@ public class HomeFrame extends JFrame{
         btnPanel.add(loadGame);
         btnPanel.add(instruction);
         btnPanel.add(quitGame);
-
-        // startGame.addMouseListener(this);
-        // loadGame.addMouseListener(this);
-        
 
         layout.add(btnPanel);
         panel.add(layout, BorderLayout.CENTER);
