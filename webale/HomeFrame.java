@@ -13,7 +13,8 @@ public class HomeFrame extends JFrame{
     int width = 500;
     int height = 500;
     JLabel title = new JLabel("Welcome to Webale Chess Game!",SwingConstants.CENTER);
-    JButton startGame = new JButton ("Start Game");
+    JButton startGame = new JButton ("Start New Game");
+    JButton continueGame = new JButton ("Continue Last Game");
     JButton loadGame = new JButton ("Load Game");
     JButton instruction = new JButton ("Instruction");
     JButton quitGame = new JButton ("Quit");
@@ -24,6 +25,7 @@ public class HomeFrame extends JFrame{
         super("Webale Chess");
 
         title.setFont(new Font("Verdana", Font.PLAIN, 18));
+        continueGame.setEnabled(false);
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setBorder(new EmptyBorder(2, 3, 2, 3));
@@ -31,7 +33,7 @@ public class HomeFrame extends JFrame{
         layout.setBorder(new EmptyBorder(5, 5, 5, 5));
         JPanel btnPanel = new JPanel(new GridLayout(10, 1, 10, 5));
 
-        try {                
+        try{                
             logoImageIcon = new ImageIcon(ImageIO.read(getClass().getResource(("images/logo.png"))));
             //load instruction image
             instructionImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/Instructions_Help.png")));
@@ -40,6 +42,7 @@ public class HomeFrame extends JFrame{
         }
         
         btnPanel.add(startGame);
+        btnPanel.add(continueGame);
         btnPanel.add(loadGame);
         btnPanel.add(instruction);
         btnPanel.add(quitGame);
@@ -63,6 +66,10 @@ public class HomeFrame extends JFrame{
 
     public JButton getStartButton(){
         return startGame;
+    }
+
+    public JButton getContinueButton(){
+        return continueGame;
     }
 
     public JButton getLoadButton(){

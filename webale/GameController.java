@@ -9,7 +9,8 @@ import javax.swing.JOptionPane;
 public class GameController {
     BoardFrame boardFrame = null;
     HomeFrame homeFrame = null;
-    
+    boolean isFirstGame = true;
+
     public GameController(HomeFrame homeFrame, BoardFrame boardFrame){
         this.homeFrame = homeFrame;
         this.boardFrame = boardFrame;
@@ -18,9 +19,13 @@ public class GameController {
 
     public void setListener(){
         
-        homeFrame.getStartButton().addMouseListener(startBtnListener);
-        homeFrame.getInstructionButton().addMouseListener(instructionBtnListener);
-        homeFrame.getQuitButton().addMouseListener(quitBtnListener);
+        homeFrame.getStartButton().addActionListener(startBtnListener);
+        homeFrame.getContinueButton().addActionListener(continueBtnListener);
+        homeFrame.getInstructionButton().addActionListener(instructionBtnListener);
+        homeFrame.getQuitButton().addActionListener(quitBtnListener);
+        boardFrame.getToolbar().getBackButton().addActionListener(backBtnListener);
+        boardFrame.getToolbar().getSaveButton().addActionListener(saveBtnListener);
+        boardFrame.getToolbar().getHelpButton().addActionListener(instructionBtnListener);
 
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
@@ -30,33 +35,56 @@ public class GameController {
         
     }
 
-    MouseListener startBtnListener = new MouseAdapter(){
+    ActionListener startBtnListener = new ActionListener(){
         @Override
-        public void mouseClicked(MouseEvent e){
-            if(e.getButton()==MouseEvent.BUTTON1){
-                boardFrame.setVisible(true);
+        public void actionPerformed(ActionEvent e){
+            if(!isFirstGame){
+                boardFrame = new BoardFrame();
             }
+            boardFrame.setVisible(true);
+            
         }
     };
 
-    MouseListener instructionBtnListener =  new MouseAdapter(){
+    ActionListener continueBtnListener = new ActionListener(){
         @Override
-        public void mouseClicked(MouseEvent e){
-            if(e.getButton()==MouseEvent.BUTTON1){
-                JLabel instructionLabel = new JLabel(homeFrame.getInstructionImageIcon());
-                JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
-            }
+        public void actionPerformed(ActionEvent e){
+            boardFrame.setVisible(true);
         }
     };
 
-    MouseListener quitBtnListener = new MouseAdapter(){
+    ActionListener instructionBtnListener =  new ActionListener(){
         @Override
-        public void mouseClicked(MouseEvent e){
-            if(e.getButton()==MouseEvent.BUTTON1){
-                System.exit(0);
-            }
+        public void actionPerformed(ActionEvent e){
+            JLabel instructionLabel = new JLabel(homeFrame.getInstructionImageIcon());
+            JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
         }
     };
+
+    ActionListener quitBtnListener = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+            System.exit(0);
+        }
+    };
+
+    ActionListener backBtnListener = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+            homeFrame.getContinueButton().setEnabled(true);
+            boardFrame.setVisible(false);
+            isFirstGame = false;
+        }
+    };
+
+    ActionListener saveBtnListener = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+            //TODO: save function
+            
+        }
+    };
+
 
     ActionListener chessTileListener = new ActionListener(){
         int timeClicked = 0;
@@ -130,9 +158,12 @@ public class GameController {
             endPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
             //if moving to endPoint is valid
             if(startPoint != null && startPoint.getChessPiece().canMove(coordinate, startPoint, endPoint)){
+                if(hasWin(endPoint.getChessPiece())){
+                    gameOver();
+                }
                 endPoint.setChessPiece(startPoint.getChessPiece());
                 startPoint.setChessPiece(null);
-                boardFrame.getGameBoard().revalidate();
+                //boardFrame.getGameBoard().revalidate();
                 boardFrame.getGameBoard().repaint();
                 //if successfully moved return true, if not return false
                 return true;
@@ -148,14 +179,23 @@ public class GameController {
 
     public void togglePlayerTurn(){
         isRedPlayer = !isRedPlayer;
-        if(isRedPlayer){
-            boardFrame.getToolbar().setPlayerToMove("Red");
-            boardFrame.getToolbar().repaint();
-        } else{
-            boardFrame.getToolbar().setPlayerToMove("Blue");
-            boardFrame.getToolbar().repaint();
-        }
+        String playerToMove = isRedPlayer ? "Red" : "Blue";
+        boardFrame.getToolbar().setPlayerToMove(playerToMove);
+        boardFrame.getToolbar().repaint();
+    }
 
+    public boolean hasWin(Piece pieceKilled){
+        if(pieceKilled instanceof Sun){
+            return true;
+        }
+        return false;
+    }
+
+    public void gameOver(){
+        String playerWon = isRedPlayer ? "Red" : "Blue";
+        new GameOver(boardFrame, playerWon);
+        isFirstGame = false;
+        boardFrame.setVisible(false);
     }
 
 }

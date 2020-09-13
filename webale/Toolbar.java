@@ -41,4 +41,16 @@ public class Toolbar extends JPanel{
     public void setPlayerToMove(String playerToMove) {
         this.playerToMove = playerToMove;
     }
+
+    public JButton getBackButton(){
+        return backButton;
+    }
+
+    public JButton getSaveButton(){
+        return saveButton;
+    }
+
+    public JButton getHelpButton(){
+        return helpButton;
+    }
 }

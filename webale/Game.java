@@ -14,7 +14,6 @@ import javax.swing.*;
 
 public class Game
 {
-	private static int roundCount;
 	
 	public static void main(String [] args) throws IOException {
 		// try {
