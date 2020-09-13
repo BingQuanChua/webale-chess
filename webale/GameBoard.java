@@ -11,8 +11,6 @@ import java.io.IOException;
 //import javax.imageio.ImageIO;
 
 public class GameBoard extends JPanel{
-
-    JFrame f = new JFrame("WEBALE CHESS");   
     //                                             y  x
     private JButton[][] tileArray = new ChessTiles[8][7];
     Boolean hasFlipped = false;
@@ -23,14 +21,7 @@ public class GameBoard extends JPanel{
 
     public GameBoard(){
 
-        //-------------------------------------GUI-----------------------------------------//
-       
-
-        f.setLayout(new BorderLayout());
-        JButton b = new JButton("rotate");
-
-        b.addActionListener(e -> rotateBoard());
-        f.add(b, BorderLayout.PAGE_START);        
+        //-------------------------------------GUI-----------------------------------------//      
         
         InitPiece();
         //-------------------------Assigning pieces to the coordinate----------------------//
@@ -129,12 +120,10 @@ public class GameBoard extends JPanel{
         }
 
         setLayout(new GridLayout(8, 7));
-        f.add(this, BorderLayout.CENTER);
-        f.setVisible(true);
-        f.setSize(1000, 1000);  
+        setPreferredSize(new Dimension(800,700));
     }
 
-    public void paintComponent(Graphics g){
+    protected void paintComponent(Graphics g){
         super.paintComponent(g);
 
         for (int y = 0; y < 8; y++) {

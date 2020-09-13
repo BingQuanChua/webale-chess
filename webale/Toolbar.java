@@ -5,24 +5,32 @@ import javax.swing.border.EmptyBorder;
 
 public class Toolbar extends JPanel{
 
-    int width=800;
-    int height=800;
-    JLabel playerLabel = new JLabel("Player to Move : Red / Blue");
+    int width=200;
+    int height=200;
     JButton backButton = new JButton("Back");
     JButton saveButton= new JButton("Save");
     JButton helpButton= new JButton("Help");
+    String playerToMove = "RED";
+    JLabel playerLabel = new JLabel("Player to Move : " + playerToMove);
     JPanel btnPanel = new JPanel(new GridLayout(10, 1, 10, 10));
-    JPanel layout = new JPanel(new GridBagLayout());
 
     public Toolbar(){
         setBorder(new EmptyBorder(2, 3, 2, 3));
-        layout.setBorder(new EmptyBorder(5, 5, 5, 5));
         btnPanel.add(backButton);
         btnPanel.add(saveButton);
         btnPanel.add(helpButton);
         btnPanel.add(playerLabel);
-        layout.add(btnPanel);
-        setLayout(new BorderLayout());
-        add(layout, BorderLayout.EAST);
+        add(btnPanel);
+        setPreferredSize(new Dimension(width,height));
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        playerLabel.setText("Player to Move : " + playerToMove);
+    }
+
+    public void setPlayerToMove(String playerToMove) {
+        this.playerToMove = playerToMove;
     }
 }

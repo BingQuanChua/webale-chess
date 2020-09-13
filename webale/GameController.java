@@ -3,16 +3,16 @@ import java.awt.event.*;
 
 
 public class GameController {
-    GameBoard gameboard = null;
+    BoardFrame boardFrame = null;
     HomeFrame homeFrame = null;
     
-    public GameController(GameBoard gameboard){
-        this.gameboard = gameboard;
+    public GameController(BoardFrame boardFrame){
+        this.boardFrame = boardFrame;
         setListener();
     }
 
-    public GameController(GameBoard gameboard, HomeFrame homeFrame){
-        this.gameboard = gameboard;
+    public GameController(BoardFrame boardFrame, HomeFrame homeFrame){
+        this.boardFrame = boardFrame;
         this.homeFrame = homeFrame;
         setListener();
     }
@@ -20,7 +20,7 @@ public class GameController {
     public void setListener(){
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
-                gameboard.getTileArray()[y][x].addActionListener(chessTileListener);
+                boardFrame.getGameBoard().getTileArray()[y][x].addActionListener(chessTileListener);
             }
         }
         
@@ -33,7 +33,7 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent e){
             System.out.println(timeClicked);
-            if(gameboard != null){
+            if(boardFrame.getGameBoard() != null){
                 timeClicked++;
                 isValidMove = movePiece((ChessTiles)e.getSource(), timeClicked);
                 //if chesstile clicked for startpoint is empty
@@ -45,7 +45,7 @@ public class GameController {
                 else if (timeClicked == 2) {
                     timeClicked = 0;
                     if(isValidMove){
-                        gameboard.rotateBoard();
+                        boardFrame.getGameBoard().rotateBoard();
                         togglePlayerTurn();
                     }
                     
@@ -59,7 +59,7 @@ public class GameController {
     boolean isRedPlayer = true;
 
     public boolean movePiece(ChessTiles chessTileClicked, int timeClicked){
-        Coordinate[][] coordinate = gameboard.getCoordinateArray();
+        Coordinate[][] coordinate = boardFrame.getGameBoard().getCoordinateArray();
         
         //check if the chesstile selected as startPoint is valid first
         if(timeClicked % 2 != 0){
@@ -78,8 +78,8 @@ public class GameController {
             if(startPoint != null && startPoint.getChessPiece().canMove(coordinate, startPoint, endPoint)){
                 endPoint.setChessPiece(startPoint.getChessPiece());
                 startPoint.setChessPiece(null);
-                gameboard.revalidate();
-                gameboard.repaint();
+                boardFrame.getGameBoard().revalidate();
+                boardFrame.getGameBoard().repaint();
                 //if successfully moved return true, if not return false
                 return true;
             } else{
@@ -94,6 +94,14 @@ public class GameController {
 
     public void togglePlayerTurn(){
         isRedPlayer = !isRedPlayer;
+        if(isRedPlayer){
+            boardFrame.getToolbar().setPlayerToMove("Red");
+            boardFrame.getToolbar().repaint();
+        } else{
+            boardFrame.getToolbar().setPlayerToMove("Blue");
+            boardFrame.getToolbar().repaint();
+        }
+
     }
 
 }
