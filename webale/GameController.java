@@ -1,5 +1,9 @@
-package webale; 
+package webale;
+
 import java.awt.event.*;
+
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 
 public class GameController {
@@ -11,13 +15,23 @@ public class GameController {
         setListener();
     }
 
-    public GameController(BoardFrame boardFrame, HomeFrame homeFrame){
-        this.boardFrame = boardFrame;
+    public GameController(HomeFrame homeFrame){
         this.homeFrame = homeFrame;
         setListener();
     }
 
+    public GameController(HomeFrame homeFrame, BoardFrame boardFrame){
+        this.homeFrame = homeFrame;
+        this.boardFrame = boardFrame;
+        setListener();
+    }
+
     public void setListener(){
+        
+        homeFrame.getStartButton().addMouseListener(startBtnListener);
+        homeFrame.getInstructionButton().addMouseListener(instructionBtnListener);
+        homeFrame.getQuitButton().addMouseListener(quitBtnListener);
+
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
                 boardFrame.getGameBoard().getTileArray()[y][x].addActionListener(chessTileListener);
@@ -25,6 +39,34 @@ public class GameController {
         }
         
     }
+
+    MouseListener startBtnListener = new MouseAdapter(){
+        @Override
+        public void mouseClicked(MouseEvent e){
+            if(e.getButton()==MouseEvent.BUTTON1){
+                new BoardFrame();
+            }
+        }
+    };
+
+    MouseListener instructionBtnListener =  new MouseAdapter(){
+        @Override
+        public void mouseClicked(MouseEvent e){
+            if(e.getButton()==MouseEvent.BUTTON1){
+                JLabel instructionLabel = new JLabel(homeFrame.getInstructionImageIcon());
+                JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
+            }
+        }
+    };
+
+    MouseListener quitBtnListener = new MouseAdapter(){
+        @Override
+        public void mouseClicked(MouseEvent e){
+            if(e.getButton()==MouseEvent.BUTTON1){
+                System.exit(0);
+            }
+        }
+    };
 
     ActionListener chessTileListener = new ActionListener(){
         int timeClicked = 0;

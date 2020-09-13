@@ -16,8 +16,9 @@ public class Game
 	private static int roundCount;
 	
 	public static void main(String [] args) throws IOException {
-		BoardFrame boardFrame = new BoardFrame();
-		GameController gameController = new GameController(boardFrame);
+		//BoardFrame boardFrame = new BoardFrame();
+		HomeFrame homeFrame = new HomeFrame();
+		GameController gameController = new GameController(homeFrame);
 	}
 
 }

@@ -44,28 +44,11 @@ public class HomeFrame extends JFrame{
         btnPanel.add(loadGame);
         btnPanel.add(instruction);
         btnPanel.add(quitGame);
+
         // startGame.addMouseListener(this);
         // loadGame.addMouseListener(this);
         
 
-        instruction.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                if(e.getButton()==MouseEvent.BUTTON1){
-                    JLabel instructionLabel = new JLabel(instructionImageIcon);
-                    JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
-                }
-            }
-        });
-
-        quitGame.addMouseListener(new MouseAdapter(){
-            @Override
-            public void mouseClicked(MouseEvent e){
-                if(e.getButton()==MouseEvent.BUTTON1){
-                    System.exit(0);
-                }
-            }
-        });
         layout.add(btnPanel);
         panel.add(layout, BorderLayout.CENTER);
         
@@ -81,6 +64,26 @@ public class HomeFrame extends JFrame{
         setTitle("WEBALE CHESS");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         
+    }
+
+    public JButton getStartButton(){
+        return startGame;
+    }
+
+    public JButton getLoadButton(){
+        return loadGame;
+    }
+
+    public JButton getInstructionButton(){
+        return instruction;
+    }
+
+    public JButton getQuitButton(){
+        return quitGame;
+    }
+
+    public ImageIcon getInstructionImageIcon(){
+        return instructionImageIcon;
     }
  
     public static void main (String[] args){
