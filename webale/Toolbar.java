@@ -13,7 +13,7 @@ public class Toolbar extends JPanel{
     JButton helpButton = new JButton("Help");
     String playerToMove = "RED";
     JLabel playerLabel = new JLabel("Player to Move : " + playerToMove);
-    Color btnColor = new Color(103, 100, 107);
+    Color btnColor = new Color(69, 80, 98);
 
     public Toolbar(){
         backButton.setBackground(btnColor);

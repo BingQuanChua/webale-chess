@@ -67,9 +67,9 @@ public class GameBoard extends JPanel{
             for (int x = 0; x < 7; x++) {
                 tileArray[y][x] = new ChessTiles(x,y);                
                 if (((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) {
-                    tileArray[y][x].setBackground(new Color(198, 198, 199));
+                    tileArray[y][x].setBackground(new Color(204, 203, 209));
                 } else
-                    tileArray[y][x].setBackground(new Color(112, 108, 117));
+                    tileArray[y][x].setBackground(new Color(69, 80, 98));
             }
         }
 
