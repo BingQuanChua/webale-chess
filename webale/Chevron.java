@@ -28,6 +28,6 @@ public class Chevron extends Piece {
 	} 
 
 	public String toString(){
-		return "Chevron"; 
+		return (getIsRedColor() ? "Red " : "Blue ") + "Chevron"; 
 	}
 }

@@ -1,8 +1,12 @@
 package webale;
+
 import java.awt.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
+import java.io.File;
 
 public class Toolbar extends JPanel{
 
@@ -57,5 +61,18 @@ public class Toolbar extends JPanel{
 
     public JButton getHelpButton(){
         return helpButton;
+    }
+
+    public File openSaveFileDialogAndGetFileToSave() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Choose a location to save your Webale file!");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Documents (*.txt)", "txt", "text");
+        fileChooser.setFileFilter(filter);
+        int response = fileChooser.showSaveDialog(null); 
+        File selectedFile = null;
+        if (response == JFileChooser.APPROVE_OPTION) { 
+            selectedFile = fileChooser.getSelectedFile();
+        }
+        return selectedFile;
     }
 }

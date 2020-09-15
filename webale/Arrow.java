@@ -62,6 +62,6 @@ public class Arrow extends Piece{
 	}
 
 	public String toString(){
-		return "Arrow " + movementToString(); 
+		return (getIsRedColor() ? "Red " : "Blue ") + "Arrow " + movementToString(); 
 	}
 }

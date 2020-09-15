@@ -6,7 +6,7 @@ public class Sun extends Piece{
 	private Movement movement;
     
 	public Sun(boolean isRedColor, String imageUrl) throws IOException{
-        super(isRedColor, imageUrl); 
+        super(isRedColor, imageUrl);
 		movement = new SunMovement();
 	}
 
@@ -16,6 +16,6 @@ public class Sun extends Piece{
 	} 
 
 	public String toString(){
-		return "Sun"; 
+		return (getIsRedColor() ? "Red " : "Blue ") + "Sun"; 
 	}
 } 

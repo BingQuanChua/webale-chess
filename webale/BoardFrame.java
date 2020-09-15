@@ -25,6 +25,7 @@ public class BoardFrame extends JDialog{
         c.weighty = 1.0;
         c.gridwidth = 4;
         gamePanel.add(gameboard, c);
+        gameboard.setOpaque(false);
 
         //contraints for toolbar
         c.anchor = GridBagConstraints.FIRST_LINE_END;
@@ -37,12 +38,12 @@ public class BoardFrame extends JDialog{
         c.weighty = 0;
         c.gridwidth = 1;
         gamePanel.add(toolbar, c);
+        toolbar.setOpaque(false);
 
+        gamePanel.setOpaque(false);
         add(gamePanel);
-        setBackground(new Color(185, 189, 189));
-        //setSize(1000,1000);
+        getContentPane().setBackground(new Color(249, 241, 232));
         pack();
-        //setVisible(true);
 
     }
 
@@ -53,4 +54,5 @@ public class BoardFrame extends JDialog{
     public GameBoard getGameBoard(){
         return (GameBoard)gameboard;
     }
+
 }

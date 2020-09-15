@@ -31,6 +31,6 @@ public class Triangle extends Piece {
     } 
     
     public String toString(){
-		return "Triangle"; 
+		return (getIsRedColor() ? "Red " : "Blue ") + "Triangle"; 
 	}
 }

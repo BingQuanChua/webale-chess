@@ -30,6 +30,6 @@ public class Plus extends Piece {
 	} 
 
 	public String toString(){
-		return "Plus"; 
+		return (getIsRedColor() ? "Red " : "Blue ") + "Plus"; 
 	}
 }

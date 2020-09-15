@@ -48,6 +48,6 @@ public abstract class Piece {
 		hasFlipped = !hasFlipped;
 	}
 
-	abstract public String toString();
+	abstract public String toString(); //color + " " + name
 	
 }
