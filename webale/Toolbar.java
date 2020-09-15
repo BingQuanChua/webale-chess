@@ -13,15 +13,20 @@ public class Toolbar extends JPanel{
     JButton helpButton = new JButton("Help");
     String playerToMove = "RED";
     JLabel playerLabel = new JLabel("Player to Move : " + playerToMove);
-    Color btnColor = new Color(69, 80, 98);
+    final Color darkBrown = new Color(74, 59, 47);
+    final Font buttonFont = new Font("Leelawadee", Font.BOLD, 15);
 
     public Toolbar(){
-        backButton.setBackground(btnColor);
+        backButton.setBackground(darkBrown);
         backButton.setForeground(Color.WHITE);
-        saveButton.setBackground(btnColor);
+        backButton.setFont(buttonFont);
+        saveButton.setBackground(darkBrown);
         saveButton.setForeground(Color.WHITE);
-        helpButton.setBackground(btnColor);
+        saveButton.setFont(buttonFont);
+        helpButton.setBackground(darkBrown);
         helpButton.setForeground(Color.WHITE);
+        helpButton.setFont(buttonFont);
+        playerLabel.setForeground(darkBrown);
 
         setBorder(new EmptyBorder(0, 20, 0, 20)); //TLBR
         setLayout(new GridLayout(10, 1, 0, 10));

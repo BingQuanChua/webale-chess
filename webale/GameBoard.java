@@ -3,6 +3,7 @@ package webale;
 import java.awt.*;
 import javax.swing.*;
 import java.io.IOException;
+import javax.swing.border.Border;
 
 //import javax.imageio.ImageIO;
 
@@ -67,9 +68,9 @@ public class GameBoard extends JPanel{
             for (int x = 0; x < 7; x++) {
                 tileArray[y][x] = new ChessTiles(x,y);                
                 if (((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) {
-                    tileArray[y][x].setBackground(new Color(204, 203, 209));
+                    tileArray[y][x].setBackground(new Color(242, 227, 211));
                 } else
-                    tileArray[y][x].setBackground(new Color(69, 80, 98));
+                    tileArray[y][x].setBackground(new Color(181, 153, 132));
             }
         }
 
@@ -79,7 +80,8 @@ public class GameBoard extends JPanel{
             }
         }
 
-        setLayout(new GridLayout(8, 7));
+        setBorder(BorderFactory.createLineBorder(new Color(74, 59, 47), 8));
+        setLayout(new GridLayout(8, 7));        
         setPreferredSize(new Dimension(width,height));
     }
 

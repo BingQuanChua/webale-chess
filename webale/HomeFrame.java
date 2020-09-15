@@ -41,10 +41,11 @@ public class HomeFrame extends JFrame{
         logoPanel.setOpaque(false);
         JPanel btnPanel = new JPanel(new GridLayout(5, 1, 0, 5));
         JButton[] buttonArr = {startGame, continueGame, loadGame, instruction, quitGame};
-        Font buttonFont = new Font("Arial", Font.PLAIN, 12);
+        final Color darkBrown = new Color(74, 59, 47);
+        final Font buttonFont = new Font("Leelawadee", Font.BOLD, 12);
         for(int i = 0; i < buttonArr.length; i++){
             buttonArr[i].setForeground(Color.WHITE);
-            buttonArr[i].setBackground(new Color(16, 35, 55));
+            buttonArr[i].setBackground(darkBrown);
             buttonArr[i].setFont(buttonFont);
             buttonArr[i].setFocusable(false);
             btnPanel.add(buttonArr[i]);
@@ -72,6 +73,7 @@ public class HomeFrame extends JFrame{
         c.gridy = GridBagConstraints.RELATIVE;
         c.insets = new Insets(0,0,30,0);
         c.ipady = 50;
+        c.ipadx = 10;
         c.weightx = 0.5;
         c.weighty = 0.5;
         c.gridheight = 2;
