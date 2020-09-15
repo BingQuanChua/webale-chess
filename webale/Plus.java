@@ -5,8 +5,8 @@ import java.io.IOException;
 public class Plus extends Piece {
 	private Movement movement;
 
-    public Plus(boolean isRed, boolean flipState, String imageURL) throws IOException{
-		super(isRed, flipState, imageURL); 
+    public Plus(boolean isRedColor, String imageUrl) throws IOException{
+		super(isRedColor, imageUrl); 
 		movement = new PlusMovement();
     }
 
@@ -28,4 +28,8 @@ public class Plus extends Piece {
 	public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) { 
 		return movement.move(coordinate, startPoint, endPoint);
 	} 
+
+	public String toString(){
+		return "Plus"; 
+	}
 }

@@ -1,7 +1,6 @@
 package webale;
 
 import java.awt.event.*;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -18,7 +17,6 @@ public class GameController {
     }
 
     public void setListener(){
-        
         homeFrame.getStartButton().addActionListener(startBtnListener);
         homeFrame.getContinueButton().addActionListener(continueBtnListener);
         homeFrame.getInstructionButton().addActionListener(instructionBtnListener);
@@ -32,7 +30,6 @@ public class GameController {
                 boardFrame.getGameBoard().getTileArray()[y][x].addActionListener(chessTileListener);
             }
         }
-        
     }
 
     ActionListener startBtnListener = new ActionListener(){
@@ -92,7 +89,6 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e){
-            System.out.println(timeClicked);
             if(boardFrame.getGameBoard() != null){
                 timeClicked++;
                 isValidMove = movePiece((ChessTiles)e.getSource(), timeClicked);
@@ -115,24 +111,25 @@ public class GameController {
     };
 
     Boolean hasFlipped = false;
-
+    int count = 0;
     public void rotateBoard(){
         hasFlipped = !hasFlipped;
+
         boardFrame.getGameBoard().removeAll();
-        if(hasFlipped){
-            for(int i = 0; i < 8; i++){
-                for(int j = 0; j < 7; j++){
-                  boardFrame.getGameBoard().add(boardFrame.getGameBoard().getTileArray()[7-i][6-j]);
+        for(int i = 0; i < 8; i++){
+            for(int j = 0; j < 7; j++){
+                if(hasFlipped){
+                    boardFrame.getGameBoard().add(boardFrame.getGameBoard().getTileArray()[7-i][6-j]);
+                } else{
+                    boardFrame.getGameBoard().add(boardFrame.getGameBoard().getTileArray()[i][j]);
                 }
-            }
-        } else{
-            for(int i = 0; i < 8; i++){
-                for(int j = 0; j < 7; j++){
-                  boardFrame.getGameBoard().add(boardFrame.getGameBoard().getTileArray()[i][j]);
-                }
+
+                if(boardFrame.getGameBoard().getCoordinateArray()[i][j].getChessPiece() != null){
+                    boardFrame.getGameBoard().getCoordinateArray()[i][j].getChessPiece().toggleFlippedState();
+                }                
             }
         }
-        //boardFrame.getGameBoard().revalidate();
+        
         boardFrame.getGameBoard().repaint();
     }
 
@@ -163,7 +160,6 @@ public class GameController {
                 }
                 endPoint.setChessPiece(startPoint.getChessPiece());
                 startPoint.setChessPiece(null);
-                //boardFrame.getGameBoard().revalidate();
                 boardFrame.getGameBoard().repaint();
                 //if successfully moved return true, if not return false
                 return true;
@@ -185,10 +181,7 @@ public class GameController {
     }
 
     public boolean hasWin(Piece pieceKilled){
-        if(pieceKilled instanceof Sun){
-            return true;
-        }
-        return false;
+        return pieceKilled instanceof Sun ? true : false;
     }
 
     public void gameOver(){

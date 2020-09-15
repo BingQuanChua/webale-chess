@@ -5,8 +5,8 @@ import java.io.IOException;
 public class Chevron extends Piece {
 	private Movement movement;
 
-    public Chevron(boolean isRed, boolean flipState, String imageURL) throws IOException{
-		super(isRed, flipState, imageURL); 
+    public Chevron(boolean isRedColor, String imageUrl) throws IOException{
+		super(isRedColor, imageUrl); 
 		movement = new ChevronMovement();
 	}
 	
@@ -26,4 +26,8 @@ public class Chevron extends Piece {
 	public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) { 
 		return movement.move(coordinate, startPoint, endPoint);
 	} 
+
+	public String toString(){
+		return "Chevron"; 
+	}
 }

@@ -5,15 +5,15 @@ import java.io.IOException;
 public class Arrow extends Piece{
     private Movement movement;
 
-	public Arrow(boolean isRed, boolean flipState, String imageURL) throws IOException
+	public Arrow(boolean isRedColor, String imageUrl) throws IOException
 	{
-        super(isRed, flipState, imageURL); 
+        super(isRedColor, imageUrl); 
         movement = new ArrowForwardMovement();
     }
 
-	public Arrow(boolean isRed, boolean flipState, String imageURL, String movement) throws IOException
+	public Arrow(boolean isRedColor, String imageUrl, String movement) throws IOException
 	{
-		super(isRed, flipState, imageURL);
+		super(isRedColor, imageUrl);
 
 		if (movement.equals("Forward"))
 		{
@@ -59,5 +59,9 @@ public class Arrow extends Piece{
 		{
 			return "Backward";
 		}
+	}
+
+	public String toString(){
+		return "Arrow " + movementToString(); 
 	}
 }
