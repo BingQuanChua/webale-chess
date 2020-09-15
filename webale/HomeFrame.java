@@ -1,9 +1,7 @@
 package webale;
 
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import javax.swing.*;
-import java.awt.image.*;
 import javax.imageio.ImageIO;
 
 import java.io.IOException;
