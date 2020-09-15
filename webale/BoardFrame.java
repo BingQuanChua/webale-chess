@@ -38,11 +38,8 @@ public class BoardFrame extends JDialog{
         c.gridwidth = 1;
         gamePanel.add(toolbar, c);
 
-        gameboard.setOpaque(false);
-        toolbar.setOpaque(false);
-        gamePanel.setOpaque(false);
         add(gamePanel);
-        getContentPane().setBackground(new Color(249, 241, 232));
+        setBackground(new Color(185, 189, 189));
         //setSize(1000,1000);
         pack();
         //setVisible(true);
