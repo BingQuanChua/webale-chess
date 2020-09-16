@@ -16,6 +16,7 @@ public class ArrowBackwardMovement implements Movement
                         if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == coordinate[destCoordinateY][destCoordinateX].getChessPiece().getIsRedColor())
                         {
                                 success = false;
+                                return success;
                         }
                 }
 
@@ -24,6 +25,7 @@ public class ArrowBackwardMovement implements Movement
                 if (destCoordinateX == sourceCoordinateX && (destCoordinateY == sourceCoordinateY - 1))
                 {
                                 success = true;
+                                return success;
                 }
 
                 //move 2 step backward at one time
@@ -34,12 +36,14 @@ public class ArrowBackwardMovement implements Movement
                          if (coordinate[sourceCoordinateY-1][sourceCoordinateX].getChessPiece() == null)
                         {
                                 success = true;
+                                return success;
                         }
                         else
                         {
                                 success = false;
+                                return success;
                         }
                 }            
-                return success;
+                return false;
         }      
 }
