@@ -15,6 +15,7 @@ public class Toolbar extends JPanel{
     JButton backButton = new JButton("Back");
     JButton saveButton = new JButton("Save");
     JButton helpButton = new JButton("Help");
+    JButton defeatButton = new JButton("Admit Defeat");
     String playerToMove = "RED";
     JLabel playerLabel = new JLabel("Player to Move : " + playerToMove);
     final Color darkBrown = new Color(74, 59, 47);
@@ -30,6 +31,9 @@ public class Toolbar extends JPanel{
         helpButton.setBackground(darkBrown);
         helpButton.setForeground(Color.WHITE);
         helpButton.setFont(buttonFont);
+        defeatButton.setBackground(darkBrown);
+        defeatButton.setForeground(Color.WHITE);
+        defeatButton.setFont(buttonFont);
         playerLabel.setForeground(darkBrown);
 
         setBorder(new EmptyBorder(0, 20, 0, 20)); //TLBR
@@ -37,6 +41,7 @@ public class Toolbar extends JPanel{
         add(backButton);
         add(saveButton);
         add(helpButton);
+        add(defeatButton);
         add(playerLabel);
         //setPreferredSize(new Dimension(width,height));
     }
@@ -61,6 +66,10 @@ public class Toolbar extends JPanel{
 
     public JButton getHelpButton(){
         return helpButton;
+    }
+
+    public JButton getDefeatButton(){
+        return defeatButton;
     }
 
     public File openSaveFileDialogAndGetFileToSave() {

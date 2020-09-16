@@ -19,6 +19,7 @@ public class HomeFrame extends JFrame{
     ImageIcon logoImageIcon;
     ImageIcon instructionImageIcon;
     ImageIcon bgImageIcon;
+    ImageIcon defeatImageIcon;
     
     public HomeFrame(){
         super("Webale Chess");
@@ -29,6 +30,7 @@ public class HomeFrame extends JFrame{
             logoImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/logo_resized.png")));
             instructionImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/Instructions_Help.png")));
             bgImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/background.png")));
+            defeatImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/admit_defeat.png")));
         } catch (IOException ex) {
             System.out.print("cant load image");
         }
@@ -130,6 +132,10 @@ public class HomeFrame extends JFrame{
 
     public ImageIcon getInstructionImageIcon(){
         return instructionImageIcon;
+    }
+
+    public ImageIcon getDefeatImageIcon(){
+        return defeatImageIcon;
     }
  
     public static void main (String[] args){

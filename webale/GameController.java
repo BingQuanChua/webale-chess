@@ -35,6 +35,7 @@ public class GameController {
         boardFrame.getToolbar().getBackButton().addActionListener(backBtnListener);
         boardFrame.getToolbar().getSaveButton().addActionListener(saveBtnListener);
         boardFrame.getToolbar().getHelpButton().addActionListener(instructionBtnListener);
+        boardFrame.getToolbar().getDefeatButton().addActionListener(defeatBtnListener);
 
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
@@ -42,6 +43,14 @@ public class GameController {
             }
         }
     }
+
+    ActionListener defeatBtnListener = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
+            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE, null);
+        }
+    };
 
     ActionListener startBtnListener = new ActionListener() {
         @Override
