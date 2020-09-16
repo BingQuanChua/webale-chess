@@ -288,7 +288,7 @@ public class GameController {
             String extension = "";
             if (i > 0) {
                 extension = fileName.substring(i+1);
-                if(extension != "txt" || extension != "text"){
+                if(extension != "txt"){
                     throw new Exception("Incorrect file type.");
                 }
             }

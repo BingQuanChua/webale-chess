@@ -66,7 +66,7 @@ public class Toolbar extends JPanel{
     public File openSaveFileDialogAndGetFileToSave() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose a location to save your Webale file.");
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Documents (*.txt)", "txt", "text");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Documents (*.txt)", "txt");
         fileChooser.setFileFilter(filter);
         int response = fileChooser.showSaveDialog(null); 
         File selectedFile = null;
