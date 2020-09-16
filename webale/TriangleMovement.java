@@ -12,7 +12,7 @@ public class TriangleMovement implements Movement {
         // check if destination has piece that is same colour
         if (destCoordinate.getChessPiece() != null){
             // destination piece is own piece
-            if (!(sourceCoordinate.getChessPiece().getIsRedColor() && destCoordinate.getChessPiece().getIsRedColor())|| (!sourceCoordinate.getChessPiece().getIsRedColor() && !destCoordinate.getChessPiece().getIsRedColor())){
+            if ((sourceCoordinate.getChessPiece().getIsRedColor() && destCoordinate.getChessPiece().getIsRedColor())|| (!sourceCoordinate.getChessPiece().getIsRedColor() && !destCoordinate.getChessPiece().getIsRedColor())){
                 return false;
             }
         }
