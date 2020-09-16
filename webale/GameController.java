@@ -187,7 +187,7 @@ public class GameController {
                     gameOver();
                 }
                 //if arrow reach the end, turn its direction
-                if((isRedPlayer && endPoint.getCoorY() == 0) || (!isRedPlayer && endPoint.getCoorY() == 7)){
+                if(endPoint.getCoorY() == 0 || endPoint.getCoorY() == 7){
                     changeArrowState(startPoint.getChessPiece());
                 }
                 endPoint.setChessPiece(startPoint.getChessPiece());
