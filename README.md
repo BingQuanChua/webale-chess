@@ -54,10 +54,11 @@ GameBoard + ChessBoard + ToolBar
 <h5>
     To be done
 </h5>
-Controller (pass Game, HomeFrame, GameBoard)
-Game (save and load)
-rotate icon
-
+load game
+plus <-> triangle 
+draw game
+arrange all methods
+design pattern
 
 
 <h2>
