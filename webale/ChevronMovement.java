@@ -10,8 +10,6 @@ public class ChevronMovement implements Movement {
 		int differenceX = Math.abs(destCoordinateX - sourceCoordinateX);
 		int differenceY = Math.abs(destCoordinateY - sourceCoordinateY);
 
-		System.out.println("DX" + differenceX + ", " + differenceY);
-
 		if (differenceX == 2 && differenceY == 1) {
 			if (coordinate[destCoordinateY][destCoordinateX].getChessPiece() == null) {
 				return true;
