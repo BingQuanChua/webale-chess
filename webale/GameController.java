@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -229,14 +230,13 @@ public class GameController {
     }
 
     private void writeSaveFile(File file){
+        if(file == null){
+            return;
+        }
+
         BufferedWriter bw = null;
-        FileWriter fw = null;
         try{
-            if(!file.exists()){
-                file.createNewFile();
-            }
-            fw = new FileWriter(file);
-            bw = new BufferedWriter(fw);
+            bw = new BufferedWriter(new FileWriter(file));
             bw.write("###################################################");
             bw.newLine();
             bw.write("              WEBALE CHESS SAVE FILE");
@@ -262,38 +262,57 @@ public class GameController {
             bw.newLine();
             bw.write("########################END########################");
         } catch (Exception e){
-            JOptionPane.showMessageDialog(null, "File is not saved. ", "Error saving file", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Error saving file. ", "Error", JOptionPane.ERROR_MESSAGE);
         } finally{
             try{
                 if(bw != null){
                     bw.close();
                 }
-                if(fw != null){
-                    fw.close();
-                }
             } catch(Exception e){
-                 System.out.println("Error in closing the BufferedWriter" + e);
+                 System.out.println("Error in closing the BufferedWriter. ");
+                 e.printStackTrace();
+                 System.out.println();
             }
         }        
     }    
 
+    //readfile only, load save file algorithm put in different method better(i think?)
     private String readFile(File file){
+        if(file == null){
+            return null;
+        }
+        BufferedReader br = null;
         try {
-            FileReader fr = new FileReader(file); 
-            StringBuilder sb = new StringBuilder();
-            int charInt;
-            while(true) {
-                charInt = fr.read();
-                sb.append((char)charInt);
-                if(charInt == -1) {
-                    break;
+            String fileName = file.getName();
+            int i = fileName.lastIndexOf('.');
+            String extension = "";
+            if (i > 0) {
+                extension = fileName.substring(i+1);
+                if(extension != "txt" || extension != "text"){
+                    throw new Exception("Incorrect file type.");
                 }
             }
-            fr.close();
+            //possible error now: file content not correct or string is null -> fix in loadfile method
+            br = new BufferedReader(new FileReader(file));
+            StringBuilder sb = new StringBuilder();
+            String strCurrentLine;
+            while ((strCurrentLine = br.readLine()) != null) {
+                sb.append(strCurrentLine);
+            }
             return sb.toString();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage(), "Error reading file", JOptionPane.ERROR_MESSAGE);
-        }
+            JOptionPane.showMessageDialog(null, "Error reading file. " + e.getMessage() + "\n(" + file.getAbsolutePath() + ")", "Error", JOptionPane.ERROR_MESSAGE);
+        } finally{
+            try{
+                if(br != null){
+                    br.close();
+                }
+            } catch(Exception e){
+                 System.out.print("Error in closing the BufferedReader. ");
+                 e.printStackTrace();
+                 System.out.println();
+            }
+        }  
         return null;
     }
 }
