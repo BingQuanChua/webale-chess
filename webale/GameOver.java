@@ -5,7 +5,7 @@ import javax.swing.*;
 
 public class GameOver extends JOptionPane { 
 
-	GameOver (JDialog jDialog, String playerWon){  
+	public GameOver (JDialog jDialog, String playerWon){  
 	    if(playerWon == "Draw"){
 	    	showMessageDialog(jDialog,"Draw!");
 	    } else{

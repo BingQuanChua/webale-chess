@@ -16,9 +16,9 @@ public class HomeFrame extends JFrame{
     JButton loadGame = new JButton ("Load Game");
     JButton instruction = new JButton ("Instruction");
     JButton quitGame = new JButton ("Quit");
-    ImageIcon logoImageIcon = null;
-    ImageIcon instructionImageIcon = null;
-    ImageIcon bgImageIcon = null;
+    ImageIcon logoImageIcon;
+    ImageIcon instructionImageIcon;
+    ImageIcon bgImageIcon;
     
     public HomeFrame(){
         super("Webale Chess");
@@ -89,7 +89,7 @@ public class HomeFrame extends JFrame{
         
         setSize(width, height);
         setResizable(false);
-        setLocationRelativeTo(null);
+        // setLocationRelativeTo(null);
         setVisible(true);
         setTitle("WEBALE CHESS");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
