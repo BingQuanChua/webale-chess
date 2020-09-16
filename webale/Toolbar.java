@@ -65,13 +65,15 @@ public class Toolbar extends JPanel{
 
     public File openSaveFileDialogAndGetFileToSave() {
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setDialogTitle("Choose a location to save your Webale file!");
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Documents (*.txt)", "txt", "text");
+        fileChooser.setDialogTitle("Choose a location to save your Webale file.");
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Documents (*.txt)", "txt");
         fileChooser.setFileFilter(filter);
         int response = fileChooser.showSaveDialog(null); 
         File selectedFile = null;
         if (response == JFileChooser.APPROVE_OPTION) { 
             selectedFile = fileChooser.getSelectedFile();
+        } else if(response == JFileChooser.ERROR_OPTION){
+            JOptionPane.showMessageDialog(null, "A file error has occured.\n(" + fileChooser.getSelectedFile().getPath() + ")", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return selectedFile;
     }
