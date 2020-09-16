@@ -49,6 +49,7 @@ public class GameController {
         public void actionPerformed(ActionEvent e){
             JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
             JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE, null);
+            System.exit(0);
         }
     };
 
