@@ -69,7 +69,8 @@ public class GameController {
             if(result == JFileChooser.APPROVE_OPTION){
                 File file = fileChooser.getSelectedFile();
                 readFile(file);
-            }    
+            }
+        boardFrame.setVisible(true);    
         }};
 
     ActionListener instructionBtnListener = new ActionListener() {
