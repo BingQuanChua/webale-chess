@@ -1,168 +1,40 @@
 package webale;
 
 public class ChevronMovement implements Movement {
-    public boolean move(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
-        int sourceCoordinateX = startPoint.getCoorX();
+	public boolean move(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
+		int sourceCoordinateX = startPoint.getCoorX();
 		int sourceCoordinateY = startPoint.getCoorY();
 		int destCoordinateX = endPoint.getCoorX();
 		int destCoordinateY = endPoint.getCoorY();
-        boolean success = true;
 
-        // Moving Direction : Bottom Right
+		int differenceX = Math.abs(destCoordinateX - sourceCoordinateX);
+		int differenceY = Math.abs(destCoordinateY - sourceCoordinateY);
 
-		if (destCoordinateX > sourceCoordinateX && destCoordinateY > sourceCoordinateY)
-		{
-            for (int i = sourceCoordinateX + 1 , j = sourceCoordinateY + 1 ; i <= destCoordinateX; i++, j++)
-			{
-				//check not final des
-				if (i != destCoordinateX && j != destCoordinateY)
-				{
-					// check in between got obstruct
-					if (coordinate[i][j].getChessPiece() != null)
-					{
-						success = !success;
-						return success;
-					}	
-				}
+		System.out.println("DX" + differenceX + ", " + differenceY);
 
-				else
-				{
-					//if it is final des
-					if (i == destCoordinateX && j == destCoordinateY)
-					{
-						//check desti got obstruct 
-						if (coordinate[i][j].getChessPiece() != null )
-						{
-							if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == (coordinate[j][i].getChessPiece().getIsRedColor()))
-							{
-								//if got pieces then check colour
-								success = !success;
-								return success;
-							}
-						}
-					}
-
-					else
-					{
-						return false;
-					}
-				}
+		if (differenceX == 2 && differenceY == 1) {
+			if (coordinate[destCoordinateY][destCoordinateX].getChessPiece() == null) {
+				return true;
+			} else if ((coordinate[destCoordinateY][destCoordinateX].getChessPiece()
+					.getIsRedColor()) == coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece()
+							.getIsRedColor()) {
+				return false;
+			} else {
+				return true;
 			}
 		}
 
-
-
-		else if (destCoordinateX > sourceCoordinateX && destCoordinateY < sourceCoordinateY)
-		{
-            for (int i = sourceCoordinateX + 1 , j = sourceCoordinateY - 1 ; i <= destCoordinateX; i++, j--)
-			{
-				if (i != destCoordinateX && j != destCoordinateY)
-				{
-					if (coordinate[i][j].getChessPiece() != null)
-					{
-						success = !success;
-						return success;
-					}
-					
-				}
-
-				else
-				{
-					if (i == destCoordinateX && j == destCoordinateY)
-					{
-						if (coordinate[i][j].getChessPiece() != null )
-						{
-							if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == (coordinate[i][j].getChessPiece().getIsRedColor()))
-							{
-								success = !success;
-								return success;
-							}
-						}
-						else
-						{
-							return success;
-						}
-					}
-				}
-            }
+		else if (differenceX == 1 && differenceY == 2) {
+			if (coordinate[destCoordinateY][destCoordinateX].getChessPiece() == null) {
+				return true;
+			} else if ((coordinate[destCoordinateY][destCoordinateX].getChessPiece()
+					.getIsRedColor()) == coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece()
+							.getIsRedColor()) {
+				return false;
+			} else {
+				return true;
+			}
 		}
-
-		else if (destCoordinateX < sourceCoordinateX && destCoordinateY > sourceCoordinateY)
-		{
-			for (int i = sourceCoordinateX - 1 , j = sourceCoordinateY + 1 ; i >= destCoordinateX; i--, j++)
-				{
-					if (i != destCoordinateX && j != destCoordinateY)
-					{
-						if (coordinate[i][j].getChessPiece() != null)
-						{	
-							return false;
-						}
-
-						
-					}
-					else
-					{
-						if (i == destCoordinateX && j == destCoordinateY)
-						{
-
-							if (coordinate[i][j].getChessPiece() != null )
-							{
-								if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == (coordinate[i][j].getChessPiece().getIsRedColor()))
-								{
-									return false;
-                                }
-						}
-						else
-						{
-							return false;
-						}
-					}
-                }
-            }
-		}
-
-		else if (destCoordinateX < sourceCoordinateX && destCoordinateY < sourceCoordinateY)
-		{
-			for (int i = sourceCoordinateX - 1 , j = sourceCoordinateY - 1 ; i >= destCoordinateX; i--, j--)
-				{
-					if (i != destCoordinateX && j != destCoordinateY)
-					{
-						if (coordinate[i][j].getChessPiece() != null)
-						{
-							return false;
-						}
-						
-					}
-
-					else
-					{
-						if (i == destCoordinateX && j == destCoordinateY)
-						{
-							if (coordinate[i][j].getChessPiece() != null )
-							{
-								if (coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece().getIsRedColor() == (coordinate[i][j].getChessPiece().getIsRedColor()))
-								{
-									
-									return false;
-								}
-							}
-						}
-
-						else
-						{
-							return false;
-						}
-
-					}
-					
-				}
-		}
-
-		else
-		{
-			return false;
-		}
-
-        return true;
-    }
+		return false;
+	}
 }
