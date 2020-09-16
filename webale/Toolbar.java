@@ -10,8 +10,8 @@ import java.io.File;
 
 public class Toolbar extends JPanel{
 
-    int width=200;
-    int height=200;
+    int width = 200;
+    int height = 200;
     JButton backButton = new JButton("Back");
     JButton saveButton = new JButton("Save");
     JButton helpButton = new JButton("Help");
