@@ -28,6 +28,7 @@ public class GameController {
     public void setListener() {
         homeFrame.getStartButton().addActionListener(startBtnListener);
         homeFrame.getContinueButton().addActionListener(continueBtnListener);
+        homeFrame.getLoadButton().addActionListener(readFileBtnListener);
         homeFrame.getInstructionButton().addActionListener(instructionBtnListener);
         homeFrame.getQuitButton().addActionListener(quitBtnListener);
         boardFrame.getToolbar().getBackButton().addActionListener(backBtnListener);
@@ -58,6 +59,18 @@ public class GameController {
             boardFrame.setVisible(true);
         }
     };
+
+    ActionListener readFileBtnListener  = new ActionListener(){
+        @Override
+        public void actionPerformed(ActionEvent e){
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+            int result = fileChooser.showOpenDialog(null);
+            if(result == JFileChooser.APPROVE_OPTION){
+                File file = fileChooser.getSelectedFile();
+                readFile(file);
+            }    
+        }};
 
     ActionListener instructionBtnListener = new ActionListener() {
         @Override
