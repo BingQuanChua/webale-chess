@@ -368,51 +368,67 @@ public class GameController {
         return null;
     }
 
-    public void initPiece(String line) throws IOException {
+   public void initPiece(String line) throws IOException {
         if(line.startsWith("B") || line.startsWith("R")){
             String[] tokens = line.split(" ");
-            String colour = tokens[0];
-            String piece = tokens[1];
+            String colour;
+            String piece;
             String arrowDirection = "Forward";
             int coorX;
             int coorY;
             boolean isRedColour = true;
+
+            colour = tokens[0].toLowerCase();
+            piece = tokens[1];
+
+
             if(colour == "Blue"){
                 isRedColour = false;
             }               
-
+            System.out.println(tokens.length);
 
             if(tokens.length == 5){
                 coorX = Character.getNumericValue(tokens[3].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[4].toCharArray()[0]);
+                // System.out.println("coorX " + coorX);
+                // System.out.println("coorY " + coorY);
+                // System.out.println("Colour " + colour);
+                // System.out.println("Piece " + piece);
+                // System.out.println("Dirrection " + tokens[2]);
+
                 arrowDirection = tokens[2];
 
             }else{
                 coorX = Character.getNumericValue(tokens[2].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[3].toCharArray()[0]);
             }
-            System.out.println(tokens[0]);
-
-            switch(piece){
-                case "Plus": 
-                boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Plus(isRedColour, String.format("./images/%s_plus.png", colour)));
-                break;
-                case "Triangle": 
-                boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Triangle(isRedColour, String.format("./images/%s_triangle.png", colour)));
-                break;
-                case "Chevron": 
-                boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Chevron(isRedColour, String.format("./images/%s_chevron.png", colour)));
-                break;
-                case "Sun": 
-                boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Sun(isRedColour, String.format("./images/%s_sun.png", colour)));
-                break;
-                case "Arrow Backward": 
-                boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Arrow(isRedColour, String.format("./images/%s_arrow_rotated.png", colour), arrowDirection));
-                break;
-                case "Arrow Forward": 
-                boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Arrow(isRedColour, String.format("./images/%s_arrow.png", colour), arrowDirection));
-                break;
+            try{
+                switch(piece){
+                    case "Plus": 
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Plus(isRedColour, String.format("./images/%s_plus.png", colour)));
+                    break;
+                    case "Triangle": 
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Triangle(isRedColour, String.format("./images/%s_triangle.png", colour)));
+                    break;
+                    case "Chevron": 
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Chevron(isRedColour, String.format("./images/%s_chevron.png", colour)));
+                    break;
+                    case "Sun": 
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Sun(isRedColour, String.format("./images/%s_sun.png", colour)));
+                    break;
+                    case "Arrow": 
+                        if (arrowDirection.equals("Forward"))
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Arrow(isRedColour, String.format("./images/%s_arrow.png", colour), arrowDirection));
+                        else
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Arrow(isRedColour, String.format("./images/%s_arrow_rotated.png", colour), arrowDirection));
+                    break;
+                    
+                }
+            }catch(Exception ex){
+                ex.printStackTrace();
+                 System.out.println();
             }
+            
 
         }
     }
