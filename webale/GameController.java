@@ -45,11 +45,12 @@ public class GameController {
         }
     }
 
-    ActionListener defeatBtnListener = new ActionListener(){
+    ActionListener defeatBtnListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
             JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
-            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
+                    null);
             boardFrame.setVisible(false);
         }
     };
@@ -72,7 +73,7 @@ public class GameController {
         }
     };
 
-    ActionListener loadFileBtnListener  = new ActionListener(){
+    ActionListener loadFileBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
             File file = homeFrame.openLoadDialogAndGetFileToLoad();
@@ -194,18 +195,18 @@ public class GameController {
                     gameOver();
                 }
 
-                //if arrow reach the end, turn its direction
-                if(endPoint.getCoorY() == 0 || endPoint.getCoorY() == 7){
+                // if arrow reach the end, turn its direction
+                if (endPoint.getCoorY() == 0 || endPoint.getCoorY() == 7) {
                     changeArrowState(startPoint.getChessPiece());
                 }
                 endPoint.setChessPiece(startPoint.getChessPiece());
                 startPoint.setChessPiece(null);
                 boardFrame.getGameBoard().repaint();
-                //check Draw
+                // check Draw
                 boardFrame.getGameBoard().checkDraw();
-                if (boardFrame.getGameBoard().getLeftPieceSize()==2){
+                if (boardFrame.getGameBoard().getLeftPieceSize() == 2) {
                     drawGame();
-                }else {
+                } else {
                     boardFrame.getGameBoard().resetCheckDraw();
                 }
                 // if successfully moved return true, if not return false
@@ -219,9 +220,9 @@ public class GameController {
         }
     }
 
-    private void changeArrowState(Piece arrow){
-        if(arrow instanceof Arrow){
-            ((Arrow)arrow).changeMovement();
+    private void changeArrowState(Piece arrow) {
+        if (arrow instanceof Arrow) {
+            ((Arrow) arrow).changeMovement();
             arrow.toggleFlippedState();
         }
     }
@@ -245,7 +246,7 @@ public class GameController {
         boardFrame.setVisible(false);
     }
 
-    private void drawGame(){
+    private void drawGame() {
         String playerWon = "Draw";
         new GameOver(boardFrame,playerWon);
         isFirstGame= false;
@@ -253,13 +254,13 @@ public class GameController {
         boardFrame.setVisible(false);
     }
 
-    private void writeSaveFile(File file){
-        if(file == null){
+    private void writeSaveFile(File file) {
+        if (file == null) {
             return;
         }
 
         BufferedWriter bw = null;
-        try{
+        try {
             bw = new BufferedWriter(new FileWriter(file));
             bw.write("###################################################");
             bw.newLine();
@@ -273,10 +274,10 @@ public class GameController {
             bw.newLine();
             bw.write("###################################################");
             bw.newLine();
-            for(int y = 0; y < 8; y++){
-                for(int x = 0; x < 7; x++){
+            for (int y = 0; y < 8; y++) {
+                for (int x = 0; x < 7; x++) {
                     Piece piece = boardFrame.getGameBoard().getCoordinateArray()[y][x].getChessPiece();
-                    if(piece != null){
+                    if (piece != null) {
                         bw.write(piece + " (" + x + ", " + y + ")");
                         bw.newLine();
                     }
@@ -285,20 +286,20 @@ public class GameController {
             bw.write("###################################################");
             bw.newLine();
             bw.write("########################END########################");
-        } catch (Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error saving file. ", "Error", JOptionPane.ERROR_MESSAGE);
-        } finally{
-            try{
-                if(bw != null){
+        } finally {
+            try {
+                if (bw != null) {
                     bw.close();
                 }
-            } catch(Exception e){
-                 System.out.println("Error in closing the BufferedWriter. ");
-                 e.printStackTrace();
-                 System.out.println();
+            } catch (Exception e) {
+                System.out.println("Error in closing the BufferedWriter. ");
+                e.printStackTrace();
+                System.out.println();
             }
-        }        
-    }    
+        }
+    }
 
     //readfile only, load save file algorithm put in different method better(i think?)
     private void readFile(File file){
@@ -309,60 +310,62 @@ public class GameController {
         try {
             String fileName = file.getName();
             int i = fileName.lastIndexOf('.');
-            String extension = "";
-            if (i > 0) {
-                extension = fileName.substring(i+1);
-                if(extension != "txt"){
-                    throw new Exception("Incorrect file type.");
-                }
-            }
-            //possible error now: file content not correct or string is null -> fix in loadfile method
+            // String extension = "";
+            // if (i > 0) {
+            // extension = fileName.substring(i+1);
+            // if(extension != "txt"){
+            // throw new Exception("Incorrect file type.");
+            // }
+            // }
+            // possible error now: file content not correct or string is null -> fix in
+            // loadfile method
             br = new BufferedReader(new FileReader(file));
             String strCurrentLine;
             while ((strCurrentLine = br.readLine()) != null) {
-                
-                if(strCurrentLine.trim().indexOf('#') == 0 || strCurrentLine.startsWith(" "))
-                     continue;
 
-                if(strCurrentLine.startsWith("T")){
+                if (strCurrentLine.trim().indexOf('#') == 0 || strCurrentLine.startsWith(" "))
+                    continue;
+
+                if (strCurrentLine.startsWith("T")) {
                     String[] tokens = strCurrentLine.split(" ");
-                    if(tokens[1].equals("Blue")){
+                    if (tokens[1].equals("Blue")) {
                         isRedPlayer = false;
-                    }
-                    else
+                    } else
                         isRedPlayer = true;
                 }
 
-                if(strCurrentLine.startsWith("M")){
+                if (strCurrentLine.startsWith("M")) {
                     StringBuilder countStr = new StringBuilder();
-                    for(int r = 12; r < strCurrentLine.toCharArray().length; r++)
-                    countStr.append(strCurrentLine.toCharArray()[r]);
-                    
+                    for (int r = 12; r < strCurrentLine.toCharArray().length; r++)
+                        countStr.append(strCurrentLine.toCharArray()[r]);
+
                     moveCount = Integer.parseInt(countStr.toString());
                 }
 
-                if(strCurrentLine.startsWith("B") || strCurrentLine.startsWith("R")){
+                if (strCurrentLine.startsWith("B") || strCurrentLine.startsWith("R")) {
                     initPiece(strCurrentLine);
                 }
             }
             boardFrame.setVisible(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error reading file. " + e.getMessage() + "\n(" + file.getAbsolutePath() + ")", "Error", JOptionPane.ERROR_MESSAGE);
-        } finally{
-            try{
-                if(br != null){
+            JOptionPane.showMessageDialog(null,
+                    "Error reading file. " + e.getMessage() + "\n(" + file.getAbsolutePath() + ")", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        } finally {
+            try {
+                if (br != null) {
                     br.close();
                 }
-            } catch(Exception e){
-                 System.out.print("Error in closing the BufferedReader. ");
-                 e.printStackTrace();
-                 System.out.println();
+            } catch (Exception e) {
+                System.out.print("Error in closing the BufferedReader. ");
+                e.printStackTrace();
+                System.out.println();
             }
         }  
     }
 
-   public void initPiece(String line) throws IOException {
-        if(line.startsWith("B") || line.startsWith("R")){
+    public void initPiece(String line) throws IOException {
+        if (line.startsWith("B") || line.startsWith("R")) {
             String[] tokens = line.split(" ");
             String colour;
             String piece;
@@ -374,13 +377,12 @@ public class GameController {
             colour = tokens[0].toLowerCase();
             piece = tokens[1];
 
-
-            if(colour == "blue"){
+            if (colour == "blue") {
                 isRedColour = false;
-            }               
+            }
             System.out.println(tokens.length);
 
-            if(tokens.length == 5){
+            if (tokens.length == 5) {
                 coorX = Character.getNumericValue(tokens[3].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[4].toCharArray()[0]);
                 // System.out.println("coorX " + coorX);
@@ -391,37 +393,44 @@ public class GameController {
 
                 arrowDirection = tokens[2];
 
-            }else{
+            } else {
                 coorX = Character.getNumericValue(tokens[2].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[3].toCharArray()[0]);
             }
-            try{
-                switch(piece){
-                    case "Plus": 
-                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Plus(isRedColour, String.format("./images/%s_plus.png", colour)));
-                    break;
-                    case "Triangle": 
-                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Triangle(isRedColour, String.format("./images/%s_triangle.png", colour)));
-                    break;
-                    case "Chevron": 
-                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Chevron(isRedColour, String.format("./images/%s_chevron.png", colour)));
-                    break;
-                    case "Sun": 
-                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Sun(isRedColour, String.format("./images/%s_sun.png", colour)));
-                    break;
-                    case "Arrow": 
+            try {
+                switch (piece) {
+                    case "Plus":
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
+                                new Plus(isRedColour, String.format("./images/%s_plus.png", colour)));
+                        break;
+                    case "Triangle":
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
+                                new Triangle(isRedColour, String.format("./images/%s_triangle.png", colour)));
+                        break;
+                    case "Chevron":
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
+                                new Chevron(isRedColour, String.format("./images/%s_chevron.png", colour)));
+                        break;
+                    case "Sun":
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
+                                new Sun(isRedColour, String.format("./images/%s_sun.png", colour)));
+                        break;
+                    case "Arrow":
                         if (arrowDirection.equals("Forward"))
-                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Arrow(isRedColour, String.format("./images/%s_arrow.png", colour), arrowDirection));
+                            boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
+                                    new Arrow(isRedColour, String.format("./images/%s_arrow.png", colour),
+                                            arrowDirection));
                         else
-                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY, new Arrow(isRedColour, String.format("./images/%s_arrow_rotated.png", colour), arrowDirection));
-                    break;
-                    
+                            boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
+                                    new Arrow(isRedColour, String.format("./images/%s_arrow_rotated.png", colour),
+                                            arrowDirection));
+                        break;
+
                 }
-            }catch(Exception ex){
+            } catch (Exception ex) {
                 ex.printStackTrace();
-                 System.out.println();
+                System.out.println();
             }
-            
 
         }
     }
