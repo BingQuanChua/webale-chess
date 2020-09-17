@@ -4,13 +4,16 @@ import java.awt.*;
 import javax.swing.*;
 
 public class BoardFrame extends JDialog{
-    private JPanel gameboard = new GameBoard();
-    private JPanel toolbar = new Toolbar();
-    private JPanel gamePanel = new JPanel();
+    private JPanel gameboard;
+    private JPanel toolbar;
+    private JPanel gamePanel;
 
-    public BoardFrame(){
-        //super("WEBALE CHESS");
+    public BoardFrame(){        
         super(null, "WEBALE CHESS",ModalityType.MODELESS);
+        
+        gameboard = new GameBoard();
+        toolbar = new Toolbar();
+        gamePanel = new JPanel();
 
         gamePanel.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();

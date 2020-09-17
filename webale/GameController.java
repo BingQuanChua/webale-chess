@@ -24,15 +24,19 @@ public class GameController {
     public GameController(HomeFrame homeFrame, BoardFrame boardFrame) {
         this.homeFrame = homeFrame;
         this.boardFrame = boardFrame;
-        setListener();
+        setHomeFrameListener();
+        setBoardFrameListener();
     }
 
-    public void setListener() {
+    public void setHomeFrameListener() {
         homeFrame.getStartButton().addActionListener(startBtnListener);
         homeFrame.getContinueButton().addActionListener(continueBtnListener);
         homeFrame.getLoadButton().addActionListener(loadFileBtnListener);
         homeFrame.getInstructionButton().addActionListener(instructionBtnListener);
         homeFrame.getQuitButton().addActionListener(quitBtnListener);
+    }
+
+    public void setBoardFrameListener() {
         boardFrame.getToolbar().getBackButton().addActionListener(backBtnListener);
         boardFrame.getToolbar().getSaveButton().addActionListener(saveBtnListener);
         boardFrame.getToolbar().getHelpButton().addActionListener(instructionBtnListener);
@@ -49,8 +53,8 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
-            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
-                    null);
+            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE, null);
+            homeFrame.getContinueButton().setEnabled(false);
             boardFrame.setVisible(false);
         }
     };
@@ -58,11 +62,12 @@ public class GameController {
     ActionListener startBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (!isFirstGame) {
+            if(!isFirstGame){
                 boardFrame = new BoardFrame();
+                setBoardFrameListener();
             }
             boardFrame.setVisible(true);
-
+            isFirstGame = false;
         }
     };
 
@@ -76,6 +81,7 @@ public class GameController {
     ActionListener loadFileBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e){
+            isFirstGame = false;
             File file = homeFrame.openLoadDialogAndGetFileToLoad();
             boardFrame.getGameBoard().resetBoard();
             readFile(file);
@@ -102,7 +108,6 @@ public class GameController {
         public void actionPerformed(ActionEvent e) {
             homeFrame.getContinueButton().setEnabled(true);
             boardFrame.setVisible(false);
-            isFirstGame = false;
         }
     };
 
@@ -134,9 +139,15 @@ public class GameController {
                 else if (timeClicked == 2) {
                     timeClicked = 0;
                     if (isValidMove) {
-                        moveCount++;
+                        //alternate gameboard
                         rotateBoard();
-                        togglePlayerTurn();
+                        //alternate toolbar
+                        isRedPlayer = !isRedPlayer;
+                        boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
+                        moveCount = boardFrame.getToolbar().getMoveCount() + 1;
+                        boardFrame.getToolbar().setMoveCount(moveCount);
+
+                        boardFrame.repaint();
                     }
 
                 }
@@ -163,8 +174,6 @@ public class GameController {
                 }
             }
         }
-
-        boardFrame.getGameBoard().repaint();
     }
 
     Coordinate startPoint = null;
@@ -227,13 +236,6 @@ public class GameController {
         }
     }
 
-    private void togglePlayerTurn() {
-        isRedPlayer = !isRedPlayer;
-        String playerToMove = isRedPlayer ? "Red" : "Blue";
-        boardFrame.getToolbar().setPlayerToMove(playerToMove);
-        boardFrame.getToolbar().repaint();
-    }
-
     private boolean hasWin(Piece pieceKilled) {
         return pieceKilled instanceof Sun ? true : false;
     }
@@ -241,7 +243,6 @@ public class GameController {
     private void gameOver() {
         String playerWon = isRedPlayer ? "Red" : "Blue";
         new GameOver(boardFrame, playerWon);
-        isFirstGame = false;
         homeFrame.getContinueButton().setEnabled(false);
         boardFrame.setVisible(false);
     }
@@ -249,7 +250,6 @@ public class GameController {
     private void drawGame() {
         String playerWon = "Draw";
         new GameOver(boardFrame,playerWon);
-        isFirstGame= false;
         homeFrame.getContinueButton().setEnabled(false);
         boardFrame.setVisible(false);
     }
@@ -264,7 +264,7 @@ public class GameController {
             bw = new BufferedWriter(new FileWriter(file));
             bw.write("###################################################");
             bw.newLine();
-            bw.write("              WEBALE CHESS SAVE FILE");
+            bw.write("|              WEBALE CHESS SAVE FILE             |");
             bw.newLine();
             bw.write("###################################################");
             bw.newLine();
@@ -310,21 +310,27 @@ public class GameController {
         try {
             String fileName = file.getName();
             int i = fileName.lastIndexOf('.');
-            // String extension = "";
-            // if (i > 0) {
-            // extension = fileName.substring(i+1);
-            // if(extension != "txt"){
-            // throw new Exception("Incorrect file type.");
-            // }
-            // }
-            // possible error now: file content not correct or string is null -> fix in
-            // loadfile method
+            String extension = "";
+            if (i > 0) {
+                extension = fileName.substring(i+1);
+                if(!extension.equals("txt")){
+                    throw new Exception("Incorrect file type.");
+                }
+            }
             br = new BufferedReader(new FileReader(file));
             String strCurrentLine;
+            boolean isWebaleChessFile = false;
             while ((strCurrentLine = br.readLine()) != null) {
-
                 if (strCurrentLine.trim().indexOf('#') == 0 || strCurrentLine.startsWith(" "))
                     continue;
+
+                if (strCurrentLine.startsWith("|")){
+                    String[] tokens = strCurrentLine.substring(1).trim().split(" ");
+                    if (tokens[0].equals("WEBALE") && tokens[1].equals("CHESS") 
+                    && tokens[2].equals("SAVE") && tokens[3].equals("FILE")) {
+                        isWebaleChessFile = true;
+                    }
+                }
 
                 if (strCurrentLine.startsWith("T")) {
                     String[] tokens = strCurrentLine.split(" ");
@@ -346,6 +352,9 @@ public class GameController {
                     initPiece(strCurrentLine);
                 }
             }
+            if(!isWebaleChessFile){
+                throw new Exception("Webale Chess save file is not selected.");
+            }
             boardFrame.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
@@ -361,7 +370,7 @@ public class GameController {
                 e.printStackTrace();
                 System.out.println();
             }
-        }  
+        }
     }
 
     public void initPiece(String line) throws IOException {
@@ -380,7 +389,6 @@ public class GameController {
             if (colour == "blue") {
                 isRedColour = false;
             }
-            System.out.println(tokens.length);
 
             if (tokens.length == 5) {
                 coorX = Character.getNumericValue(tokens[3].toCharArray()[1]);

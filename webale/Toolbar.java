@@ -16,12 +16,16 @@ public class Toolbar extends JPanel{
     JButton saveButton = new JButton("Save");
     JButton helpButton = new JButton("Help");
     JButton defeatButton = new JButton("Admit Defeat");
-    String playerToMove = "RED";
+    String playerToMove;
     JLabel playerLabel = new JLabel("Player to Move : " + playerToMove);
+    int moveCount;
+    JLabel moveCountLabel = new JLabel("Move Count : " + moveCount);
     final Color darkBrown = new Color(74, 59, 47);
     final Font buttonFont = new Font("Leelawadee", Font.BOLD, 15);
 
     public Toolbar(){
+        playerToMove = "RED";
+        moveCount = 0;
         backButton.setBackground(darkBrown);
         backButton.setForeground(Color.WHITE);
         backButton.setFont(buttonFont);
@@ -35,6 +39,7 @@ public class Toolbar extends JPanel{
         defeatButton.setForeground(Color.WHITE);
         defeatButton.setFont(buttonFont);
         playerLabel.setForeground(darkBrown);
+        moveCountLabel.setForeground(darkBrown);
 
         setBorder(new EmptyBorder(0, 20, 0, 20)); //TLBR
         setLayout(new GridLayout(10, 1, 0, 10));
@@ -43,17 +48,26 @@ public class Toolbar extends JPanel{
         add(helpButton);
         add(defeatButton);
         add(playerLabel);
-        //setPreferredSize(new Dimension(width,height));
+        add(moveCountLabel);
     }
 
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         playerLabel.setText("Player to Move : " + playerToMove);
+        moveCountLabel.setText("Move Count : " + moveCount);
     }
 
     public void setPlayerToMove(String playerToMove) {
         this.playerToMove = playerToMove;
+    }
+
+    public void setMoveCount(int moveCount) {
+        this.moveCount = moveCount;
+    }
+
+    public int getMoveCount(){
+        return moveCount;
     }
 
     public JButton getBackButton(){

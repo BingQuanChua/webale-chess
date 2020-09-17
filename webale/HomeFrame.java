@@ -141,7 +141,7 @@ public class HomeFrame extends JFrame{
  
     public File openLoadDialogAndGetFileToLoad(){
         JFileChooser fileChooser = new JFileChooser();
-        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        //fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         int result = fileChooser.showOpenDialog(null);
         if(result == JFileChooser.APPROVE_OPTION){
             File file = fileChooser.getSelectedFile();
