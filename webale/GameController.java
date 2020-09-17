@@ -75,17 +75,11 @@ public class GameController {
     ActionListener loadFileBtnListener  = new ActionListener(){
         @Override
         public void actionPerformed(ActionEvent e){
-            JFileChooser fileChooser = new JFileChooser();
-            fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
-            int result = fileChooser.showOpenDialog(null);
-            if(result == JFileChooser.APPROVE_OPTION){
-                File file = fileChooser.getSelectedFile();
-                boardFrame.getGameBoard().resetBoard();
-                readFile(file);
-                boardFrame.setVisible(true);   
-            }
-         
-        }};
+            File file = homeFrame.openLoadDialogAndGetFileToLoad();
+            boardFrame.getGameBoard().resetBoard();
+            readFile(file);
+        }
+    };
 
     ActionListener instructionBtnListener = new ActionListener() {
         @Override
@@ -247,6 +241,7 @@ public class GameController {
         String playerWon = isRedPlayer ? "Red" : "Blue";
         new GameOver(boardFrame, playerWon);
         isFirstGame = false;
+        homeFrame.getContinueButton().setEnabled(false);
         boardFrame.setVisible(false);
     }
 
@@ -254,6 +249,7 @@ public class GameController {
         String playerWon = "Draw";
         new GameOver(boardFrame,playerWon);
         isFirstGame= false;
+        homeFrame.getContinueButton().setEnabled(false);
         boardFrame.setVisible(false);
     }
 
@@ -305,9 +301,9 @@ public class GameController {
     }    
 
     //readfile only, load save file algorithm put in different method better(i think?)
-    private String readFile(File file){
+    private void readFile(File file){
         if(file == null){
-            return null;
+            return;
         }
         BufferedReader br = null;
         try {
@@ -322,9 +318,7 @@ public class GameController {
             }
             //possible error now: file content not correct or string is null -> fix in loadfile method
             br = new BufferedReader(new FileReader(file));
-            StringBuilder sb = new StringBuilder();
             String strCurrentLine;
-            ArrayList<String> Colours = new ArrayList<String>();
             while ((strCurrentLine = br.readLine()) != null) {
                 
                 if(strCurrentLine.trim().indexOf('#') == 0 || strCurrentLine.startsWith(" "))
@@ -350,11 +344,8 @@ public class GameController {
                 if(strCurrentLine.startsWith("B") || strCurrentLine.startsWith("R")){
                     initPiece(strCurrentLine);
                 }
-                
-
-                // sb.append(strCurrentLine);
             }
-            return sb.toString();
+            boardFrame.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error reading file. " + e.getMessage() + "\n(" + file.getAbsolutePath() + ")", "Error", JOptionPane.ERROR_MESSAGE);
         } finally{
@@ -368,7 +359,6 @@ public class GameController {
                  System.out.println();
             }
         }  
-        return null;
     }
 
    public void initPiece(String line) throws IOException {

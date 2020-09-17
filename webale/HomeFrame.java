@@ -4,6 +4,7 @@ import java.awt.*;
 import javax.swing.*;
 import javax.imageio.ImageIO;
 
+import java.io.File;
 import java.io.IOException;
 
 public class HomeFrame extends JFrame{
@@ -138,8 +139,18 @@ public class HomeFrame extends JFrame{
         return defeatImageIcon;
     }
  
-    public static void main (String[] args){
-        new HomeFrame();
+    public File openLoadDialogAndGetFileToLoad(){
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
+        int result = fileChooser.showOpenDialog(null);
+        if(result == JFileChooser.APPROVE_OPTION){
+            File file = fileChooser.getSelectedFile();
+            return file;
+        }
+        else if(result == JFileChooser.ERROR_OPTION){
+            JOptionPane.showMessageDialog(null, "A file error has occured.\n(" + fileChooser.getSelectedFile().getPath() + ")", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return null;
     }
 
 }
