@@ -80,6 +80,7 @@ public class GameController {
             int result = fileChooser.showOpenDialog(null);
             if(result == JFileChooser.APPROVE_OPTION){
                 File file = fileChooser.getSelectedFile();
+                boardFrame.getGameBoard().resetBoard();
                 readFile(file);
             }
         boardFrame.setVisible(true);    

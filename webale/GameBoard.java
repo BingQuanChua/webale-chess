@@ -151,6 +151,17 @@ public class GameBoard extends JPanel{
         leftCordinates.removeAll(leftCordinates);
     }
 
+    public void resetBoard(){
+        for (int y = 0; y < 8; y++) {
+            for (int x = 0; x < 7; x++) {
+                tileArray[y][x].setIcon(null);
+                coordinate[y][x].setChessPiece(null);
+
+                }
+            }
+    }
+    
+
     public int getLeftPieceSize(){
         return leftCordinates.size();
     }

@@ -51,6 +51,7 @@ public class BoardFrame extends JDialog{
         return (Toolbar)toolbar;
     }
 
+    
     public GameBoard getGameBoard(){
         return (GameBoard)gameboard;
     }
