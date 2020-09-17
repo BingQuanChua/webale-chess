@@ -385,7 +385,7 @@ public class GameController {
             piece = tokens[1];
 
 
-            if(colour == "Blue"){
+            if(colour == "blue"){
                 isRedColour = false;
             }               
             System.out.println(tokens.length);
