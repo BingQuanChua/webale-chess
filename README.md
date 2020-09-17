@@ -54,10 +54,8 @@ GameBoard + ChessBoard + ToolBar
 <h5>
     To be done
 </h5>
-load game
-plus <-> triangle 
-draw game
-arrange all methods
+plus <-> triangle, 
+arrange all methods, 
 design pattern
 
 
@@ -67,7 +65,7 @@ design pattern
 
 ##########################
 
-  WEBALE CHESS SAVE FILE
+| WEBALE CHESS SAVE FILE |
 
 ##########################
 
