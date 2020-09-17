@@ -3,6 +3,8 @@ package webale;
 import java.awt.*;
 import javax.swing.*;
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.swing.border.Border;
 
 //import javax.imageio.ImageIO;
@@ -10,6 +12,7 @@ import javax.swing.border.Border;
 public class GameBoard extends JPanel{
     //                                             y  x
     private JButton[][] tileArray = new ChessTiles[8][7];
+    private ArrayList<Coordinate> leftCordinates = new ArrayList<Coordinate>();
 
     //private static int roundCount;
     private Coordinate coordinate[][] = new Coordinate[8][7];
@@ -134,7 +137,23 @@ public class GameBoard extends JPanel{
             }
         }
     }
+    public void checkDraw(){
+        for(int y = 0;y<8;y++){
+            for(int x=0;x<7;x++){
+                if (coordinate[y][x].getChessPiece() != null){
+                    leftCordinates.add(coordinate[y][x]);
+                    }
+                }
+            }
+    }
 
+    public void resetCheckDraw(){
+        leftCordinates.removeAll(leftCordinates);
+    }
+
+    public int getLeftPieceSize(){
+        return leftCordinates.size();
+    }
 
     public Coordinate[][] getCoordinateArray(){
         return coordinate;

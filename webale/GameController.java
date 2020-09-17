@@ -196,6 +196,7 @@ public class GameController {
                 if (hasWin(endPoint.getChessPiece())) {
                     gameOver();
                 }
+
                 //if arrow reach the end, turn its direction
                 if(endPoint.getCoorY() == 0 || endPoint.getCoorY() == 7){
                     changeArrowState(startPoint.getChessPiece());
@@ -203,6 +204,13 @@ public class GameController {
                 endPoint.setChessPiece(startPoint.getChessPiece());
                 startPoint.setChessPiece(null);
                 boardFrame.getGameBoard().repaint();
+                //check Draw
+                boardFrame.getGameBoard().checkDraw();
+                if (boardFrame.getGameBoard().getLeftPieceSize()==2){
+                    drawGame();
+                }else {
+                    boardFrame.getGameBoard().resetCheckDraw();
+                }
                 // if successfully moved return true, if not return false
                 return true;
             } else {
@@ -236,6 +244,13 @@ public class GameController {
         String playerWon = isRedPlayer ? "Red" : "Blue";
         new GameOver(boardFrame, playerWon);
         isFirstGame = false;
+        boardFrame.setVisible(false);
+    }
+
+    private void drawGame(){
+        String playerWon = "Draw";
+        new GameOver(boardFrame,playerWon);
+        isFirstGame= false;
         boardFrame.setVisible(false);
     }
 
