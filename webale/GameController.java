@@ -82,8 +82,9 @@ public class GameController {
                 File file = fileChooser.getSelectedFile();
                 boardFrame.getGameBoard().resetBoard();
                 readFile(file);
+                boardFrame.setVisible(true);   
             }
-        boardFrame.setVisible(true);    
+         
         }};
 
     ActionListener instructionBtnListener = new ActionListener() {
