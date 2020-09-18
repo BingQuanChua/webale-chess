@@ -27,7 +27,7 @@ public class GameBoard extends JPanel{
         //-------------------------Assigning pieces to the coordinate----------------------//
 
         try{
-            coordinate[0][0] = new Coordinate(0,0, new Plus(false, "./images/blue_plus.png"));
+            coordinate[0][0] = new Coordinate(0,0, (new Plus(false, "./images/blue_plus.png")));
             coordinate[0][1] = new Coordinate(1,0, new Triangle(false, "./images/blue_triangle.png"));
             coordinate[0][2] = new Coordinate(2,0, new Chevron(false, "./images/blue_chevron.png"));
             coordinate[0][3] = new Coordinate(3,0, new Sun(false, "./images/blue_sun.png"));

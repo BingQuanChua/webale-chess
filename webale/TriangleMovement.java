@@ -15,8 +15,7 @@ public class TriangleMovement implements Movement {
         if (destCoordinate.getChessPiece() != null) {
             // destination piece is own piece
             if ((sourceCoordinate.getChessPiece().getIsRedColor() && destCoordinate.getChessPiece().getIsRedColor())
-                    || (!sourceCoordinate.getChessPiece().getIsRedColor()
-                            && !destCoordinate.getChessPiece().getIsRedColor())) {
+                    || (!sourceCoordinate.getChessPiece().getIsRedColor() && !destCoordinate.getChessPiece().getIsRedColor())) {
                 return false;
             }
         }
@@ -26,47 +25,54 @@ public class TriangleMovement implements Movement {
             return false;
         }
 
-        // if(Math.abs(sourceCoordinateX-destCoordinateX) == 1 &&
-        // Math.abs(sourceCoordinateY-destCoordinateY) == 1 &&
-        // destCoordinate.getChessPiece()==null){
-        // // moving diagonally right(\)
-        // if ((sourceCoordinateX - sourceCoordinateY) == (destCoordinateX -
-        // destCoordinateY)){
-        // return true;
-        // }
+        if (((sourceCoordinateX - sourceCoordinateY) != (destCoordinateX - destCoordinateY)) &&  ((sourceCoordinateX + sourceCoordinateY) != (destCoordinateX + destCoordinateY))){
+            return false;
+        }
 
-        // // moving diagonally left(/)
-        // if ((sourceCoordinateX + sourceCoordinateY) == (destCoordinateX +
-        // destCoordinateY)) {
-        // return true;
-        // }
-
-        // }else if (Math.abs(sourceCoordinateX-destCoordinateX) > 1 &&
-        // Math.abs(sourceCoordinateY-destCoordinateY) > 1 &&
-        // coordinate[midCoordinateX][midCoordinateY].getChessPiece() == null &&
-        // destCoordinate.getChessPiece()==null){
-        // // moving diagonally right(\)
-        // if ((sourceCoordinateX - sourceCoordinateY) == (destCoordinateX -
-        // destCoordinateY)){
-        // return true;
-        // }
-
-        // // moving diagonally left(/)
-        // if ((sourceCoordinateX + sourceCoordinateY) == (destCoordinateX +
-        // destCoordinateY)) {
-        // return true;
-        // }
-        // }else return false;
-
-        // moving diagonally right(\)
-        if ((sourceCoordinateX - sourceCoordinateY) == (destCoordinateX - destCoordinateY)) {
+        // moving upper left
+        if (destCoordinateX < sourceCoordinateX && destCoordinateY > sourceCoordinateY) {
+            for (int x = destCoordinateX+1, y = destCoordinateY-1; x < sourceCoordinateX; x++, y--) {
+                Coordinate temp = coordinate[y][x];
+                if (temp.getChessPiece() != null) {
+                    return false;
+                }
+            }
             return true;
         }
 
-        // moving diagonally left(/)
-        if ((sourceCoordinateX + sourceCoordinateY) == (destCoordinateX + destCoordinateY)) {
+        // moving upper right
+        if (destCoordinateX > sourceCoordinateX && destCoordinateY > sourceCoordinateY) {
+            for (int x = destCoordinateX-1, y = destCoordinateY-1; x > sourceCoordinateX; x--, y--) {
+                Coordinate temp = coordinate[y][x];
+                if (temp.getChessPiece() != null) {
+                    return false;
+                }
+            }
             return true;
         }
+
+        // moving downward left
+        if (destCoordinateX < sourceCoordinateX && destCoordinateY < sourceCoordinateY) {
+            for (int x = destCoordinateX+1, y = destCoordinateY+1; x < sourceCoordinateX; x++, y++) {
+                Coordinate temp = coordinate[y][x];
+                if (temp.getChessPiece() != null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // moving downward right
+        if (destCoordinateX > sourceCoordinateX && destCoordinateY < sourceCoordinateY) {
+            for (int x = destCoordinateX-1, y = destCoordinateY+1; x > sourceCoordinateX; x--, y++) {
+                Coordinate temp = coordinate[y][x];
+                if (temp.getChessPiece() != null) {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         return false;
     }
 }

@@ -29,7 +29,7 @@ public class HomeFrame extends JFrame{
 
         try{   
             logoImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/logo_resized.png")));
-            instructionImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/Instructions_Help.png")));
+            instructionImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/instructions_help.png")));
             bgImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/background.png")));
             defeatImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/admit_defeat.png")));
         } catch (IOException ex) {

@@ -146,6 +146,13 @@ public class GameController {
                         boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
                         moveCount = boardFrame.getToolbar().getMoveCount() + 1;
                         boardFrame.getToolbar().setMoveCount(moveCount);
+                        
+
+                        // To add state change
+                        if (moveCount % 4 == 0) {
+                            System.out.println("flip state");
+                        }
+
 
                         boardFrame.repaint();
                     }
