@@ -386,7 +386,7 @@ public class GameController {
             colour = tokens[0].toLowerCase();
             piece = tokens[1];
 
-            if (colour == "blue") {
+            if (colour.equals("blue")) {
                 isRedColour = false;
             }
 
