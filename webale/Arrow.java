@@ -2,8 +2,8 @@ package webale;
 
 import java.io.IOException;
 
-public class Arrow extends Piece{
-    private Movement movement;
+public class Arrow extends Piece {
+	private Movement movement;
 
 	public Arrow(final boolean isRedColor, final String imageUrl) throws IOException {
 		super(isRedColor, imageUrl);
@@ -35,23 +35,20 @@ public class Arrow extends Piece{
 	@Override
 	public boolean canMove(final Coordinate[][] coordinate, final Coordinate startPoint, final Coordinate endPoint) {
 		return movement.move(coordinate, startPoint, endPoint);
-    } 
-    
+	}
+
 	// make the movement type to string for saving
-	public String movementToString() 
-	{
-		if (movement instanceof ArrowForwardMovement)
-		{
-			return "Forward";	
+	public String movementToString() {
+		if (movement instanceof ArrowForwardMovement) {
+			return "Forward";
 		}
 
-		else
-		{
+		else {
 			return "Backward";
 		}
 	}
 
-	public String toString(){
-		return (getIsRedColor() ? "Red " : "Blue ") + "Arrow " + movementToString(); 
+	public String toString() {
+		return (getIsRedColor() ? "Red " : "Blue ") + "Arrow " + movementToString();
 	}
 }

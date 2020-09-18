@@ -11,7 +11,7 @@ public abstract class Piece {
 	private ImageIcon imageIcon;
 	private ImageIcon flippedImageIcon;
 
-	Piece(){
+	Piece() {
 		this.isRedColor = false;
 		this.imageIcon = null;
 		this.flippedImageIcon = null;
@@ -32,10 +32,10 @@ public abstract class Piece {
 		flippedImageIcon = new ImageIcon(ImageIO.read(getClass().getResource(flippedImageUrl)));
 	}
 
-    public ImageIcon getIcon() {
+	public ImageIcon getIcon() {
 		return hasFlipped ? flippedImageIcon : imageIcon;
 	}
-	
+
 	public boolean getIsRedColor() {
 		return isRedColor;
 	}
@@ -48,6 +48,6 @@ public abstract class Piece {
 		hasFlipped = !hasFlipped;
 	}
 
-	abstract public String toString(); //color + " " + name
-	
+	abstract public String toString(); // color + " " + name
+
 }
