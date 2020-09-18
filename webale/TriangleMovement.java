@@ -6,9 +6,11 @@ public class TriangleMovement implements Movement {
 		int sourceCoordinateY = startPoint.getCoorY();
 		int destCoordinateX = endPoint.getCoorX();
         int destCoordinateY = endPoint.getCoorY();
+        int midCoordinateX = (int)(startPoint.getCoorX() + endPoint.getCoorX() /2);
+        int midCoordinateY = (int)(startPoint.getCoorY() + endPoint.getCoorY() /2);
         Coordinate sourceCoordinate = coordinate[sourceCoordinateY][sourceCoordinateX];
         Coordinate destCoordinate = coordinate[destCoordinateY][destCoordinateX];
-        
+
         // check if destination has piece that is same colour
         if (destCoordinate.getChessPiece() != null){
             // destination piece is own piece
@@ -18,20 +20,33 @@ public class TriangleMovement implements Movement {
         }
 
         // not moving diagonally
-        if (destCoordinateX == sourceCoordinateX || destCoordinateY == sourceCoordinateY){
+        if (destCoordinateX == sourceCoordinateX || destCoordinateY == sourceCoordinateY ){
             return false;
         }
 
-        // moving diagonally right (\)
-        if ((sourceCoordinateX - sourceCoordinateY) == (destCoordinateX - destCoordinateY)) {
-            return true;
-        }
+        if(Math.abs(sourceCoordinateX-destCoordinateX) == 1 && Math.abs(sourceCoordinateY-destCoordinateY) == 1 && destCoordinate.getChessPiece()==null){
+            // moving diagonally right(\)
+            if ((sourceCoordinateX - sourceCoordinateY) == (destCoordinateX - destCoordinateY)){
+             return true;
+            }
         
-        // moving diagonally left (/)
-        if ((sourceCoordinateX + sourceCoordinateY) == (destCoordinateX + destCoordinateY))  {
-            return true;
-        }
-        
+            // moving diagonally left(/)
+            if ((sourceCoordinateX + sourceCoordinateY) == (destCoordinateX + destCoordinateY)) {
+                return true;
+            }
+
+        }else if (Math.abs(sourceCoordinateX-destCoordinateX) > 1 && Math.abs(sourceCoordinateY-destCoordinateY) > 1 && coordinate[midCoordinateX][midCoordinateY].getChessPiece() == null && destCoordinate.getChessPiece()==null){
+                // moving diagonally right(\)
+                if ((sourceCoordinateX - sourceCoordinateY) == (destCoordinateX - destCoordinateY)){
+                return true;
+               }
+           
+               // moving diagonally left(/)
+               if ((sourceCoordinateX + sourceCoordinateY) == (destCoordinateX + destCoordinateY)) {
+                   return true;
+               }
+        }else return false;
+
         return false;
     }
 }
