@@ -2,11 +2,11 @@
 package webale;
 import javax.swing.*;  
 
-public class ChessTiles extends JButton {
+public class ChessTile extends JButton {
 	private int coordinateX;
 	private int coordinateY;
 
-	public ChessTiles(int coordinateX, int coordinateY) {
+	public ChessTile(int coordinateX, int coordinateY) {
 		this.coordinateX =  coordinateX;
 		this.coordinateY =  coordinateY;
 	}
