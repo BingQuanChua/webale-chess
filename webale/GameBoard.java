@@ -11,7 +11,9 @@ import java.util.ArrayList;
 public class GameBoard extends JPanel{
     //                                             y  x
     private JButton[][] tileArray = new ChessTile[8][7];
-    private ArrayList<Coordinate> leftCordinates = new ArrayList<Coordinate>();
+    private ArrayList<Coordinate> remainingCoordinates = new ArrayList<Coordinate>();
+    //private ArrayList<Coordinate> remainingRedPiece = new ArrayList<Coordinate>();
+    //private ArrayList<Coordinate> remainingBluePiece = new ArrayList<Coordinate>();
 
     //private static int roundCount;
     private Coordinate coordinate[][] = new Coordinate[8][7];
@@ -137,35 +139,64 @@ public class GameBoard extends JPanel{
             }
         }
     }
+
     public void checkDraw(){
         for(int y = 0;y<8;y++){
             for(int x=0;x<7;x++){
                 if (coordinate[y][x].getChessPiece() != null){
-                    leftCordinates.add(coordinate[y][x]);
-                    }
+                    remainingCoordinates.add(coordinate[y][x]);
                 }
             }
+        }
     }
 
     public void resetCheckDraw(){
-        leftCordinates.removeAll(leftCordinates);
+        remainingCoordinates.removeAll(remainingCoordinates);
     }
+    
+    /*
+    public void checkmate(){
+        for(int y = 0;y<8;y++){
+            for(int x=0;x<7;x++){
+                if (coordinate[y][x].getChessPiece().getIsRedColor() != null){
+                    remainingRedPiece.add(coordinate[y][x]);
+                }
+                else if (!coordinate[y][x].getChessPiece().getIsRedColor() != null){
+                    remainingBluePiece.add(coordinate[y][x]);
+                }
+            }
+        }        
+    }
+
+    public void resetCheckmate(){
+        remainingRedPiece.removeAll(remainingRedPiece);
+        remainingBluePiece.removeAll(remainingBluePiece);
+    }
+    */
 
     public void resetBoard(){
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
                 tileArray[y][x].setIcon(null);
                 coordinate[y][x].setChessPiece(null);
-
-                }
             }
+        }
     }
+
+    public int getRemainingPieceSize(){
+        return remainingCoordinates.size();
+    }
+
+    /*
+    public int getRemainingRedPieceSize(){
+        return remainingRedPiece.size();
+    }
+
+    public int getRemainingBluePieceSize(){
+        return remainingBluePiece.size();
+    }
+    */
     
-
-    public int getLeftPieceSize(){
-        return leftCordinates.size();
-    }
-
     public Coordinate[][] getCoordinateArray(){
         return coordinate;
     }

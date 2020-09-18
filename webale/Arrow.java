@@ -15,7 +15,8 @@ public class Arrow extends Piece {
 
 		if (movement.equals("Forward")) {
 			this.movement = new ArrowForwardMovement();
-		} else {
+		} 
+		else {
 			this.movement = new ArrowBackwardMovement();
 		}
 	}
@@ -27,7 +28,8 @@ public class Arrow extends Piece {
 	public void changeMovement() {
 		if (movement instanceof ArrowForwardMovement) {
 			movement = new ArrowBackwardMovement();
-		} else {
+		}
+		else {
 			movement = new ArrowForwardMovement();
 		}
 	}
@@ -42,7 +44,6 @@ public class Arrow extends Piece {
 		if (movement instanceof ArrowForwardMovement) {
 			return "Forward";
 		}
-
 		else {
 			return "Backward";
 		}
