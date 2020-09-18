@@ -3,11 +3,11 @@ package webale;
 
 public class ArrowBackwardMovement implements Movement 
 {
-        public boolean move(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint){
-                int sourceCoordinateX = startPoint.getCoorX();
-                int sourceCoordinateY = startPoint.getCoorY();
-                int destCoordinateX = endPoint.getCoorX();
-                int destCoordinateY = endPoint.getCoorY();
+        public boolean move(final Coordinate[][] coordinate, final Coordinate startPoint, final Coordinate endPoint) {
+                final int sourceCoordinateX = startPoint.getCoorX();
+                final int sourceCoordinateY = startPoint.getCoorY();
+                final int destCoordinateX = endPoint.getCoorX();
+                final int destCoordinateY = endPoint.getCoorY();
                 boolean success = true;
 
                 //check destination got piece or not, got piece cannot move  

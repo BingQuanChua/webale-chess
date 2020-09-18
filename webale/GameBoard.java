@@ -5,8 +5,7 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.border.Border;
-
+//import javax.swing.border.Border;
 //import javax.imageio.ImageIO;
 
 public class GameBoard extends JPanel{
@@ -123,6 +122,7 @@ public class GameBoard extends JPanel{
         setPreferredSize(new Dimension(width,height));
     }
 
+    @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);
         Graphics2D g2d = (Graphics2D)g;
