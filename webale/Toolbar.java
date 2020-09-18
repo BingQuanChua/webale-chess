@@ -8,22 +8,22 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import java.io.File;
 
-public class Toolbar extends JPanel{
+public class Toolbar extends JPanel {
 
-    int width = 200;
-    int height = 200;
+    final int width = 200;
+    final int height = 200;
+    int moveCount;
     JButton backButton = new JButton("Back");
     JButton saveButton = new JButton("Save");
     JButton helpButton = new JButton("Help");
     JButton defeatButton = new JButton("Admit Defeat");
     String playerToMove;
     JLabel playerLabel = new JLabel("Player to Move : " + playerToMove);
-    int moveCount;
     JLabel moveCountLabel = new JLabel("Move Count : " + moveCount);
     final Color darkBrown = new Color(74, 59, 47);
     final Font buttonFont = new Font("Leelawadee", Font.BOLD, 15);
 
-    public Toolbar(){
+    public Toolbar() {
         playerToMove = "RED";
         moveCount = 0;
         backButton.setBackground(darkBrown);
@@ -41,7 +41,7 @@ public class Toolbar extends JPanel{
         playerLabel.setForeground(darkBrown);
         moveCountLabel.setForeground(darkBrown);
 
-        setBorder(new EmptyBorder(0, 20, 0, 20)); //TLBR
+        setBorder(new EmptyBorder(0, 20, 0, 20)); // TLBR
         setLayout(new GridLayout(10, 1, 0, 10));
         add(backButton);
         add(saveButton);
@@ -66,23 +66,23 @@ public class Toolbar extends JPanel{
         this.moveCount = moveCount;
     }
 
-    public int getMoveCount(){
+    public int getMoveCount() {
         return moveCount;
     }
 
-    public JButton getBackButton(){
+    public JButton getBackButton() {
         return backButton;
     }
 
-    public JButton getSaveButton(){
+    public JButton getSaveButton() {
         return saveButton;
     }
 
-    public JButton getHelpButton(){
+    public JButton getHelpButton() {
         return helpButton;
     }
 
-    public JButton getDefeatButton(){
+    public JButton getDefeatButton() {
         return defeatButton;
     }
 
@@ -91,12 +91,14 @@ public class Toolbar extends JPanel{
         fileChooser.setDialogTitle("Choose a location to save your Webale file.");
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Text Documents (*.txt)", "txt");
         fileChooser.setFileFilter(filter);
-        int response = fileChooser.showSaveDialog(null); 
+        int response = fileChooser.showSaveDialog(null);
         File selectedFile = null;
-        if (response == JFileChooser.APPROVE_OPTION) { 
+        if (response == JFileChooser.APPROVE_OPTION) {
             selectedFile = fileChooser.getSelectedFile();
-        } else if(response == JFileChooser.ERROR_OPTION){
-            JOptionPane.showMessageDialog(null, "A file error has occured.\n(" + fileChooser.getSelectedFile().getPath() + ")", "Error", JOptionPane.ERROR_MESSAGE);
+        } else if (response == JFileChooser.ERROR_OPTION) {
+            JOptionPane.showMessageDialog(null,
+                    "A file error has occured.\n(" + fileChooser.getSelectedFile().getPath() + ")", "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
         return selectedFile;
     }
