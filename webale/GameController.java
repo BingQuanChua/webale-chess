@@ -129,7 +129,7 @@ public class GameController {
         public void actionPerformed(ActionEvent e) {
             if (boardFrame.getGameBoard() != null) {
                 timeClicked++;
-                isValidMove = movePiece((ChessTiles) e.getSource(), timeClicked);
+                isValidMove = movePiece((ChessTile)e.getSource(), timeClicked);
                 // if chesstile clicked for startpoint is empty
                 if (!isValidMove && timeClicked == 1) {
                     timeClicked = 0;
@@ -180,7 +180,7 @@ public class GameController {
     Coordinate endPoint = null;
     boolean isRedPlayer = true;
 
-    public boolean movePiece(ChessTiles chessTileClicked, int timeClicked) {
+    public boolean movePiece(ChessTile chessTileClicked, int timeClicked) {
         Coordinate[][] coordinate = boardFrame.getGameBoard().getCoordinateArray();
 
         // check if the chesstile selected as startPoint is valid first

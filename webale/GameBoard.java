@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 public class GameBoard extends JPanel{
     //                                             y  x
-    private JButton[][] tileArray = new ChessTiles[8][7];
+    private JButton[][] tileArray = new ChessTile[8][7];
     private ArrayList<Coordinate> leftCordinates = new ArrayList<Coordinate>();
 
     //private static int roundCount;
@@ -103,7 +103,7 @@ public class GameBoard extends JPanel{
 
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
-                tileArray[y][x] = new ChessTiles(x,y);                
+                tileArray[y][x] = new ChessTile(x,y);                
                 if (((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) {
                     tileArray[y][x].setBackground(new Color(242, 227, 211));
                 } else
