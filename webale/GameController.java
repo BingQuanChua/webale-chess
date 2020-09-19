@@ -76,6 +76,8 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             isFirstGame = false;
+
+            boardFrame.setVisible(false);
             File file = homeFrame.openLoadDialogAndGetFileToLoad();
             boardFrame.getGameBoard().resetBoard();
             readFile(file);
