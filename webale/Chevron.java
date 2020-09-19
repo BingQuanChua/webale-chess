@@ -35,4 +35,12 @@ public class Chevron extends Piece {
 	public String toString() {
 		return (getIsRedColor() ? "Red " : "Blue ") + "Chevron";
 	}
+	
+	public void setState(Movement movement) {
+
+	}
+
+	public boolean getState() {
+		return true;
+	}
 }
