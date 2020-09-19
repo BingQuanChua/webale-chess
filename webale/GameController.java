@@ -26,6 +26,7 @@ public class GameController {
         setBoardFrameListener();
     }
 
+    // setting actionlistener for every button in homeframe
     public void setHomeFrameListener() {
         homeFrame.getStartButton().addActionListener(startBtnListener);
         homeFrame.getContinueButton().addActionListener(continueBtnListener);
@@ -34,6 +35,7 @@ public class GameController {
         homeFrame.getQuitButton().addActionListener(quitBtnListener);
     }
 
+    // setting actionlistener for every button in boardframe
     public void setBoardFrameListener() {
         boardFrame.getToolbar().getBackButton().addActionListener(backBtnListener);
         boardFrame.getToolbar().getSaveButton().addActionListener(saveBtnListener);
@@ -46,17 +48,6 @@ public class GameController {
             }
         }
     }
-
-    ActionListener defeatBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
-            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
-                    null);
-            homeFrame.getContinueButton().setEnabled(false);
-            boardFrame.setVisible(false);
-        }
-    };
 
     ActionListener startBtnListener = new ActionListener() {
         @Override
@@ -104,6 +95,17 @@ public class GameController {
         }
     };
 
+    ActionListener defeatBtnListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
+            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
+                    null);
+            homeFrame.getContinueButton().setEnabled(false);
+            boardFrame.setVisible(false);
+        }
+    };
+
     ActionListener quitBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -129,6 +131,7 @@ public class GameController {
 
     int moveCount = 0;
 
+    // counting of moves made by players
     ActionListener chessTileListener = new ActionListener() {
         int timeClicked = 0;
         boolean isValidMove = false;
@@ -172,8 +175,9 @@ public class GameController {
         }
     };
 
-    Boolean hasFlipped = false;
+    boolean hasFlipped = false;
 
+    // flip the gameboard when changing player's turn
     public void rotateBoard() {
         hasFlipped = !hasFlipped;
 
@@ -193,6 +197,7 @@ public class GameController {
         }
     }
 
+    // set state of triangle and plus (triangle <--> plus) when player moves chess pieces twice
     public void toggleState() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
@@ -215,7 +220,9 @@ public class GameController {
     Coordinate startPoint = null;
     Coordinate endPoint = null;
     boolean isRedPlayer = true;
+    boolean isCheckmated = false;
 
+    // moving the chess pieces
     public boolean movePiece(ChessTile chessTileClicked, int timeClicked) {
         Coordinate[][] coordinate = boardFrame.getGameBoard().getCoordinateArray();
 
@@ -256,17 +263,21 @@ public class GameController {
                     boardFrame.getGameBoard().resetCheckDraw();
                 }
               
-                // check checkmate
-                boardFrame.getGameBoard().checkmate(); // only left 1 blue
-                // piece (Sun)
-                if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
-                    checkmateBlue();
-                } // red win } // only left 1 red piece (Sun) //
-                else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) { //
-                    checkmateRed(); // blue win //
+                // check checkmate if no player is checkmated before to ensure only show checkmate message once
+                if (isCheckmated == false){
+                    boardFrame.getGameBoard().checkmate(); 
+                    // only left 1 blue piece (Sun)
+                    if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
+                        isCheckmated = true;
+                        checkmateBlue();               
+                    }
+                    // only left 1 red piece (Sun)
+                    else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) {
+                        isCheckmated = true;
+                        checkmateRed();               
+                    }
+                    boardFrame.getGameBoard().resetCheckmate();
                 }
-                boardFrame.getGameBoard().resetCheckmate();
-
                 // if successfully moved return true, if not return false
                 return true;
             } else {
@@ -278,6 +289,7 @@ public class GameController {
         }
     }
 
+    // change arrow state when arrow reaches the other edge of gameboard
     private void changeArrowState(Piece arrow) {
         if (arrow instanceof Arrow) {
             ((Arrow) arrow).changeMovement();
@@ -306,17 +318,14 @@ public class GameController {
     private void checkmateRed() {
         String playerWon = "BlueCheckmateRed";
         new GameOver(boardFrame, playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
     }
 
     private void checkmateBlue() {
         String playerWon = "RedCheckmateBlue";
         new GameOver(boardFrame, playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
     }
 
+    // write and save current game situation in txt file
     private void writeSaveFile(File file) {
         if (file == null) {
             return;
@@ -364,8 +373,7 @@ public class GameController {
         }
     }
 
-    // readfile only, load save file algorithm put in different method better(i
-    // think?)
+    // read the saved txt file
     private void readFile(File file) {
         if (file == null) {
             return;
@@ -440,6 +448,7 @@ public class GameController {
         }
     }
 
+    // load game from saved txt file
     public void initPiece(String line) throws IOException {
         if (line.startsWith("B") || line.startsWith("R")) {
             String[] tokens = line.split(" ");
