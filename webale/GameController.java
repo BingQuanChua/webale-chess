@@ -19,6 +19,7 @@ public class GameController {
     BoardFrame boardFrame = null;
     HomeFrame homeFrame = null;
     boolean isFirstGame = true;
+    boolean isCheckmated = false;
 
     public GameController(HomeFrame homeFrame, BoardFrame boardFrame) {
         this.homeFrame = homeFrame;
@@ -223,17 +224,20 @@ public class GameController {
                     boardFrame.getGameBoard().resetCheckDraw();
                 }
                 
-                // check checkmate
-                boardFrame.getGameBoard().checkmate(); // only left 1 blue
-                // piece (Sun)
-                if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
-                    checkmateBlue();
-                } // red win } // only left 1 red piece (Sun) //
-                else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) { //
-                    checkmateRed(); // blue win //
+                // check checkmate if no player is checkmated before
+                if (isCheckmated == false){
+                    boardFrame.getGameBoard().checkmate(); // only left 1 blue
+                    // piece (Sun)
+                    if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
+                        isCheckmated = true;
+                        checkmateBlue();
+                    } // red win // only left 1 red piece (Sun) //
+                    else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) { //
+                        isCheckmated = true;
+                        checkmateRed(); // blue win //
+                    }
+                    boardFrame.getGameBoard().resetCheckmate();
                 }
-                boardFrame.getGameBoard().resetCheckmate();
-
                 // if successfully moved return true, if not return false
                 return true;
             } else {
@@ -273,15 +277,11 @@ public class GameController {
     private void checkmateRed() {
         String playerWon = "BlueCheckmateRed";
         new GameOver(boardFrame, playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
     }
 
     private void checkmateBlue() {
         String playerWon = "RedCheckmateBlue";
         new GameOver(boardFrame, playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
     }
 
     private void writeSaveFile(File file) {

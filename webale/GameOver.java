@@ -13,10 +13,10 @@ public class GameOver extends JOptionPane {
 		
 		if (playerWon == "Draw") {
 			showMessageDialog(jDialog, "Draw!");
-		}else if (playerWon == "RedCheckmateBlue") {
-			showMessageDialog(jDialog, "Red player has won the game! Blue Sun is checkmated.");
+		} else if (playerWon == "RedCheckmateBlue") {
+			showMessageDialog(jDialog, "Warning! Blue Sun is checkmated.\nPlayer Blue, you only left with one chess piece, the Sun.");
 		} else if (playerWon == "BlueCheckmateRed") {
-			showMessageDialog(jDialog, "Blue player has won the game! Red Sun is checkmated.");
+			showMessageDialog(jDialog, "Warning! Red Sun is checkmated.\nPlayer Red, you only left with one chess piece, the Sun.");
 		} else {
 			showMessageDialog(jDialog, playerWon + " has won the game!");
 		}
