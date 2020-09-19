@@ -211,14 +211,6 @@ public class GameController {
                 startPoint.setChessPiece(null);
                 boardFrame.getGameBoard().repaint();
 
-                // check Draw
-                boardFrame.getGameBoard().checkDraw();
-                if (boardFrame.getGameBoard().getRemainingPieceSize() == 2) {
-                    drawGame();
-                } else {
-                    boardFrame.getGameBoard().resetCheckDraw();
-                }
-
                 // check checkmate
                 boardFrame.getGameBoard().checkmate(); // only left 1 blue
                 // piece (Sun)
@@ -254,13 +246,6 @@ public class GameController {
 
     private void gameOver() {
         String playerWon = isRedPlayer ? "Red" : "Blue";
-        new GameOver(boardFrame, playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
-    }
-
-    private void drawGame() {
-        String playerWon = "Draw";
         new GameOver(boardFrame, playerWon);
         homeFrame.getContinueButton().setEnabled(false);
         boardFrame.setVisible(false);
@@ -424,7 +409,7 @@ public class GameController {
                 // System.out.println("coorY " + coorY);
                 // System.out.println("Colour " + colour);
                 // System.out.println("Piece " + piece);
-                // System.out.println("Dirrection " + tokens[2]);
+                // System.out.println("Direction " + tokens[2]);
 
                 arrowDirection = tokens[2];
 
