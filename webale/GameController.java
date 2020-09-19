@@ -181,7 +181,7 @@ public class GameController {
 
     boolean hasFlipped = false;
 
-    // flip the gameboard when changing player's turn 
+    // flip the gameboard when changing player's turn
     public void rotateBoard() {
         hasFlipped = !hasFlipped;
 
@@ -201,7 +201,7 @@ public class GameController {
         }
     }
 
-    // set state of triangle and plus (triangle <--> plus) when player moves chess piece twice
+    // set state of triangle and plus (triangle <--> plus) when player moves chess pieces twice
     public void toggleState() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
@@ -273,12 +273,12 @@ public class GameController {
                     // only left 1 blue piece (Sun)
                     if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
                         isCheckmated = true;
-                        checkmateBlue();                // red win
+                        checkmateBlue();               
                     }
                     // only left 1 red piece (Sun)
                     else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) {
                         isCheckmated = true;
-                        checkmateRed();                 // blue win
+                        checkmateRed();               
                     }
                     boardFrame.getGameBoard().resetCheckmate();
                 }
@@ -473,11 +473,6 @@ public class GameController {
             if (tokens.length == 5) {
                 coorX = Character.getNumericValue(tokens[3].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[4].toCharArray()[0]);
-                // System.out.println("coorX " + coorX);
-                // System.out.println("coorY " + coorY);
-                // System.out.println("Colour " + colour);
-                // System.out.println("Piece " + piece);
-                // System.out.println("Direction " + tokens[2]);
 
                 arrowDirection = tokens[2];
 
