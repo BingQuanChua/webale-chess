@@ -157,7 +157,6 @@ public class GameController {
                         // To add state change
                         if (moveCount % 4 == 0) {
                             toggleState();
-                            System.out.println("flip state"); // will comment out later
                         }
 
                         // moveCount = boardFrame.getToolbar().getMoveCount() + 1;
@@ -199,9 +198,9 @@ public class GameController {
                         .getChessPiece() instanceof StateChangingPiece) {
                     Piece temp = boardFrame.getGameBoard().getCoordinateArray()[i][j].getChessPiece();
                     try {
-                        if (temp.getState() != null)
+                        if (temp.getState() instanceof TriangleMovement)
                             temp.setState(new PlusMovement());
-                        else
+                        else if (temp.getState() instanceof PlusMovement)
                             temp.setState(new TriangleMovement());
                     } catch (IOException ex) {
                         ex.printStackTrace();
