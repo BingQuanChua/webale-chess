@@ -87,6 +87,10 @@ public class GameController {
             File file = homeFrame.openLoadDialogAndGetFileToLoad();
             boardFrame.getGameBoard().resetBoard();
             readFile(file);
+            if(!isRedPlayer){
+                hasFlipped = false;
+                rotateBoard();
+            }
         }
     };
 
@@ -462,14 +466,6 @@ public class GameController {
                 coorY = Character.getNumericValue(tokens[3].toCharArray()[0]);
             }
 
-            if (!isRedColour) {
-                for (int k = 0; k < 8; k++) {
-                    for (int j = 0; j < 7; j++) {
-                        boardFrame.getGameBoard().add(boardFrame.getGameBoard().getTileArray()[7 - k][6 - j]);
-                    }
-                }
-            }
-
             try {
                 switch (piece) {
                     case "Plus":
@@ -503,10 +499,6 @@ public class GameController {
             } catch (Exception ex) {
                 ex.printStackTrace();
                 System.out.println();
-            }
-
-            if (!isRedPlayer) {
-                rotateBoard();
             }
         }
     }
