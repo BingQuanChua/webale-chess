@@ -1,3 +1,5 @@
+// This class is for chess piece, Arrow that inherited from abstract class Piece.
+
 package webale;
 
 import java.io.IOException;
@@ -24,6 +26,7 @@ public class Arrow extends Piece {
 		return movement;
 	}
 
+	// change movement to backward when arrow reaches the other edge of the gameboard
 	public void changeMovement() {
 		if (movement instanceof ArrowForwardMovement) {
 			movement = new ArrowBackwardMovement();
@@ -37,7 +40,7 @@ public class Arrow extends Piece {
 		return movement.move(coordinate, startPoint, endPoint);
 	}
 
-	// make the movement type to string for saving
+	// make the movement to string for saving in file
 	public String movementToString() {
 		if (movement instanceof ArrowForwardMovement) {
 			return "Forward";
@@ -46,6 +49,7 @@ public class Arrow extends Piece {
 		}
 	}
 
+	// arrow information for saving in file
 	public String toString() {
 		return (getIsRedColor() ? "Red " : "Blue ") + "Arrow " + movementToString();
 	}

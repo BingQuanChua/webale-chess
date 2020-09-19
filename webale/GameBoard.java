@@ -1,3 +1,5 @@
+// This class is for initializing the chess pieces on the gameboard, check for self-added different conditions of webale chess game (checkDraw, checkmate).
+
 package webale;
 
 import java.awt.*;
@@ -5,23 +7,15 @@ import javax.swing.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-//import javax.swing.border.Border;
-//import javax.imageio.ImageIO;
-
 public class GameBoard extends JPanel {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
-    // y x
+    //                                            y x
     private JButton[][] tileArray = new ChessTile[8][7];
     private ArrayList<Coordinate> remainingCoordinates = new ArrayList<Coordinate>();
     private ArrayList<Coordinate> remainingRedPiece = new ArrayList<Coordinate>();
     private ArrayList<Coordinate> remainingBluePiece = new ArrayList<Coordinate>();
-
-    // private static int roundCount;
     private Coordinate coordinate[][] = new Coordinate[8][7];
-    // private Piece pieces[] = new Piece[10];
 
     public GameBoard() {
 

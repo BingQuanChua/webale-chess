@@ -1,3 +1,5 @@
+// This class is for chess piece, Sun that inherited from abstract class Piece.
+
 package webale;
 
 import java.io.IOException;
