@@ -254,7 +254,7 @@ public class GameController {
                 } else {
                     boardFrame.getGameBoard().resetCheckDraw();
                 }
-
+              
                 // check checkmate
                 boardFrame.getGameBoard().checkmate(); // only left 1 blue
                 // piece (Sun)
@@ -470,11 +470,13 @@ public class GameController {
                 switch (piece) {
                     case "Plus":
                         boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
-                                new Plus(isRedColour, String.format("./images/%s_plus.png", colour)));
+                                new StateChangingPiece(isRedColour, String.format("./images/%s_plus.png", colour)));
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX].getChessPiece().setState(new PlusMovement());
                         break;
                     case "Triangle":
                         boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
-                                new Triangle(isRedColour, String.format("./images/%s_triangle.png", colour)));
+                                new StateChangingPiece(isRedColour, String.format("./images/%s_triangle.png", colour)));
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX].getChessPiece().setState(new TriangleMovement());      
                         break;
                     case "Chevron":
                         boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,

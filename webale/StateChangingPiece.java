@@ -17,12 +17,8 @@ public class StateChangingPiece extends Piece {
 
         if (movement instanceof PlusMovement) {
             // change to Plus
-            StringBuilder img = new StringBuilder("images/");
-            img.append(color);
-            img.append("_plus.png");
-            String imageURL = img.toString();
-
-            StringBuilder flippedImg = new StringBuilder(img.substring(0, img.length() - 4));
+            String imageURL = String.format("./images/%s_plus.png", color);
+            StringBuilder flippedImg = new StringBuilder(imageURL.substring(0, imageURL.length() - 4));
 		    flippedImg.append("_rotated.png");
 		    String flippedImageUrl = flippedImg.toString();
             
@@ -30,12 +26,8 @@ public class StateChangingPiece extends Piece {
         }
         else if (movement instanceof TriangleMovement) {
             // change to Triangle
-            StringBuilder img = new StringBuilder("images/");
-            img.append(color);
-            img.append("_triangle.png");
-            String imageURL = img.toString();
-
-            StringBuilder flippedImg = new StringBuilder(img.substring(0, img.length() - 4));
+            String imageURL = String.format("./images/%s_triangle.png", color);
+            StringBuilder flippedImg = new StringBuilder(imageURL.substring(0, imageURL.length() - 4));
 		    flippedImg.append("_rotated.png");
 		    String flippedImageUrl = flippedImg.toString();
             

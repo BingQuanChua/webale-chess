@@ -10,7 +10,7 @@ import java.util.ArrayList;
 public class GameBoard extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    //                                            y x
+    //                                            y  x
     private JButton[][] tileArray = new ChessTile[8][7];
     private ArrayList<Coordinate> remainingCoordinates = new ArrayList<Coordinate>();
     private ArrayList<Coordinate> remainingRedPiece = new ArrayList<Coordinate>();
