@@ -53,7 +53,8 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
-            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE, null);
+            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
+                    null);
             homeFrame.getContinueButton().setEnabled(false);
             boardFrame.setVisible(false);
         }
@@ -62,7 +63,7 @@ public class GameController {
     ActionListener startBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(!isFirstGame){
+            if (!isFirstGame) {
                 boardFrame = new BoardFrame();
                 setBoardFrameListener();
             }
@@ -80,7 +81,7 @@ public class GameController {
 
     ActionListener loadFileBtnListener = new ActionListener() {
         @Override
-        public void actionPerformed(ActionEvent e){
+        public void actionPerformed(ActionEvent e) {
             isFirstGame = false;
             File file = homeFrame.openLoadDialogAndGetFileToLoad();
             boardFrame.getGameBoard().resetBoard();
@@ -129,7 +130,7 @@ public class GameController {
         public void actionPerformed(ActionEvent e) {
             if (boardFrame.getGameBoard() != null) {
                 timeClicked++;
-                isValidMove = movePiece((ChessTile)e.getSource(), timeClicked);
+                isValidMove = movePiece((ChessTile) e.getSource(), timeClicked);
                 // if chesstile clicked for startpoint is empty
                 if (!isValidMove && timeClicked == 1) {
                     timeClicked = 0;
@@ -139,20 +140,18 @@ public class GameController {
                 else if (timeClicked == 2) {
                     timeClicked = 0;
                     if (isValidMove) {
-                        //alternate gameboard
+                        // alternate gameboard
                         rotateBoard();
-                        //alternate toolbar
+                        // alternate toolbar
                         isRedPlayer = !isRedPlayer;
                         boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
                         moveCount = boardFrame.getToolbar().getMoveCount() + 1;
                         boardFrame.getToolbar().setMoveCount(moveCount);
-                        
 
                         // To add state change
                         if (moveCount % 4 == 0) {
                             System.out.println("flip state");
                         }
-
 
                         boardFrame.repaint();
                     }
@@ -223,35 +222,25 @@ public class GameController {
                 boardFrame.getGameBoard().checkDraw();
                 if (boardFrame.getGameBoard().getRemainingPieceSize() == 2) {
                     drawGame();
-                } 
-                else {
+                } else {
                     boardFrame.getGameBoard().resetCheckDraw();
                 }
 
                 /*
-                // check checkmate
-                boardFrame.getGameBoard().checkmate();
-                // only left 1 blue piece (Sun)
-                if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
-                    checkmateBlue();        //red win
-                }
-                // only left 1 red piece (Sun)
-                //else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) {
-                //    checkmateRed();         //blue win
-                //}
-                else {
-                    boardFrame.getGameBoard().resetCheckmate();
-                }
-                */
-                
+                 * // check checkmate boardFrame.getGameBoard().checkmate(); // only left 1 blue
+                 * piece (Sun) if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
+                 * checkmateBlue(); //red win } // only left 1 red piece (Sun) //else if
+                 * (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) { //
+                 * checkmateRed(); //blue win //} else {
+                 * boardFrame.getGameBoard().resetCheckmate(); }
+                 */
+
                 // if successfully moved return true, if not return false
                 return true;
-            } 
-            else {
+            } else {
                 return false;
             }
-        } 
-        else {
+        } else {
             startPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
             return true;
         }
@@ -277,26 +266,22 @@ public class GameController {
 
     private void drawGame() {
         String playerWon = "Draw";
-        new GameOver(boardFrame,playerWon);
+        new GameOver(boardFrame, playerWon);
         homeFrame.getContinueButton().setEnabled(false);
         boardFrame.setVisible(false);
     }
 
     /*
-    private void checkmateRed() {
-        String playerWon = "BlueCheckmateRed";
-        new GameOver(boardFrame,playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
-    }
-
-    private void checkmateBlue() {
-        String playerWon = "RedCheckmateBlue";
-        new GameOver(boardFrame,playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
-    }
-    */
+     * private void checkmateRed() { String playerWon = "BlueCheckmateRed"; new
+     * GameOver(boardFrame,playerWon);
+     * homeFrame.getContinueButton().setEnabled(false);
+     * boardFrame.setVisible(false); }
+     * 
+     * private void checkmateBlue() { String playerWon = "RedCheckmateBlue"; new
+     * GameOver(boardFrame,playerWon);
+     * homeFrame.getContinueButton().setEnabled(false);
+     * boardFrame.setVisible(false); }
+     */
 
     private void writeSaveFile(File file) {
         if (file == null) {
@@ -345,9 +330,10 @@ public class GameController {
         }
     }
 
-    //readfile only, load save file algorithm put in different method better(i think?)
-    private void readFile(File file){
-        if(file == null){
+    // readfile only, load save file algorithm put in different method better(i
+    // think?)
+    private void readFile(File file) {
+        if (file == null) {
             return;
         }
         BufferedReader br = null;
@@ -356,8 +342,8 @@ public class GameController {
             int i = fileName.lastIndexOf('.');
             String extension = "";
             if (i > 0) {
-                extension = fileName.substring(i+1);
-                if(!extension.equals("txt")){
+                extension = fileName.substring(i + 1);
+                if (!extension.equals("txt")) {
                     throw new Exception("Incorrect file type.");
                 }
             }
@@ -368,10 +354,10 @@ public class GameController {
                 if (strCurrentLine.trim().indexOf('#') == 0 || strCurrentLine.startsWith(" "))
                     continue;
 
-                if (strCurrentLine.startsWith("|")){
+                if (strCurrentLine.startsWith("|")) {
                     String[] tokens = strCurrentLine.substring(1).trim().split(" ");
-                    if (tokens[0].equals("WEBALE") && tokens[1].equals("CHESS") 
-                    && tokens[2].equals("SAVE") && tokens[3].equals("FILE")) {
+                    if (tokens[0].equals("WEBALE") && tokens[1].equals("CHESS") && tokens[2].equals("SAVE")
+                            && tokens[3].equals("FILE")) {
                         isWebaleChessFile = true;
                     }
                 }
@@ -396,7 +382,7 @@ public class GameController {
                     initPiece(strCurrentLine);
                 }
             }
-            if(!isWebaleChessFile){
+            if (!isWebaleChessFile) {
                 throw new Exception("Webale Chess save file is not selected.");
             }
             boardFrame.setVisible(true);
