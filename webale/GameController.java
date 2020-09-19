@@ -56,6 +56,7 @@ public class GameController {
     ActionListener startBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            playSound("./sounds/press_button.wav");
             if (!isFirstGame) {        
                 isRedPlayer = true;
                 hasFlipped = false;
@@ -71,6 +72,7 @@ public class GameController {
     ActionListener continueBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            playSound("./sounds/press_button.wav");
             boardFrame.setVisible(true);
         }
     };
@@ -78,6 +80,7 @@ public class GameController {
     ActionListener loadFileBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            playSound("./sounds/press_button.wav");
             isFirstGame = false;
 
             boardFrame.setVisible(false);
@@ -94,6 +97,7 @@ public class GameController {
     ActionListener instructionBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            playSound("./sounds/press_button.wav");
             JLabel instructionLabel = new JLabel(homeFrame.getInstructionImageIcon());
             JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
         }
@@ -102,6 +106,7 @@ public class GameController {
     ActionListener defeatBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            playSound("./sounds/press_button.wav");
             JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
             JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
                     null);
@@ -113,6 +118,7 @@ public class GameController {
     ActionListener quitBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            playSound("./sounds/press_button.wav");
             System.exit(0);
         }
     };
@@ -120,6 +126,7 @@ public class GameController {
     ActionListener backBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            playSound("./sounds/press_button.wav");
             homeFrame.getContinueButton().setEnabled(true);
             boardFrame.setVisible(false);
         }
@@ -128,6 +135,7 @@ public class GameController {
     ActionListener saveBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
+            playSound("./sounds/press_button.wav");
             File file = boardFrame.getToolbar().openSaveFileDialogAndGetFileToSave();
             writeSaveFile(file);
         }
