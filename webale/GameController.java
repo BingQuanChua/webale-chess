@@ -492,7 +492,7 @@ public class GameController {
                                             arrowDirection));
                         else
                             boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
-                                    new Arrow(isRedColour, String.format("./images/%s_arrow_rotated.png", colour),
+                                    new Arrow(isRedColour, String.format("./images/%s_arrow.png", colour),
                                             arrowDirection));
                         break;
 

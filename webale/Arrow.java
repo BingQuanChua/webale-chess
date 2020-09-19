@@ -18,6 +18,7 @@ public class Arrow extends Piece {
 		if (movement.equals("Forward")) {
 			this.movement = new ArrowForwardMovement();
 		} else {
+			super.toggleFlippedState();
 			this.movement = new ArrowBackwardMovement();
 		}
 	}
