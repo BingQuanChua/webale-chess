@@ -409,7 +409,7 @@ public class GameController {
                     String[] tokens = strCurrentLine.split(" ");
                     if (tokens[1].equals("Blue")) {
                         isRedPlayer = false;
-                    } else
+                    } else{
                         isRedPlayer = true;
 
                     boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
@@ -432,7 +432,7 @@ public class GameController {
                 throw new Exception("Webale Chess save file is not selected.");
             }
             boardFrame.setVisible(true);
-        } catch (Exception e) {
+        }} catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Error reading file. " + e.getMessage() + "\n(" + file.getAbsolutePath() + ")", "Error",
                     JOptionPane.ERROR_MESSAGE);
