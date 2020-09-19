@@ -6,7 +6,7 @@ import javax.swing.ImageIcon;
 
 public abstract class Piece {
 
-	private boolean isRedColor;
+	private boolean isRedColor = false;
 	private boolean hasFlipped = false;
 	private ImageIcon imageIcon;
 	private ImageIcon flippedImageIcon;

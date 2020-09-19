@@ -24,7 +24,7 @@ public class Toolbar extends JPanel {
     final Font buttonFont = new Font("Leelawadee", Font.BOLD, 15);
 
     public Toolbar() {
-        playerToMove = "RED";
+        playerToMove = "Red";
         moveCount = 0;
         backButton.setBackground(darkBrown);
         backButton.setForeground(Color.WHITE);
@@ -60,6 +60,10 @@ public class Toolbar extends JPanel {
 
     public void setPlayerToMove(String playerToMove) {
         this.playerToMove = playerToMove;
+    }
+
+    public String getPlayerToMove() {
+        return playerToMove;
     }
 
     public void setMoveCount(int moveCount) {

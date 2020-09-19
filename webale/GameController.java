@@ -63,7 +63,10 @@ public class GameController {
     ActionListener startBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (!isFirstGame) {
+            if (!isFirstGame) {        
+                isRedPlayer = true;
+                hasFlipped = false;
+                moveCount = 0;        
                 boardFrame = new BoardFrame();
                 setBoardFrameListener();
             }
@@ -145,13 +148,8 @@ public class GameController {
                         // alternate toolbar
                         isRedPlayer = !isRedPlayer;
                         boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
-                        moveCount = boardFrame.getToolbar().getMoveCount() + 1;
-                        boardFrame.getToolbar().setMoveCount(moveCount);
-
-                        // To add state change
-                        if (moveCount % 4 == 0) {
-                            System.out.println("flip state");
-                        }
+                        //moveCount = boardFrame.getToolbar().getMoveCount() + 1;
+                        boardFrame.getToolbar().setMoveCount(++moveCount);
 
                         boardFrame.repaint();
                     }
