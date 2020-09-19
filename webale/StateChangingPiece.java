@@ -4,19 +4,18 @@ import java.io.IOException;
 
 public class StateChangingPiece extends Piece {
     private Movement movement;
-    private boolean isTriangle = true;
     private String color;
 
     public StateChangingPiece(boolean isRedColor, String imageURL) throws IOException {
         super(isRedColor, imageURL);
-        movement = new TriangleMovement();
+        movement = null; // by default no movement type, need to be set
         color = isRedColor ? "red" : "blue";
     }
 
     public void setState(Movement movement) throws IOException{
         this.movement = movement;
 
-        if (isTriangle) {
+        if (movement instanceof PlusMovement) {
             // change to Plus
             StringBuilder img = new StringBuilder("images/");
             img.append(color);
@@ -28,9 +27,8 @@ public class StateChangingPiece extends Piece {
 		    String flippedImageUrl = flippedImg.toString();
             
             super.setIcon(imageURL, flippedImageUrl);
-            isTriangle = false;
         }
-        else {
+        else if (movement instanceof TriangleMovement) {
             // change to Triangle
             StringBuilder img = new StringBuilder("images/");
             img.append(color);
@@ -42,12 +40,13 @@ public class StateChangingPiece extends Piece {
 		    String flippedImageUrl = flippedImg.toString();
             
             super.setIcon(imageURL, flippedImageUrl);
-            isTriangle = true;
         } 
+
+        // if other movement are passed in, nothing will happen to the image
     }
 
-    public boolean getState() {
-        return isTriangle;
+    public Movement getState() {
+        return movement;
     }
 
     public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
@@ -55,6 +54,17 @@ public class StateChangingPiece extends Piece {
     }
 
     public String toString() {
-        return isTriangle ? ((getIsRedColor() ? "Red " : "Blue ") + "Triangle") : ((getIsRedColor() ? "Red " : "Blue ") + "Plus");            
+        String c = color.toUpperCase().charAt(0) + color.substring(1, color.length()) + " ";
+        if (movement instanceof TriangleMovement) {
+            return c + "Triangle";
+        }
+        else {
+            if (movement instanceof PlusMovement) {
+                return c + "Plus";
+            }
+            else {
+                return c + "Piece";  
+            }
+        }
     }
 }

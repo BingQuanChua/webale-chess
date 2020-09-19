@@ -24,7 +24,7 @@ public class Triangle extends Piece {
 
   }
   
-  public boolean getState() {
-		return true;
-	}
+  public Movement getState() {
+    return movement;
+  }
 }

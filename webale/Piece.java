@@ -49,7 +49,7 @@ public abstract class Piece {
 	}
 
 	abstract public void setState(Movement movement) throws IOException; // changes state between triangle and plus
-	abstract public boolean getState(); // return true = triangle, false = plus
+	abstract public Movement getState();
 	abstract public String toString(); //color + " " + name
 
 
