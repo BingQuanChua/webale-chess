@@ -19,7 +19,6 @@ public class GameController {
     BoardFrame boardFrame = null;
     HomeFrame homeFrame = null;
     boolean isFirstGame = true;
-    boolean isCheckmated = false;
 
     public GameController(HomeFrame homeFrame, BoardFrame boardFrame) {
         this.homeFrame = homeFrame;
@@ -199,9 +198,9 @@ public class GameController {
                 if (boardFrame.getGameBoard().getCoordinateArray()[i][j].getChessPiece() instanceof StateChangingPiece) {
                     Piece temp = boardFrame.getGameBoard().getCoordinateArray()[i][j].getChessPiece();
                     try {
-                        if (temp.getState() instanceof TriangleMovement)
+                        if (temp.getState() != null)
                             temp.setState(new PlusMovement());
-                        else if (temp.getState() instanceof PlusMovement)
+                        else 
                             temp.setState(new TriangleMovement());
                     }
                     catch (IOException ex) {
@@ -256,20 +255,17 @@ public class GameController {
                     boardFrame.getGameBoard().resetCheckDraw();
                 }
                 
-                // check checkmate if no player is checkmated before
-                if (isCheckmated == false){
-                    boardFrame.getGameBoard().checkmate(); // only left 1 blue
-                    // piece (Sun)
-                    if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
-                        isCheckmated = true;
-                        checkmateBlue();
-                    } // red win // only left 1 red piece (Sun) //
-                    else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) { //
-                        isCheckmated = true;
-                        checkmateRed(); // blue win //
-                    }
-                    boardFrame.getGameBoard().resetCheckmate();
+                // check checkmate
+                boardFrame.getGameBoard().checkmate(); // only left 1 blue
+                // piece (Sun)
+                if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
+                    checkmateBlue();
+                } // red win } // only left 1 red piece (Sun) //
+                else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) { //
+                    checkmateRed(); // blue win //
                 }
+                boardFrame.getGameBoard().resetCheckmate();
+
                 // if successfully moved return true, if not return false
                 return true;
             } else {
@@ -309,11 +305,15 @@ public class GameController {
     private void checkmateRed() {
         String playerWon = "BlueCheckmateRed";
         new GameOver(boardFrame, playerWon);
+        homeFrame.getContinueButton().setEnabled(false);
+        boardFrame.setVisible(false);
     }
 
     private void checkmateBlue() {
         String playerWon = "RedCheckmateBlue";
         new GameOver(boardFrame, playerWon);
+        homeFrame.getContinueButton().setEnabled(false);
+        boardFrame.setVisible(false);
     }
 
     private void writeSaveFile(File file) {
@@ -456,18 +456,22 @@ public class GameController {
             if (tokens.length == 5) {
                 coorX = Character.getNumericValue(tokens[3].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[4].toCharArray()[0]);
-                // System.out.println("coorX " + coorX);
-                // System.out.println("coorY " + coorY);
-                // System.out.println("Colour " + colour);
-                // System.out.println("Piece " + piece);
-                // System.out.println("Direction " + tokens[2]);
-
                 arrowDirection = tokens[2];
 
             } else {
                 coorX = Character.getNumericValue(tokens[2].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[3].toCharArray()[0]);
             }
+
+            if (!isRedColour) {
+                for (int k = 0; k < 8; k++) {
+                    for (int j = 0; j < 7; j++) {
+                        boardFrame.getGameBoard().add(boardFrame.getGameBoard().getTileArray()[7 - k][6 - j]);
+                    }
+                }
+                System.out.println("Flipped");
+            }
+
             try {
                 switch (piece) {
                     case "Plus":
@@ -503,6 +507,16 @@ public class GameController {
                 System.out.println();
             }
 
+            if(!isRedPlayer){
+            for (int k = 0; k < 8; k++) {
+                for (int j = 0; j < 7; j++) {
+    
+                     if (boardFrame.getGameBoard().getCoordinateArray()[k][j].getChessPiece() != null) {
+                      boardFrame.getGameBoard().getCoordinateArray()[k][j].getChessPiece().toggleFlippedState();
+                    }
+                }
+            }
+        }
         }
     }
 }
