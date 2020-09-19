@@ -5,6 +5,11 @@ import javax.swing.*;
 
 public class GameOver extends JOptionPane {
 
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public GameOver(JDialog jDialog, String playerWon) {
 		if (playerWon == "Draw") {
 			showMessageDialog(jDialog, "Draw!");

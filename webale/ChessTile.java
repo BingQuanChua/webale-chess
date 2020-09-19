@@ -4,6 +4,10 @@ package webale;
 import javax.swing.*;
 
 public class ChessTile extends JButton {
+	/**
+	 *
+	 */
+	private static final long serialVersionUID = 1L;
 	private int coordinateX;
 	private int coordinateY;
 

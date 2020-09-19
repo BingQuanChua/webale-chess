@@ -9,6 +9,10 @@ import java.io.IOException;
 
 public class HomeFrame extends JFrame {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     int width = 500;
     int height = 500;
     JLabel title = new JLabel("Welcome to Webale Chess Game!", SwingConstants.CENTER);

@@ -4,6 +4,10 @@ import java.awt.*;
 import javax.swing.*;
 
 public class BoardFrame extends JDialog {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     private JPanel gameboard;
     private JPanel toolbar;
     private JPanel gamePanel;

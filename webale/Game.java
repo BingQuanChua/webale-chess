@@ -4,13 +4,8 @@
 // when it achieve certain point, this class also include the method to save and load the game and flipping the board when its needed.
 package webale;
 
-import java.util.*;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.BufferedWriter;
-import javax.swing.UIManager.*;
-import javax.swing.*;
+
 
 public class Game {
 	public static void main(String[] args) throws IOException {
@@ -27,7 +22,7 @@ public class Game {
 
 		HomeFrame homeFrame = new HomeFrame();
 		BoardFrame boardFrame = new BoardFrame();
-		GameController gameController = new GameController(homeFrame, boardFrame);
+		new GameController(homeFrame, boardFrame);
 	}
 
 }

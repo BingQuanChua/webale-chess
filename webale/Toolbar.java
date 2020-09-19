@@ -10,6 +10,10 @@ import java.io.File;
 
 public class Toolbar extends JPanel {
 
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     final int width = 200;
     final int height = 200;
     int moveCount;

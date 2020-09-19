@@ -9,6 +9,10 @@ import java.util.ArrayList;
 //import javax.imageio.ImageIO;
 
 public class GameBoard extends JPanel {
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1L;
     // y x
     private JButton[][] tileArray = new ChessTile[8][7];
     private ArrayList<Coordinate> remainingCoordinates = new ArrayList<Coordinate>();
