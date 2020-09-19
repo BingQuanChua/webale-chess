@@ -1,3 +1,5 @@
+// This class is for changing plus and triangle pieces （plus change to triangle & triangle change to plus）
+
 package webale;
 
 import java.io.IOException;
@@ -41,10 +43,12 @@ public class StateChangingPiece extends Piece {
         return movement;
     }
 
+    @Override
     public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
         return movement.move(coordinate, startPoint, endPoint);
     }
 
+    // plus and triangle information for saving in file
     public String toString() {
         String c = color.toUpperCase().charAt(0) + color.substring(1, color.length()) + " ";
         if (movement instanceof TriangleMovement) {

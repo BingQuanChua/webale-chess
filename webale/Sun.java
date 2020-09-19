@@ -17,10 +17,10 @@ public class Sun extends Piece {
 		return movement.move(coordinate, startPoint, endPoint);
 	}
 
+	// sun information for saving in file
 	public String toString() {
 		return (getIsRedColor() ? "Red " : "Blue ") + "Sun";
 	}
-
 
 	public void setState(Movement movement) {
 

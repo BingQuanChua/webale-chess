@@ -1,3 +1,5 @@
+// This class is for the GUI will be seen by user in the beginning, containing all images in the program except pieces images
+
 package webale;
 
 import java.awt.*;

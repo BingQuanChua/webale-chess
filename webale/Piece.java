@@ -1,3 +1,5 @@
+// This abstract class will be inherited by arrow, chevron, sun, statechangingpiece (plus & triangle)
+
 package webale;
 
 import java.io.IOException;
