@@ -35,4 +35,12 @@ public class Plus extends Piece {
 	public String toString() {
 		return (getIsRedColor() ? "Red " : "Blue ") + "Plus";
 	}
+
+	public void setState(Movement movement) {
+
+	}
+
+	public boolean getState() {
+		return true;
+	}
 }
