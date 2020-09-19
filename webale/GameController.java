@@ -81,6 +81,10 @@ public class GameController {
             File file = homeFrame.openLoadDialogAndGetFileToLoad();
             boardFrame.getGameBoard().resetBoard();
             readFile(file);
+            if(!isRedPlayer){
+                hasFlipped = false;
+                rotateBoard();
+            }
         }
     };
 
@@ -408,8 +412,11 @@ public class GameController {
                     String[] tokens = strCurrentLine.split(" ");
                     if (tokens[1].equals("Blue")) {
                         isRedPlayer = false;
-                    } else
+                        boardFrame.getToolbar().setPlayerToMove("Blue");
+                    } else{
                         isRedPlayer = true;
+                        boardFrame.getToolbar().setPlayerToMove("Red"); 
+                    }
                 }
 
                 if (strCurrentLine.startsWith("M")) {
@@ -418,6 +425,7 @@ public class GameController {
                         countStr.append(strCurrentLine.toCharArray()[r]);
 
                     moveCount = Integer.parseInt(countStr.toString());
+                    boardFrame.getToolbar().setMoveCount(moveCount);
                 }
 
                 if (strCurrentLine.startsWith("B") || strCurrentLine.startsWith("R")) {
@@ -482,11 +490,13 @@ public class GameController {
                 switch (piece) {
                     case "Plus":
                         boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
-                                new Plus(isRedColour, String.format("./images/%s_plus.png", colour)));
-                        break;
+                                new StateChangingPiece(isRedColour, String.format("./images/%s_plus.png", colour)));
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX].getChessPiece().setState(new PlusMovement());
+                    break;
                     case "Triangle":
                         boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
-                                new Triangle(isRedColour, String.format("./images/%s_triangle.png", colour)));
+                                new StateChangingPiece(isRedColour, String.format("./images/%s_triangle.png", colour)));
+                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX].getChessPiece().setState(new TriangleMovement());
                         break;
                     case "Chevron":
                         boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
