@@ -24,7 +24,8 @@ public class GameBoard extends JPanel {
         int height = 600;
         //initPiece();
 
-        //-------------------------Assigning pieces to the coordinate----------------------//
+        // ------------------------Assigning pieces to the coordinate----------------------//
+        // -------------------------The initial pieces on gameBoard------------------------//
 
         try{
             coordinate[0][0] = new Coordinate(0,0, new StateChangingPiece(false, "./images/blue_plus.png")); // plus
@@ -68,7 +69,6 @@ public class GameBoard extends JPanel {
             coordinate[7][6].getChessPiece().setState(new PlusMovement());
             
         } catch(IOException ex){
-
             ex.printStackTrace();
         }
 
@@ -109,12 +109,13 @@ public class GameBoard extends JPanel {
                 coordinate[y][x] = new Coordinate(x, y, null);
             }
         }
-
+        
+        // setting the tile with light beige and ligh brown colors
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
                 tileArray[y][x] = new ChessTile(x, y);
                 if (((y % 2 == 0) && (x % 2 == 0)) || ((y % 2 == 1) && (x % 2 == 1))) {
-                    tileArray[y][x].setBackground(new Color(242, 227, 211));
+                    tileArray[y][x].setBackground(new Color(242, 227, 211));            
                 } else
                     tileArray[y][x].setBackground(new Color(181, 153, 132));
             }
