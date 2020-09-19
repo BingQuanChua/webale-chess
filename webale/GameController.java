@@ -49,17 +49,6 @@ public class GameController {
         }
     }
 
-    ActionListener defeatBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
-            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
-                    null);
-            homeFrame.getContinueButton().setEnabled(false);
-            boardFrame.setVisible(false);
-        }
-    };
-
     ActionListener startBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -103,6 +92,17 @@ public class GameController {
         public void actionPerformed(ActionEvent e) {
             JLabel instructionLabel = new JLabel(homeFrame.getInstructionImageIcon());
             JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
+        }
+    };
+
+    ActionListener defeatBtnListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
+            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
+                    null);
+            homeFrame.getContinueButton().setEnabled(false);
+            boardFrame.setVisible(false);
         }
     };
 
@@ -177,7 +177,7 @@ public class GameController {
 
     boolean hasFlipped = false;
 
-    // flip the gameboard when changing player's turn 
+    // flip the gameboard when changing player's turn
     public void rotateBoard() {
         hasFlipped = !hasFlipped;
 
@@ -197,7 +197,7 @@ public class GameController {
         }
     }
 
-    // set state of triangle and plus (triangle <--> plus) when player moves chess piece twice
+    // set state of triangle and plus (triangle <--> plus) when player moves chess pieces twice
     public void toggleState() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
@@ -269,16 +269,15 @@ public class GameController {
                     // only left 1 blue piece (Sun)
                     if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
                         isCheckmated = true;
-                        checkmateBlue();                // red win
+                        checkmateBlue();               
                     }
                     // only left 1 red piece (Sun)
                     else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) {
                         isCheckmated = true;
-                        checkmateRed();                 // blue win
+                        checkmateRed();               
                     }
                     boardFrame.getGameBoard().resetCheckmate();
                 }
-
                 // if successfully moved return true, if not return false
                 return true;
             } else {
@@ -409,10 +408,11 @@ public class GameController {
                     String[] tokens = strCurrentLine.split(" ");
                     if (tokens[1].equals("Blue")) {
                         isRedPlayer = false;
+                        boardFrame.getToolbar().setPlayerToMove("Blue");
                     } else{
                         isRedPlayer = true;
-
-                    boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
+                        boardFrame.getToolbar().setPlayerToMove("Red"); 
+                    }
                 }
 
                 if (strCurrentLine.startsWith("M")) {
@@ -432,7 +432,7 @@ public class GameController {
                 throw new Exception("Webale Chess save file is not selected.");
             }
             boardFrame.setVisible(true);
-        }} catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null,
                     "Error reading file. " + e.getMessage() + "\n(" + file.getAbsolutePath() + ")", "Error",
                     JOptionPane.ERROR_MESSAGE);
@@ -504,7 +504,7 @@ public class GameController {
                                             arrowDirection));
                         else
                             boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
-                                    new Arrow(isRedColour, String.format("./images/%s_arrow.png", colour),
+                                    new Arrow(isRedColour, String.format("./images/%s_arrow_rotated.png", colour),
                                             arrowDirection));
                         break;
 
