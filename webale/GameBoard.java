@@ -3,7 +3,10 @@
 package webale;
 
 import java.awt.*;
+
+
 import javax.swing.*;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -163,6 +166,8 @@ public class GameBoard extends JPanel {
             }
         }
     }
+
+    
 
     public int getRemainingPieceSize() {
         return remainingCoordinates.size();

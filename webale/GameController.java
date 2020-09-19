@@ -14,6 +14,9 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileReader;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
 public class GameController {
     BoardFrame boardFrame = null;
@@ -146,10 +149,16 @@ public class GameController {
                     timeClicked = 0;
                 }
 
+                //startpoint chosen is valid
+                else if(isValidMove && timeClicked == 1){
+                    playSound("./sounds/pickup_chess.wav");
+                }
+
                 // if chess movement to endpoint is valid
                 else if (timeClicked == 2) {
                     timeClicked = 0;
                     if (isValidMove) {
+                        playSound("./sounds/drop_chess.wav");
                         // alternate gameboard
                         rotateBoard();
                         // alternate toolbar
@@ -166,12 +175,14 @@ public class GameController {
                             System.out.println("flip state"); // will comment out later
                         }
 
-
                         //moveCount = boardFrame.getToolbar().getMoveCount() + 1;
                         //boardFrame.getToolbar().setMoveCount(++moveCount);
 
-
                         boardFrame.repaint();
+
+                    //if chess movement to endpoint is invalid
+                    } else if(!isValidMove){
+                        playSound("./sounds/wrong.wav");
                     }
 
                 }
@@ -289,9 +300,11 @@ public class GameController {
             }
         } else {
             startPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
+            
             return true;
         }
     }
+
 
     // change arrow state when arrow reaches the other edge of gameboard
     private void changeArrowState(Piece arrow) {
@@ -519,4 +532,19 @@ public class GameController {
 
         }
     }
+
+    public void playSound(String soundName){
+        try{
+           //AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile( ));
+           AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource(soundName));
+           
+           Clip clip = AudioSystem.getClip( );
+           clip.open(audioInputStream);
+           clip.start( );
+        }
+        catch(Exception ex){
+           System.out.println("Error with playing sound.");
+           ex.printStackTrace( );
+        }
+   }
 }
