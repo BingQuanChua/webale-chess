@@ -27,13 +27,15 @@ public class GameBoard extends JPanel{
         //-------------------------Assigning pieces to the coordinate----------------------//
 
         try{
-            coordinate[0][0] = new Coordinate(0,0, (new Plus(false, "./images/blue_plus.png")));
-            coordinate[0][1] = new Coordinate(1,0, new Triangle(false, "./images/blue_triangle.png"));
+            coordinate[0][0] = new Coordinate(0,0, new StateChangingPiece(false, "./images/blue_plus.png")); // plus
+            coordinate[0][0].getChessPiece().setState(new PlusMovement());
+            coordinate[0][1] = new Coordinate(1,0, new StateChangingPiece(false, "./images/blue_triangle.png")); // triangle
             coordinate[0][2] = new Coordinate(2,0, new Chevron(false, "./images/blue_chevron.png"));
             coordinate[0][3] = new Coordinate(3,0, new Sun(false, "./images/blue_sun.png"));
             coordinate[0][4] = new Coordinate(4,0, new Chevron(false, "./images/blue_chevron.png"));
-            coordinate[0][5] = new Coordinate(5,0, new Triangle(false, "./images/blue_triangle.png"));
-            coordinate[0][6] = new Coordinate(6,0, new Plus(false, "./images/blue_plus.png"));
+            coordinate[0][5] = new Coordinate(5,0, new StateChangingPiece(false, "./images/blue_triangle.png")); // triangle
+            coordinate[0][6] = new Coordinate(6,0, new StateChangingPiece(false, "./images/blue_plus.png")); // plus
+            coordinate[0][6].getChessPiece().setState(new PlusMovement());
 
             coordinate[1][0] = new Coordinate(0,1, new Arrow(false, "./images/blue_arrow.png"));
             coordinate[1][1] = new Coordinate(1,1, null);
@@ -51,13 +53,16 @@ public class GameBoard extends JPanel{
             coordinate[6][5] = new Coordinate(5,6, null);
             coordinate[6][6] = new Coordinate(6,6, new Arrow(true, "./images/red_arrow.png"));
             
-            coordinate[7][0] = new Coordinate(0,7, new Plus(true,"./images/red_plus.png"));
-            coordinate[7][1] = new Coordinate(1,7, new Triangle(true, "./images/red_triangle.png"));
+            coordinate[7][0] = new Coordinate(0,7, new StateChangingPiece(true,"./images/red_plus.png")); // plus
+            coordinate[7][0].getChessPiece().setState(new PlusMovement());
+            coordinate[7][1] = new Coordinate(1,7, new StateChangingPiece(true, "./images/red_triangle.png")); // triangle
             coordinate[7][2] = new Coordinate(2,7, new Chevron(true, "./images/red_chevron.png"));
             coordinate[7][3] = new Coordinate(3,7, new Sun(true, "./images/red_sun.png"));
             coordinate[7][4] = new Coordinate(4,7, new Chevron(true, "./images/red_chevron.png"));
-            coordinate[7][5] = new Coordinate(5,7, new Triangle(true, "./images/red_triangle.png"));
-            coordinate[7][6] = new Coordinate(6,7, new Plus(true,"./images/red_plus.png"));	
+            coordinate[7][5] = new Coordinate(5,7, new StateChangingPiece(true, "./images/red_triangle.png")); // triangle
+            coordinate[7][6] = new Coordinate(6,7, new StateChangingPiece(true,"./images/red_plus.png")); // plus
+            coordinate[7][6].getChessPiece().setState(new PlusMovement());
+            
         } catch(IOException ex){
             ex.printStackTrace();
         }

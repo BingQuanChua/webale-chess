@@ -18,4 +18,12 @@ public class Sun extends Piece{
 	public String toString(){
 		return (getIsRedColor() ? "Red " : "Blue ") + "Sun"; 
 	}
+
+	public void setState(Movement movement) {
+
+	}
+
+	public boolean getState() {
+		return true;
+	}
 } 

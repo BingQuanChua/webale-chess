@@ -3,18 +3,26 @@ package webale;
 import java.io.IOException;
 
 public class Triangle extends Piece {
-    private Movement movement;
+  private Movement movement;
 
-    public Triangle(boolean isRedColor, String imageUrl) throws IOException{
+  public Triangle(boolean isRedColor, String imageUrl) throws IOException{
       super(isRedColor, imageUrl); 
       movement = new TriangleMovement();
     }
 
-    public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) { 
+  public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) { 
 		return movement.move(coordinate, startPoint, endPoint);
     } 
     
-    public String toString(){
+  public String toString(){
 		return (getIsRedColor() ? "Red " : "Blue ") + "Triangle"; 
+  }
+
+  public void setState(Movement movement) {
+
+  }
+  
+  public boolean getState() {
+		return true;
 	}
 }
