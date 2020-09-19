@@ -64,7 +64,7 @@ public class PlusMovement implements Movement {
                     return true;
                 }
 
-                for (int i = 1; i < distanceMovedOfY - 2; i++) {
+                for (int i = 1; i < distanceMovedOfY; i++) {
                     Coordinate temp = coordinate[sourceCoordinateY + i][sourceCoordinateX];
                     if(temp.getChessPiece() != null){
                         tempList.add(temp);
