@@ -1,7 +1,6 @@
 // This class is for controlling the game value, setting listener, counting the number of moves by players, tracking the player to move, 
 // changing arrow state when needed, saving game in txt file, reading txt file, loading game from txt file, rotating gameboard, checking winning conditions.
 
-
 package webale;
 
 import java.awt.event.*;
@@ -62,10 +61,10 @@ public class GameController {
     ActionListener startBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (!isFirstGame) {        
+            if (!isFirstGame) {
                 isRedPlayer = true;
                 hasFlipped = false;
-                moveCount = 0;        
+                moveCount = 0;
                 boardFrame = new BoardFrame();
                 setBoardFrameListener();
             }
@@ -88,6 +87,10 @@ public class GameController {
             File file = homeFrame.openLoadDialogAndGetFileToLoad();
             boardFrame.getGameBoard().resetBoard();
             readFile(file);
+            if(!isRedPlayer){
+                hasFlipped = false;
+                rotateBoard();
+            }
         }
     };
 
@@ -150,7 +153,6 @@ public class GameController {
 
                         moveCount = boardFrame.getToolbar().getMoveCount() + 1;
                         boardFrame.getToolbar().setMoveCount(moveCount);
-                        
 
                         // To add state change
                         if (moveCount % 4 == 0) {
@@ -158,10 +160,8 @@ public class GameController {
                             System.out.println("flip state"); // will comment out later
                         }
 
-
-                        //moveCount = boardFrame.getToolbar().getMoveCount() + 1;
-                        //boardFrame.getToolbar().setMoveCount(++moveCount);
-
+                        // moveCount = boardFrame.getToolbar().getMoveCount() + 1;
+                        // boardFrame.getToolbar().setMoveCount(++moveCount);
 
                         boardFrame.repaint();
                     }
@@ -195,15 +195,15 @@ public class GameController {
     public void toggleState() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
-                if (boardFrame.getGameBoard().getCoordinateArray()[i][j].getChessPiece() instanceof StateChangingPiece) {
+                if (boardFrame.getGameBoard().getCoordinateArray()[i][j]
+                        .getChessPiece() instanceof StateChangingPiece) {
                     Piece temp = boardFrame.getGameBoard().getCoordinateArray()[i][j].getChessPiece();
                     try {
-                        if (temp.getState() instanceof TriangleMovement)
+                        if (temp.getState() != null)
                             temp.setState(new PlusMovement());
-                        else if (temp.getState() instanceof PlusMovement)
+                        else
                             temp.setState(new TriangleMovement());
-                    }
-                    catch (IOException ex) {
+                    } catch (IOException ex) {
                         ex.printStackTrace();
                     }
                 }
@@ -254,7 +254,7 @@ public class GameController {
                 } else {
                     boardFrame.getGameBoard().resetCheckDraw();
                 }
-                
+              
                 // check checkmate
                 boardFrame.getGameBoard().checkmate(); // only left 1 blue
                 // piece (Sun)
@@ -401,6 +401,8 @@ public class GameController {
                         isRedPlayer = false;
                     } else
                         isRedPlayer = true;
+
+                    boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
                 }
 
                 if (strCurrentLine.startsWith("M")) {
@@ -409,6 +411,7 @@ public class GameController {
                         countStr.append(strCurrentLine.toCharArray()[r]);
 
                     moveCount = Integer.parseInt(countStr.toString());
+                    boardFrame.getToolbar().setMoveCount(moveCount);
                 }
 
                 if (strCurrentLine.startsWith("B") || strCurrentLine.startsWith("R")) {
@@ -456,18 +459,13 @@ public class GameController {
             if (tokens.length == 5) {
                 coorX = Character.getNumericValue(tokens[3].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[4].toCharArray()[0]);
-                // System.out.println("coorX " + coorX);
-                // System.out.println("coorY " + coorY);
-                // System.out.println("Colour " + colour);
-                // System.out.println("Piece " + piece);
-                // System.out.println("Direction " + tokens[2]);
-
                 arrowDirection = tokens[2];
 
             } else {
                 coorX = Character.getNumericValue(tokens[2].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[3].toCharArray()[0]);
             }
+
             try {
                 switch (piece) {
                     case "Plus":
@@ -504,7 +502,6 @@ public class GameController {
                 ex.printStackTrace();
                 System.out.println();
             }
-
         }
     }
 }
