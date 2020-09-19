@@ -155,12 +155,12 @@ public class GameController {
                         // To add state change
                         if (moveCount % 4 == 0) {
                             toggleState();
-                            System.out.println("flip state");
+                            System.out.println("flip state"); // will comment out later
                         }
 
 
                         //moveCount = boardFrame.getToolbar().getMoveCount() + 1;
-                        boardFrame.getToolbar().setMoveCount(++moveCount);
+                        //boardFrame.getToolbar().setMoveCount(++moveCount);
 
 
                         boardFrame.repaint();
