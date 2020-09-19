@@ -319,15 +319,11 @@ public class GameController {
     private void checkmateRed() {
         String playerWon = "BlueCheckmateRed";
         new GameOver(boardFrame, playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
     }
 
     private void checkmateBlue() {
         String playerWon = "RedCheckmateBlue";
         new GameOver(boardFrame, playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
     }
 
     // write and save current game situation in txt file
