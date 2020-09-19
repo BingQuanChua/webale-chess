@@ -1,16 +1,16 @@
+// This class is for containing the gameboard, toolbar and gamepanel, which will be viewed/used by user after starting a game
+
 package webale;
 
 import java.awt.*;
 import javax.swing.*;
 
 public class BoardFrame extends JDialog {
-    /**
-     *
-     */
+
     private static final long serialVersionUID = 1L;
-    private JPanel gameboard;
-    private JPanel toolbar;
-    private JPanel gamePanel;
+    private final JPanel gameboard;
+    private final JPanel toolbar;
+    private final JPanel gamePanel;
 
     public BoardFrame() {
         super(null, "WEBALE CHESS", ModalityType.MODELESS);
@@ -20,9 +20,9 @@ public class BoardFrame extends JDialog {
         gamePanel = new JPanel();
 
         gamePanel.setLayout(new GridBagLayout());
-        GridBagConstraints c = new GridBagConstraints();
+        final GridBagConstraints c = new GridBagConstraints();
 
-        // contriants for gameboard
+        // constraints for gameboard
         c.anchor = GridBagConstraints.FIRST_LINE_START;
         c.fill = GridBagConstraints.BOTH;
         c.gridx = 0;
@@ -34,7 +34,7 @@ public class BoardFrame extends JDialog {
         gamePanel.add(gameboard, c);
         gameboard.setOpaque(false);
 
-        // contraints for toolbar
+        // constraints for toolbar
         c.anchor = GridBagConstraints.FIRST_LINE_END;
         c.fill = GridBagConstraints.HORIZONTAL;
         c.gridx = 4;
@@ -49,7 +49,7 @@ public class BoardFrame extends JDialog {
 
         gamePanel.setOpaque(false);
         add(gamePanel);
-        getContentPane().setBackground(new Color(249, 241, 232));
+        getContentPane().setBackground(new Color(249, 241, 232));       //light beige
         pack();
 
     }

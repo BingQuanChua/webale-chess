@@ -1,4 +1,5 @@
-//This is a class to store the Chess piece and it will also store it position on the board
+//This is a class for storing the pieces and its respective position on the gameboard
+
 package webale;
 
 public class Coordinate {

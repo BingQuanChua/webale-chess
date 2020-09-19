@@ -1,3 +1,7 @@
+// This class is for controlling the game value, setting listener, counting the number of moves by players, tracking the player to move, 
+// changing arrow state when needed, saving game in txt file, reading txt file, loading game from txt file, rotating gameboard, checking winning conditions.
+
+
 package webale;
 
 import java.awt.event.*;

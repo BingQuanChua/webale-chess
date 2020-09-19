@@ -1,3 +1,5 @@
+// This class is for chess piece, Chevron that inherited from abstract class Piece.
+
 package webale;
 
 import java.io.IOException;
@@ -24,10 +26,12 @@ public class Chevron extends Piece {
 	// return true;
 	// }else return false;
 	// }
+
 	public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
 		return movement.move(coordinate, startPoint, endPoint);
 	}
 
+	// chevron information for saving in file
 	public String toString() {
 		return (getIsRedColor() ? "Red " : "Blue ") + "Chevron";
 	}
