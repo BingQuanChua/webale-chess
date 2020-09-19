@@ -12,8 +12,8 @@ public class ChevronMovement implements Movement {
 		int differenceX = Math.abs(destCoordinateX - sourceCoordinateX);
 		int differenceY = Math.abs(destCoordinateY - sourceCoordinateY);
 
-		// L shape in horizontal
-		if (differenceX == 2 && differenceY == 1) {
+		// L shape in horizontal                  L shape in vertical
+		if ((differenceX == 2 && differenceY == 1) || (differenceX == 1 && differenceY == 2)) {
 			// check destination got piece or not, if no piece can move
 			// if destination have same colour piece, then cannot move
 			if (coordinate[destCoordinateY][destCoordinateX].getChessPiece() == null) {
@@ -26,21 +26,7 @@ public class ChevronMovement implements Movement {
 				return true;
 			}
 		}
-
-		// L shape in vertical
-		else if (differenceX == 1 && differenceY == 2) {
-			// check destination got piece or not, if no piece can move
-			// if destination have same colour piece, then cannot move
-			if (coordinate[destCoordinateY][destCoordinateX].getChessPiece() == null) {
-				return true;
-			} else if ((coordinate[destCoordinateY][destCoordinateX].getChessPiece()
-					.getIsRedColor()) == coordinate[sourceCoordinateY][sourceCoordinateX].getChessPiece()
-							.getIsRedColor()) {
-				return false;
-			} else {
-				return true;
-			}
-		}
+		
 		return false;
 	}
 }

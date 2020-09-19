@@ -22,10 +22,9 @@ public class GameBoard extends JPanel {
         // -------------------------------------GUI-----------------------------------------//
         int width = 700;
         int height = 600;
-        //initPiece();
 
         // ------------------------Assigning pieces to the coordinate----------------------//
-        // -------------------------The initial pieces on gameBoard------------------------//
+        // -------------------------The initial pieces on gameboard------------------------//
 
         try{
             coordinate[0][0] = new Coordinate(0,0, new StateChangingPiece(false, "./images/blue_plus.png")); // plus
@@ -56,16 +55,16 @@ public class GameBoard extends JPanel {
             coordinate[6][5] = new Coordinate(5,6, null);
             coordinate[6][6] = new Coordinate(6,6, new Arrow(true, "./images/red_arrow.png"));
             
-            coordinate[7][0] = new Coordinate(0,7, new StateChangingPiece(true,"./images/red_plus.png")); // plus
+            coordinate[7][0] = new Coordinate(0,7, new StateChangingPiece(true,"./images/red_plus.png"));       // plus
             coordinate[7][0].getChessPiece().setState(new PlusMovement());
-            coordinate[7][1] = new Coordinate(1,7, new StateChangingPiece(true, "./images/red_triangle.png")); // triangle
+            coordinate[7][1] = new Coordinate(1,7, new StateChangingPiece(true, "./images/red_triangle.png"));  // triangle
             coordinate[7][1].getChessPiece().setState(new TriangleMovement());
             coordinate[7][2] = new Coordinate(2,7, new Chevron(true, "./images/red_chevron.png"));
             coordinate[7][3] = new Coordinate(3,7, new Sun(true, "./images/red_sun.png"));
             coordinate[7][4] = new Coordinate(4,7, new Chevron(true, "./images/red_chevron.png"));
-            coordinate[7][5] = new Coordinate(5,7, new StateChangingPiece(true, "./images/red_triangle.png")); // triangle
+            coordinate[7][5] = new Coordinate(5,7, new StateChangingPiece(true, "./images/red_triangle.png"));  // triangle
             coordinate[7][5].getChessPiece().setState(new TriangleMovement());
-            coordinate[7][6] = new Coordinate(6,7, new StateChangingPiece(true,"./images/red_plus.png")); // plus
+            coordinate[7][6] = new Coordinate(6,7, new StateChangingPiece(true,"./images/red_plus.png"));       // plus
             coordinate[7][6].getChessPiece().setState(new PlusMovement());
             
         } catch(IOException ex){
@@ -103,14 +102,15 @@ public class GameBoard extends JPanel {
         // coordinate[7][4] = new Coordinate(4,7, pieces[6]);
         // coordinate[7][5] = new Coordinate(5,7, pieces[7]);
         // coordinate[7][6] = new Coordinate(6,7, pieces[8]);
-
+        
+        // assigning coordinates to tiles that don't have pieces in initial stage
         for (int y = 2; y < 6; y++) {
             for (int x = 0; x < 7; x++) {
                 coordinate[y][x] = new Coordinate(x, y, null);
             }
         }
         
-        // setting the tile with light beige and ligh brown colors
+        // setting the tiles with light beige and light brown colors 
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
                 tileArray[y][x] = new ChessTile(x, y);
@@ -121,17 +121,20 @@ public class GameBoard extends JPanel {
             }
         }
 
+        // add tileArray on gameboard
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
                 this.add(tileArray[y][x]);
             }
         }
 
+        // design the gameboard
         setBorder(BorderFactory.createLineBorder(new Color(74, 59, 47), 8));
         setLayout(new GridLayout(8, 7));
         setPreferredSize(new Dimension(width, height));
     }
 
+    // put piece icon on tileArray
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -148,6 +151,7 @@ public class GameBoard extends JPanel {
         }
     }
 
+    // checking of draw game (both players only left with the sun)
     public void checkDraw() {
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
@@ -158,28 +162,31 @@ public class GameBoard extends JPanel {
         }
     }
 
+    // reset the arraylist
     public void resetCheckDraw() {
         remainingCoordinates.removeAll(remainingCoordinates);
     }
 
+    // checking of checkmate condition (one player only left with the sun)
     public void checkmate() {
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
                 if (coordinate[y][x].getChessPiece() != null && coordinate[y][x].getChessPiece().getIsRedColor()) {
                     remainingRedPiece.add(coordinate[y][x]);
-                } else if (coordinate[y][x].getChessPiece() != null
-                        && !coordinate[y][x].getChessPiece().getIsRedColor()) {
+                } else if (coordinate[y][x].getChessPiece() != null && !coordinate[y][x].getChessPiece().getIsRedColor()) {
                     remainingBluePiece.add(coordinate[y][x]);
                 }
             }
         }
     }
 
+    // reset the arraylist
     public void resetCheckmate() {
         remainingRedPiece.removeAll(remainingRedPiece);
         remainingBluePiece.removeAll(remainingBluePiece);
     }
 
+    // reset the gameboard (when starting a new game)
     public void resetBoard() {
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {

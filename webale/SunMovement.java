@@ -1,8 +1,10 @@
+// This class is for plus moving in any directions (up/down/left/right) by one step
+
 package webale;
 
 public class SunMovement implements Movement {
 
-	public boolean move(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
+	public boolean move(final Coordinate[][] coordinate, final Coordinate startPoint, final Coordinate endPoint) {
 
 		final int sourceCoordinateX = startPoint.getCoorX();
 		final int sourceCoordinateY = startPoint.getCoorY();

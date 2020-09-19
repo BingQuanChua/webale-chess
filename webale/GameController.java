@@ -1,5 +1,6 @@
-// This class is for controlling the game value, setting listener, counting the number of moves by players, tracking the player to move, 
+// This class is for controlling the game value, setting actionlistener, counting the number of moves by players, tracking the player to move, 
 // changing arrow state when needed, saving game in txt file, reading txt file, loading game from txt file, rotating gameboard, checking winning conditions.
+
 
 package webale;
 
@@ -26,6 +27,7 @@ public class GameController {
         setBoardFrameListener();
     }
 
+    // setting actionlistener for every button in homeframe
     public void setHomeFrameListener() {
         homeFrame.getStartButton().addActionListener(startBtnListener);
         homeFrame.getContinueButton().addActionListener(continueBtnListener);
@@ -34,6 +36,7 @@ public class GameController {
         homeFrame.getQuitButton().addActionListener(quitBtnListener);
     }
 
+    // setting actionlistener for every button in boardframe
     public void setBoardFrameListener() {
         boardFrame.getToolbar().getBackButton().addActionListener(backBtnListener);
         boardFrame.getToolbar().getSaveButton().addActionListener(saveBtnListener);
@@ -47,24 +50,13 @@ public class GameController {
         }
     }
 
-    ActionListener defeatBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
-            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
-                    null);
-            homeFrame.getContinueButton().setEnabled(false);
-            boardFrame.setVisible(false);
-        }
-    };
-
     ActionListener startBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (!isFirstGame) {
+            if (!isFirstGame) {        
                 isRedPlayer = true;
                 hasFlipped = false;
-                moveCount = 0;
+                moveCount = 0;        
                 boardFrame = new BoardFrame();
                 setBoardFrameListener();
             }
@@ -84,13 +76,11 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             isFirstGame = false;
+
+            boardFrame.setVisible(false);
             File file = homeFrame.openLoadDialogAndGetFileToLoad();
             boardFrame.getGameBoard().resetBoard();
             readFile(file);
-            if(!isRedPlayer){
-                hasFlipped = false;
-                rotateBoard();
-            }
         }
     };
 
@@ -99,6 +89,17 @@ public class GameController {
         public void actionPerformed(ActionEvent e) {
             JLabel instructionLabel = new JLabel(homeFrame.getInstructionImageIcon());
             JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
+        }
+    };
+
+    ActionListener defeatBtnListener = new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
+            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
+                    null);
+            homeFrame.getContinueButton().setEnabled(false);
+            boardFrame.setVisible(false);
         }
     };
 
@@ -126,7 +127,7 @@ public class GameController {
     };
 
     int moveCount = 0;
-
+    // counting of moves made by players
     ActionListener chessTileListener = new ActionListener() {
         int timeClicked = 0;
         boolean isValidMove = false;
@@ -153,14 +154,18 @@ public class GameController {
 
                         moveCount = boardFrame.getToolbar().getMoveCount() + 1;
                         boardFrame.getToolbar().setMoveCount(moveCount);
+                        
 
                         // To add state change
                         if (moveCount % 4 == 0) {
                             toggleState();
+                            System.out.println("flip state"); // will comment out later
                         }
 
-                        // moveCount = boardFrame.getToolbar().getMoveCount() + 1;
-                        // boardFrame.getToolbar().setMoveCount(++moveCount);
+
+                        //moveCount = boardFrame.getToolbar().getMoveCount() + 1;
+                        //boardFrame.getToolbar().setMoveCount(++moveCount);
+
 
                         boardFrame.repaint();
                     }
@@ -170,8 +175,9 @@ public class GameController {
         }
     };
 
-    Boolean hasFlipped = false;
+    boolean hasFlipped = false;
 
+    // flip the gameboard when changing player's turn 
     public void rotateBoard() {
         hasFlipped = !hasFlipped;
 
@@ -191,18 +197,19 @@ public class GameController {
         }
     }
 
+    // set state of triangle and plus (triangle <--> plus) when player moves chess piece twice
     public void toggleState() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
-                if (boardFrame.getGameBoard().getCoordinateArray()[i][j]
-                        .getChessPiece() instanceof StateChangingPiece) {
+                if (boardFrame.getGameBoard().getCoordinateArray()[i][j].getChessPiece() instanceof StateChangingPiece) {
                     Piece temp = boardFrame.getGameBoard().getCoordinateArray()[i][j].getChessPiece();
                     try {
                         if (temp.getState() instanceof TriangleMovement)
                             temp.setState(new PlusMovement());
                         else if (temp.getState() instanceof PlusMovement)
                             temp.setState(new TriangleMovement());
-                    } catch (IOException ex) {
+                    }
+                    catch (IOException ex) {
                         ex.printStackTrace();
                     }
                 }
@@ -213,7 +220,9 @@ public class GameController {
     Coordinate startPoint = null;
     Coordinate endPoint = null;
     boolean isRedPlayer = true;
+    boolean isCheckmated = false;
 
+    // moving the chess pieces
     public boolean movePiece(ChessTile chessTileClicked, int timeClicked) {
         Coordinate[][] coordinate = boardFrame.getGameBoard().getCoordinateArray();
 
@@ -253,18 +262,22 @@ public class GameController {
                 } else {
                     boardFrame.getGameBoard().resetCheckDraw();
                 }
-              
-                // check checkmate
-                boardFrame.getGameBoard().checkmate(); // only left 1 blue
-                // piece (Sun)
-                if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
-                    checkmateBlue();
-                } // red win } // only left 1 red piece (Sun) //
-                else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) { //
-                    checkmateRed(); // blue win //
+                
+                // check checkmate if no player is checkmated before to ensure only show checkmate message once
+                if (isCheckmated == false){
+                    boardFrame.getGameBoard().checkmate(); 
+                    // only left 1 blue piece (Sun)
+                    if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
+                        isCheckmated = true;
+                        checkmateBlue();                // red win
+                    }
+                    // only left 1 red piece (Sun)
+                    else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) {
+                        isCheckmated = true;
+                        checkmateRed();                 // blue win
+                    }
+                    boardFrame.getGameBoard().resetCheckmate();
                 }
-                boardFrame.getGameBoard().resetCheckmate();
-
                 // if successfully moved return true, if not return false
                 return true;
             } else {
@@ -276,6 +289,7 @@ public class GameController {
         }
     }
 
+    // change arrow state when arrow reaches the other edge of gameboard
     private void changeArrowState(Piece arrow) {
         if (arrow instanceof Arrow) {
             ((Arrow) arrow).changeMovement();
@@ -304,17 +318,14 @@ public class GameController {
     private void checkmateRed() {
         String playerWon = "BlueCheckmateRed";
         new GameOver(boardFrame, playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
     }
 
     private void checkmateBlue() {
         String playerWon = "RedCheckmateBlue";
         new GameOver(boardFrame, playerWon);
-        homeFrame.getContinueButton().setEnabled(false);
-        boardFrame.setVisible(false);
     }
 
+    // write and save current game situation in txt file 
     private void writeSaveFile(File file) {
         if (file == null) {
             return;
@@ -362,8 +373,7 @@ public class GameController {
         }
     }
 
-    // readfile only, load save file algorithm put in different method better(i
-    // think?)
+    // read the saved txt file 
     private void readFile(File file) {
         if (file == null) {
             return;
@@ -400,8 +410,6 @@ public class GameController {
                         isRedPlayer = false;
                     } else
                         isRedPlayer = true;
-
-                    boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
                 }
 
                 if (strCurrentLine.startsWith("M")) {
@@ -410,7 +418,6 @@ public class GameController {
                         countStr.append(strCurrentLine.toCharArray()[r]);
 
                     moveCount = Integer.parseInt(countStr.toString());
-                    boardFrame.getToolbar().setMoveCount(moveCount);
                 }
 
                 if (strCurrentLine.startsWith("B") || strCurrentLine.startsWith("R")) {
@@ -438,6 +445,7 @@ public class GameController {
         }
     }
 
+    // load game from saved txt file
     public void initPiece(String line) throws IOException {
         if (line.startsWith("B") || line.startsWith("R")) {
             String[] tokens = line.split(" ");
@@ -458,24 +466,27 @@ public class GameController {
             if (tokens.length == 5) {
                 coorX = Character.getNumericValue(tokens[3].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[4].toCharArray()[0]);
+                // System.out.println("coorX " + coorX);
+                // System.out.println("coorY " + coorY);
+                // System.out.println("Colour " + colour);
+                // System.out.println("Piece " + piece);
+                // System.out.println("Direction " + tokens[2]);
+
                 arrowDirection = tokens[2];
 
             } else {
                 coorX = Character.getNumericValue(tokens[2].toCharArray()[1]);
                 coorY = Character.getNumericValue(tokens[3].toCharArray()[0]);
             }
-
             try {
                 switch (piece) {
                     case "Plus":
                         boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
-                                new StateChangingPiece(isRedColour, String.format("./images/%s_plus.png", colour)));
-                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX].getChessPiece().setState(new PlusMovement());
+                                new Plus(isRedColour, String.format("./images/%s_plus.png", colour)));
                         break;
                     case "Triangle":
                         boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
-                                new StateChangingPiece(isRedColour, String.format("./images/%s_triangle.png", colour)));
-                        boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX].getChessPiece().setState(new TriangleMovement());      
+                                new Triangle(isRedColour, String.format("./images/%s_triangle.png", colour)));
                         break;
                     case "Chevron":
                         boardFrame.getGameBoard().getCoordinateArray()[coorY][coorX] = new Coordinate(coorX, coorY,
@@ -501,6 +512,7 @@ public class GameController {
                 ex.printStackTrace();
                 System.out.println();
             }
+
         }
     }
 }

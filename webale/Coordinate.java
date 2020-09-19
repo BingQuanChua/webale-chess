@@ -1,4 +1,4 @@
-//This is a class for storing the pieces and its respective position on the gameboard
+// This is a class for storing the pieces and its respective position on the gameboard
 
 package webale;
 

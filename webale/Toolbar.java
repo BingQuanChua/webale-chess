@@ -1,3 +1,6 @@
+// This class is the panel that contain button (back,save,help,admitdefeat), label (movecount, playertomove)
+// The panel is placed on the right of boardframe which is beside of gameboard
+
 package webale;
 
 import java.awt.*;
@@ -10,9 +13,6 @@ import java.io.File;
 
 public class Toolbar extends JPanel {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
     final int width = 200;
     final int height = 200;
