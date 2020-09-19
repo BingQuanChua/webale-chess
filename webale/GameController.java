@@ -182,7 +182,7 @@ public class GameController {
 
                     //if chess movement to endpoint is invalid
                     } else if(!isValidMove){
-                        playSound("./sounds/wrong.wav");
+                        playSound("./sounds/wrong2.wav");  //which one you all like haha
                     }
 
                 }
