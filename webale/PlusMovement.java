@@ -1,3 +1,4 @@
+  
 package webale;
 
 public class PlusMovement implements Movement {
@@ -23,19 +24,18 @@ public class PlusMovement implements Movement {
             int distanceMovedOfY = destCoordinateY - sourceCoordinateY;
             //move upwards
             if(distanceMovedOfY < 0){
-                for(int i = 0; i > distanceMovedOfY + 1; i--){
-                    Coordinate temp = coordinate[sourceCoordinateY - 1][sourceCoordinateX];
+                for(int i = 1; i < Math.abs(distanceMovedOfY); i++){
+                    Coordinate temp = coordinate[sourceCoordinateY - i][sourceCoordinateX];
                     if (temp.getChessPiece() != null){
-                        if ((temp.getChessPiece().getIsRedColor() && temp.getChessPiece().getIsRedColor()) || (!temp.getChessPiece().getIsRedColor() && !temp.getChessPiece().getIsRedColor())){
                             return false;
-                        }
                     }
                 }
             }
+            
             //move downwards
             else{
-                for(int i = 0; i < distanceMovedOfY - 1; i++){
-                    Coordinate temp = coordinate[sourceCoordinateY + 1][sourceCoordinateX];
+                for(int i = 1; i < distanceMovedOfY; i++){
+                    Coordinate temp = coordinate[sourceCoordinateY + i][sourceCoordinateX];
                     if (temp.getChessPiece() != null){
                         if ((temp.getChessPiece().getIsRedColor() && temp.getChessPiece().getIsRedColor()) || (!temp.getChessPiece().getIsRedColor() && !temp.getChessPiece().getIsRedColor())){
                             return false;
@@ -53,23 +53,19 @@ public class PlusMovement implements Movement {
             int distanceMovedOfX = destCoordinateX - sourceCoordinateX;
             //move left
             if(distanceMovedOfX < 0){
-                for(int i = 0; i > distanceMovedOfX + 1; i--){
-                    Coordinate temp = coordinate[sourceCoordinateY][sourceCoordinateX - 1];
+                for(int i = 1; i < Math.abs(distanceMovedOfX); i++){
+                    Coordinate temp = coordinate[sourceCoordinateY][sourceCoordinateX - i];
                     if (temp.getChessPiece() != null){
-                        if ((temp.getChessPiece().getIsRedColor() && temp.getChessPiece().getIsRedColor()) || (!temp.getChessPiece().getIsRedColor() && !temp.getChessPiece().getIsRedColor())){
-                            return false;
-                        }
+                        return false;
                     }
                 }
             }
             //move right
             else{
-                for(int i = 0; i < distanceMovedOfX - 1; i++){
-                    Coordinate temp = coordinate[sourceCoordinateY][sourceCoordinateX + 1];
+                for(int i = 1; i < distanceMovedOfX; i++){
+                    Coordinate temp = coordinate[sourceCoordinateY][sourceCoordinateX + i];
                     if (temp.getChessPiece() != null){
-                        if ((temp.getChessPiece().getIsRedColor() && temp.getChessPiece().getIsRedColor()) || (!temp.getChessPiece().getIsRedColor() && !temp.getChessPiece().getIsRedColor())){
-                            return false;
-                        }
+                        return false;
                     }
                 }
             }

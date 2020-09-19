@@ -6,8 +6,6 @@ public class TriangleMovement implements Movement {
         final int sourceCoordinateY = startPoint.getCoorY();
         final int destCoordinateX = endPoint.getCoorX();
         final int destCoordinateY = endPoint.getCoorY();
-        final int midCoordinateX = (int) (startPoint.getCoorX() + endPoint.getCoorX() / 2);
-        final int midCoordinateY = (int) (startPoint.getCoorY() + endPoint.getCoorY() / 2);
         Coordinate sourceCoordinate = coordinate[sourceCoordinateY][sourceCoordinateX];
         Coordinate destCoordinate = coordinate[destCoordinateY][destCoordinateX];
 

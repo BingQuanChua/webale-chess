@@ -1,3 +1,5 @@
+// This class is for chess piece, Triangle that inherited from abstract class Piece.
+
 package webale;
 
 import java.io.IOException;

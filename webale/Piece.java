@@ -6,12 +6,12 @@ import javax.swing.ImageIcon;
 
 public abstract class Piece {
 
-	private boolean isRedColor;
+	private boolean isRedColor = false;
 	private boolean hasFlipped = false;
 	private ImageIcon imageIcon;
 	private ImageIcon flippedImageIcon;
 
-	Piece(){
+	Piece() {
 		this.isRedColor = false;
 		this.imageIcon = null;
 		this.flippedImageIcon = null;
@@ -32,10 +32,10 @@ public abstract class Piece {
 		flippedImageIcon = new ImageIcon(ImageIO.read(getClass().getResource(flippedImageUrl)));
 	}
 
-    public ImageIcon getIcon() {
+	public ImageIcon getIcon() {
 		return hasFlipped ? flippedImageIcon : imageIcon;
 	}
-	
+
 	public boolean getIsRedColor() {
 		return isRedColor;
 	}
@@ -51,5 +51,6 @@ public abstract class Piece {
 	abstract public void setState(Movement movement) throws IOException; // changes state between triangle and plus
 	abstract public boolean getState(); // return true = triangle, false = plus
 	abstract public String toString(); //color + " " + name
+
 
 }
