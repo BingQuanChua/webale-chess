@@ -44,8 +44,14 @@ public class PlusMovement implements Movement {
                     tempList.clear();
                     return false;
                 }else if (tempList.size() == 0 && destCoordinate.getChessPiece() !=null){
+                    if((!destCoordinate.getChessPiece().getIsRedColor()&& !sourceCoordinate.getChessPiece().getIsRedColor()) || (destCoordinate.getChessPiece().getIsRedColor()&& sourceCoordinate.getChessPiece().getIsRedColor())){
+                        //same destination chess colour 
+                        tempList.clear();
+                        return false;
+                    }else {
                         tempList.clear();
                         return true;
+                    }
                 }else if(tempList.size() == 0 && destCoordinate.getChessPiece() == null){
                     tempList.clear();
                     return true;
@@ -70,9 +76,14 @@ public class PlusMovement implements Movement {
                     tempList.clear();
                     return false;
                 }else if (tempList.size() == 0 && destCoordinate.getChessPiece() !=null){
+                    if((!destCoordinate.getChessPiece().getIsRedColor()&& !sourceCoordinate.getChessPiece().getIsRedColor()) || (destCoordinate.getChessPiece().getIsRedColor()&& sourceCoordinate.getChessPiece().getIsRedColor())){
+                        //same destination chess colour 
+                        tempList.clear();
+                        return false;
+                    }else {
                         tempList.clear();
                         return true;
-                    
+                    }
                 }else if(tempList.size() == 0 && destCoordinate.getChessPiece() == null){
                     tempList.clear();
                     return true;
@@ -102,8 +113,14 @@ public class PlusMovement implements Movement {
                     tempList.clear();
                     return false;
                 }else if (tempList.size() == 0 && destCoordinate.getChessPiece() !=null){
+                    if((!destCoordinate.getChessPiece().getIsRedColor()&& !sourceCoordinate.getChessPiece().getIsRedColor()) || (destCoordinate.getChessPiece().getIsRedColor()&& sourceCoordinate.getChessPiece().getIsRedColor())){
+                        //same destination chess colour 
                         tempList.clear();
                         return false;
+                    }else {
+                        tempList.clear();
+                        return true;
+                    }
                 }else if(tempList.size() == 0 && destCoordinate.getChessPiece() == null){
                     tempList.clear();
                     return true;
@@ -128,9 +145,14 @@ public class PlusMovement implements Movement {
                     tempList.clear();
                     return false;
                 }else if (tempList.size() == 0 && destCoordinate.getChessPiece() !=null){
+                    if((!destCoordinate.getChessPiece().getIsRedColor()&& !sourceCoordinate.getChessPiece().getIsRedColor()) || (destCoordinate.getChessPiece().getIsRedColor()&& sourceCoordinate.getChessPiece().getIsRedColor())){
+                        //same destination chess colour 
                         tempList.clear();
                         return false;
-                    
+                    }else {
+                        tempList.clear();
+                        return true;
+                    }
                 }else if(tempList.size() == 0 && destCoordinate.getChessPiece() == null){
                     tempList.clear();
                     return true;
