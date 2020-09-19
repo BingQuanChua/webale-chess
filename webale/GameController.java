@@ -408,10 +408,11 @@ public class GameController {
                     String[] tokens = strCurrentLine.split(" ");
                     if (tokens[1].equals("Blue")) {
                         isRedPlayer = false;
-                    } else
+                        boardFrame.getToolbar().setPlayerToMove("Blue");
+                    } else{
                         isRedPlayer = true;
-
-                    boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
+                        boardFrame.getToolbar().setPlayerToMove("Red"); 
+                    }
                 }
 
                 if (strCurrentLine.startsWith("M")) {
