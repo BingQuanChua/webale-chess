@@ -9,14 +9,14 @@ public class GameOver extends JOptionPane {
 		if (playerWon == "Draw") {
 			showMessageDialog(jDialog, "Draw!");
 		}
-		/*
+		
 		else if (playerWon == "RedCheckmateBlue") {
 			showMessageDialog(jDialog, "Red player has won the game! Blue Sun is checkmated.");
 		}
 		else if (playerWon == "BlueCheckmateRed") {
 			showMessageDialog(jDialog, "Blue player has won the game! Red Sun is checkmated.");
 		}
-		*/
+		
 		else
 		{
 			showMessageDialog(jDialog, playerWon + " has won the game!");

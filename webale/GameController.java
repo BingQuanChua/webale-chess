@@ -49,117 +49,43 @@ public class GameController {
         }
     }
 
-    ActionListener defeatBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
-            JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE,
-                    null);
-            homeFrame.getContinueButton().setEnabled(false);
-            boardFrame.setVisible(false);
-        }
-    };
+    ActionListener defeatBtnListener=new ActionListener(){@Override public void actionPerformed(ActionEvent e){JLabel defeatLabel=new JLabel(homeFrame.getDefeatImageIcon());JOptionPane.showMessageDialog(null,defeatLabel,"You have admitted defeat!",JOptionPane.PLAIN_MESSAGE,null);homeFrame.getContinueButton().setEnabled(false);boardFrame.setVisible(false);}};
 
-    ActionListener startBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (!isFirstGame) {
-                boardFrame = new BoardFrame();
-                setBoardFrameListener();
-            }
-            boardFrame.setVisible(true);
-            isFirstGame = false;
-        }
-    };
+    ActionListener startBtnListener=new ActionListener(){@Override public void actionPerformed(ActionEvent e){if(!isFirstGame){boardFrame=new BoardFrame();setBoardFrameListener();}boardFrame.setVisible(true);isFirstGame=false;}};
 
-    ActionListener continueBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            boardFrame.setVisible(true);
-        }
-    };
+    ActionListener continueBtnListener=new ActionListener(){@Override public void actionPerformed(ActionEvent e){boardFrame.setVisible(true);}};
 
-    ActionListener loadFileBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            isFirstGame = false;
-            File file = homeFrame.openLoadDialogAndGetFileToLoad();
-            boardFrame.getGameBoard().resetBoard();
-            readFile(file);
-        }
-    };
+    ActionListener loadFileBtnListener=new ActionListener(){@Override public void actionPerformed(ActionEvent e){isFirstGame=false;File file=homeFrame.openLoadDialogAndGetFileToLoad();boardFrame.getGameBoard().resetBoard();readFile(file);}};
 
-    ActionListener instructionBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            JLabel instructionLabel = new JLabel(homeFrame.getInstructionImageIcon());
-            JOptionPane.showMessageDialog(null, instructionLabel, "Instruction", JOptionPane.PLAIN_MESSAGE, null);
-        }
-    };
+    ActionListener instructionBtnListener=new ActionListener(){@Override public void actionPerformed(ActionEvent e){JLabel instructionLabel=new JLabel(homeFrame.getInstructionImageIcon());JOptionPane.showMessageDialog(null,instructionLabel,"Instruction",JOptionPane.PLAIN_MESSAGE,null);}};
 
-    ActionListener quitBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            System.exit(0);
-        }
-    };
+    ActionListener quitBtnListener=new ActionListener(){@Override public void actionPerformed(ActionEvent e){System.exit(0);}};
 
-    ActionListener backBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            homeFrame.getContinueButton().setEnabled(true);
-            boardFrame.setVisible(false);
-        }
-    };
+    ActionListener backBtnListener=new ActionListener(){@Override public void actionPerformed(ActionEvent e){homeFrame.getContinueButton().setEnabled(true);boardFrame.setVisible(false);}};
 
-    ActionListener saveBtnListener = new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            File file = boardFrame.getToolbar().openSaveFileDialogAndGetFileToSave();
-            writeSaveFile(file);
-        }
-    };
+    ActionListener saveBtnListener=new ActionListener(){@Override public void actionPerformed(ActionEvent e){File file=boardFrame.getToolbar().openSaveFileDialogAndGetFileToSave();writeSaveFile(file);}};
 
     int moveCount = 0;
 
-    ActionListener chessTileListener = new ActionListener() {
-        int timeClicked = 0;
-        boolean isValidMove = false;
+    ActionListener chessTileListener=new ActionListener(){int timeClicked=0;boolean isValidMove=false;
 
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            if (boardFrame.getGameBoard() != null) {
-                timeClicked++;
-                isValidMove = movePiece((ChessTile) e.getSource(), timeClicked);
-                // if chesstile clicked for startpoint is empty
-                if (!isValidMove && timeClicked == 1) {
-                    timeClicked = 0;
-                }
+    @Override public void actionPerformed(ActionEvent e){if(boardFrame.getGameBoard()!=null){timeClicked++;isValidMove=movePiece((ChessTile)e.getSource(),timeClicked);
+    // if chesstile clicked for startpoint is empty
+    if(!isValidMove&&timeClicked==1){timeClicked=0;}
 
-                // if chess movement to endpoint is valid
-                else if (timeClicked == 2) {
-                    timeClicked = 0;
-                    if (isValidMove) {
-                        // alternate gameboard
-                        rotateBoard();
-                        // alternate toolbar
-                        isRedPlayer = !isRedPlayer;
-                        boardFrame.getToolbar().setPlayerToMove(isRedPlayer ? "Red" : "Blue");
-                        moveCount = boardFrame.getToolbar().getMoveCount() + 1;
-                        boardFrame.getToolbar().setMoveCount(moveCount);
+    // if chess movement to endpoint is valid
+    else if(timeClicked==2){timeClicked=0;if(isValidMove){
+    // alternate gameboard
+    rotateBoard();
+    // alternate toolbar
+    isRedPlayer=!isRedPlayer;boardFrame.getToolbar().setPlayerToMove(isRedPlayer?"Red":"Blue");moveCount=boardFrame.getToolbar().getMoveCount()+1;boardFrame.getToolbar().setMoveCount(moveCount);
 
-                        // To add state change
-                        if (moveCount % 4 == 0) {
-                            System.out.println("flip state");
-                        }
+    // To add state change
+    if(moveCount%4==0){System.out.println("flip state");}
 
-                        boardFrame.repaint();
-                    }
+    boardFrame.repaint();}
 
-                }
-            }
-        }
-    };
+    }}}};
 
     Boolean hasFlipped = false;
 
@@ -226,14 +152,18 @@ public class GameController {
                     boardFrame.getGameBoard().resetCheckDraw();
                 }
 
-                /*
-                 * // check checkmate boardFrame.getGameBoard().checkmate(); // only left 1 blue
-                 * piece (Sun) if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
-                 * checkmateBlue(); //red win } // only left 1 red piece (Sun) //else if
-                 * (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) { //
-                 * checkmateRed(); //blue win //} else {
-                 * boardFrame.getGameBoard().resetCheckmate(); }
-                 */
+                
+                 // check checkmate 
+                 boardFrame.getGameBoard().checkmate(); // only left 1 blue
+                 //piece (Sun) 
+                 if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
+                 checkmateBlue();
+                } //red win } // only left 1 red piece (Sun) //
+                 else if(boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) { //
+                 checkmateRed(); //blue win //
+                } 
+                boardFrame.getGameBoard().resetCheckmate(); 
+                 
 
                 // if successfully moved return true, if not return false
                 return true;
@@ -271,17 +201,19 @@ public class GameController {
         boardFrame.setVisible(false);
     }
 
-    /*
-     * private void checkmateRed() { String playerWon = "BlueCheckmateRed"; new
-     * GameOver(boardFrame,playerWon);
-     * homeFrame.getContinueButton().setEnabled(false);
-     * boardFrame.setVisible(false); }
-     * 
-     * private void checkmateBlue() { String playerWon = "RedCheckmateBlue"; new
-     * GameOver(boardFrame,playerWon);
-     * homeFrame.getContinueButton().setEnabled(false);
-     * boardFrame.setVisible(false); }
-     */
+    private void checkmateRed() {
+        String playerWon = "BlueCheckmateRed";
+        new GameOver(boardFrame, playerWon);
+        homeFrame.getContinueButton().setEnabled(false);
+        boardFrame.setVisible(false);
+    }
+
+    private void checkmateBlue() {
+        String playerWon = "RedCheckmateBlue";
+        new GameOver(boardFrame, playerWon);
+        homeFrame.getContinueButton().setEnabled(false);
+        boardFrame.setVisible(false);
+    }
 
     private void writeSaveFile(File file) {
         if (file == null) {

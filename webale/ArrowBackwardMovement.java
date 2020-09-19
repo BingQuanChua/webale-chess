@@ -34,8 +34,7 @@ public class ArrowBackwardMovement implements Movement {
                                 if (coordinate[sourceCoordinateY + 1][sourceCoordinateX].getChessPiece() == null) {
                                         success = true;
                                         return success;
-                                }
-                                else {
+                                } else {
                                         success = false;
                                         return success;
                                 }
