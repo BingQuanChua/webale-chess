@@ -40,6 +40,7 @@ PlusMovement
 (Need design)
 HomeFrame
 GameBoard + ChessBoard + ToolBar
+**design not yet finished
 
 <h5>
     Done (?)
@@ -53,9 +54,9 @@ GameBoard + ChessBoard + ToolBar
 <h5>
     To be done
 </h5>
-Controller (pass Game, HomeFrame, GameBoard)
-Game (save and load)
-
+plus <-> triangle, 
+arrange all methods, 
+design pattern
 
 
 <h2>
@@ -64,7 +65,7 @@ Game (save and load)
 
 ##########################
 
-  WEBALE CHESS SAVE FILE
+| WEBALE CHESS SAVE FILE |
 
 ##########################
 

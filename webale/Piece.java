@@ -1,38 +1,40 @@
 package webale;
 
-import java.awt.Image;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 public abstract class Piece {
 
 	private boolean isRedColor;
-	private boolean hasFlipped;
-	private ImageIcon image;
+	private boolean hasFlipped = false;
+	private ImageIcon imageIcon;
+	private ImageIcon flippedImageIcon;
 
-	Piece(){
+	Piece() {
 		this.isRedColor = false;
-		this.hasFlipped = true;
-		this.image = null;
+		this.imageIcon = null;
+		this.flippedImageIcon = null;
 	}
 
-	Piece(boolean isRedColor, boolean hasFlipped, String ImageUrl) throws IOException {
+	Piece(boolean isRedColor, String imageUrl) throws IOException {
 		this.isRedColor = isRedColor;
-		this.hasFlipped = hasFlipped;
-		this.setIcon(ImageUrl);
+		StringBuilder sb = new StringBuilder(imageUrl.substring(0, imageUrl.length() - 4));
+		sb.append("_rotated.png");
+		String flippedImageUrl = sb.toString();
+		this.setIcon(imageUrl, flippedImageUrl);
 	}
 
 	abstract public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint);
 
-	public void setIcon(String ImageUrl) throws IOException {
-        image = new ImageIcon(ImageIO.read(getClass().getResource(ImageUrl)));
-    }
+	public void setIcon(String imageUrl, String flippedImageUrl) throws IOException {
+		imageIcon = new ImageIcon(ImageIO.read(getClass().getResource(imageUrl)));
+		flippedImageIcon = new ImageIcon(ImageIO.read(getClass().getResource(flippedImageUrl)));
+	}
 
-    public ImageIcon getIcon() {
-        return image;
-    }
+	public ImageIcon getIcon() {
+		return hasFlipped ? flippedImageIcon : imageIcon;
+	}
 
 	public boolean getIsRedColor() {
 		return isRedColor;
@@ -45,4 +47,7 @@ public abstract class Piece {
 	public void toggleFlippedState() {
 		hasFlipped = !hasFlipped;
 	}
+
+	abstract public String toString(); // color + " " + name
+
 }
