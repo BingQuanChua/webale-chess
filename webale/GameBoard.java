@@ -159,7 +159,8 @@ public class GameBoard extends JPanel {
             for (int x = 0; x < 7; x++) {
                 if (coordinate[y][x].getChessPiece() != null && coordinate[y][x].getChessPiece().getIsRedColor()) {
                     remainingRedPiece.add(coordinate[y][x]);
-                } else if (coordinate[y][x].getChessPiece() != null && !coordinate[y][x].getChessPiece().getIsRedColor()) {
+                } else if (coordinate[y][x].getChessPiece() != null
+                        && !coordinate[y][x].getChessPiece().getIsRedColor()) {
                     remainingBluePiece.add(coordinate[y][x]);
                 }
             }
