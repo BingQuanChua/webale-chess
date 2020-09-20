@@ -1,5 +1,5 @@
 // This class is for plus moving in any directions (up/down/left/right) and any steps player wants
-// Denise Lee Chia Xuan
+// Denise Lee Chia Xuan, assist by Lee Min Xuan 
 
 package webale;
 

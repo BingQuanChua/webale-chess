@@ -135,6 +135,7 @@ public class HomeFrame extends JFrame {
         return defeatImageIcon;
     }
 
+    //Lee Min Xuan
     // method to pop out JFileChooser to prompt player to load an existing game .txt file
     public File openLoadDialogAndGetFileToLoad() {
         JFileChooser fileChooser = new JFileChooser();
