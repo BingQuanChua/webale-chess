@@ -81,6 +81,9 @@ public class Game{
                 }
                 
                 // replace piece at the endPoint with the piece at the startPoint
+                if(endPoint.getChessPiece() != null){
+                    playSound("./sounds/kill_piece.wav");
+                }
                 endPoint.setChessPiece(startPoint.getChessPiece());
                 startPoint.setChessPiece(null);
                 boardFrame.getGameBoard().repaint();

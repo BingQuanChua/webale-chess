@@ -98,7 +98,7 @@ public class GameController {
     ActionListener defeatBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            game.playSound("./sounds/press_button.wav");
+            game.playSound("./sounds/admit_defeat.wav");
             JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
             JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE, null);
             homeFrame.getContinueButton().setEnabled(false);
