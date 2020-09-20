@@ -11,7 +11,6 @@ import java.io.File;
 public class GameController {
     BoardFrame boardFrame = null;
     HomeFrame homeFrame = null;
-    boolean isFirstGame = true;
     Game game = null;    
     FileOperation fileOp;
 
@@ -50,16 +49,13 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             game.playSound("./sounds/press_button.wav");
-            //If it is not the first time the start new game button is clicked, initialize everything again.
-            if (!isFirstGame) {      
-                game.setIsRedPlayer(true);
-                boardFrame.getGameBoard().setHasFlipped(false);
-                boardFrame.getToolbar().setMoveCount(0);
-                boardFrame = new BoardFrame();
-                setBoardFrameListener();
-            }
+            game.setIsRedPlayer(true);
+            boardFrame.getGameBoard().setHasFlipped(false);
+            boardFrame.getToolbar().setMoveCount(0);
+            boardFrame = new BoardFrame();
+            setBoardFrameListener();
+            game.setBoardFrame(boardFrame);
             boardFrame.setVisible(true);
-            isFirstGame = false;
         }
     };
 
@@ -77,13 +73,11 @@ public class GameController {
         public void actionPerformed(ActionEvent e) {
             fileOp = new FileOperation(boardFrame.getToolbar().getMoveCount(), game.getIsRedPlayer(), boardFrame);
             game.playSound("./sounds/press_button.wav");
-            isFirstGame = false;
 
             boardFrame.setVisible(false);
             File file = homeFrame.openLoadDialogAndGetFileToLoad();
             boardFrame.getGameBoard().resetBoard();
             fileOp.readFile(file);
-            
             //if the player on move is blue, rotate the board.
             if(!game.getIsRedPlayer()){
                 boardFrame.getGameBoard().setHasFlipped(false);
@@ -162,7 +156,6 @@ public class GameController {
                     else{
                         game.playSound("./sounds/pickup_chess.wav");
                     }
-                    
                 }
 
                 //a chesstile to move to is selected when timeClicked == 2

@@ -48,21 +48,27 @@ public class Game{
 
     // to move piece and check if the movement is valid
     public boolean movePiece(ChessTile chessTileClicked, int timeClicked) {
+        
         Coordinate[][] coordinate = boardFrame.getGameBoard().getCoordinateArray();
 
         // check if the chesstile selected as startPoint is valid
         if (timeClicked % 2 != 0) {
             // if chesstile clicked as startPoint is empty, return false.
-            if (coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()].getChessPiece() == null)
+            if (coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()].getChessPiece() == null){
+                System.out.println("moved1");
                 return false;
+            }
+                
             // if piece on chesstile clicked as startPoint is not the same colour as the
             // piece of player on move, return false.
             else if (coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()].getChessPiece()
                     .getIsRedColor() != isRedPlayer) {
+                        
+                System.out.println("moved2");
                 return false;
             }
         }
-
+        
         // check if the movement to the chesstile selected as endPoint is valid
         if (timeClicked % 2 == 0) {
             endPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
@@ -77,6 +83,10 @@ public class Game{
                 if (endPoint.getCoorY() == 0 || endPoint.getCoorY() == 7) {
                     changeArrowState(startPoint.getChessPiece());
                 }
+                
+                // replace piece at the endPoint with the piece at the startPoint
+                System.out.println("start: " + startPoint);
+                System.out.println("end:" + endPoint);
                 endPoint.setChessPiece(startPoint.getChessPiece());
                 startPoint.setChessPiece(null);
                 boardFrame.getGameBoard().repaint();
@@ -173,6 +183,10 @@ public class Game{
 
    public void setIsRedPlayer(boolean isRedPlayer){
        this.isRedPlayer = isRedPlayer;
+   }
+
+   public void setBoardFrame(BoardFrame boardFrame){
+       this.boardFrame = boardFrame;
    }
 }
 
