@@ -19,15 +19,15 @@ public class GameBoard extends JPanel {
     private ArrayList<Coordinate> remainingRedPiece = new ArrayList<Coordinate>();
     private ArrayList<Coordinate> remainingBluePiece = new ArrayList<Coordinate>();
     private Coordinate coordinate[][] = new Coordinate[8][7];
+    private boolean hasFlipped = false;
 
     public GameBoard() {
+
         // Define the size of the game board
-        
         int width = 700;
         int height = 600;
 
         // Assigning pieces to the coordinate
-
         try{
             coordinate[0][0] = new Coordinate(0,0, new StateChangingPiece(false, "./images/blue_plus.png"));        // plus
             coordinate[0][0].getChessPiece().setState(new PlusMovement());
@@ -166,6 +166,26 @@ public class GameBoard extends JPanel {
         }
     }
 
+    // rotate the gameboard when changing player's turn
+    public void rotateBoard() {
+        hasFlipped = !hasFlipped;
+
+        this.removeAll();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 7; j++) {
+                if (hasFlipped) {
+                    add(tileArray[7 - i][6 - j]);
+                } else {
+                    add(tileArray[i][j]);
+                }
+                //if there is piece on the tile, rotate the imageIcon of the piece 
+                if (coordinate[i][j].getChessPiece() != null) {
+                    coordinate[i][j].getChessPiece().toggleFlippedState();
+                }
+            }
+        }
+    }
+
     // method to get the number of remaining chess piece on Chess Board
     public int getRemainingPieceSize() {
         return remainingCoordinates.size();
@@ -189,6 +209,10 @@ public class GameBoard extends JPanel {
     // method to get the 2D button array with tile
     public JButton[][] getTileArray() {
         return tileArray;
+    }
+
+    public void setHasFlipped(boolean hasFlipped){
+        this.hasFlipped = hasFlipped;
     }
 
 }

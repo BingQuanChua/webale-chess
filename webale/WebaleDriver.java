@@ -11,6 +11,7 @@ public class WebaleDriver {
 
 		HomeFrame homeFrame = new HomeFrame();
 		BoardFrame boardFrame = new BoardFrame();
-		new GameController(homeFrame, boardFrame);
+		Game game = new Game(homeFrame, boardFrame);
+		new GameController(homeFrame, boardFrame, game);
 	}
 }
