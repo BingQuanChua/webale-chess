@@ -1,5 +1,6 @@
 // This class is for the usage of gameboard class to create multiple chess tiles that being added on top of blank gameboard, 
 // to form a gameboard that can be clicked.
+// Koh Han Yi
 
 package webale;
 

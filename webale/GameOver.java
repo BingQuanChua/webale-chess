@@ -1,5 +1,6 @@
 // This class is a GUI (dialog message) will pop up for informing the players that the game ends. 
 // Different parameters will determine different game outcomes.
+// Lee Min Xuan, Tan Jia Qi, Denise Lee Chia Xuan
 
 package webale;
 

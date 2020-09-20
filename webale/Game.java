@@ -24,8 +24,8 @@ public class Game{
         this.boardFrame = boardFrame;
     }
     
-    
     // set state of triangle and plus (triangle <--> plus) when player moves chess pieces twice
+    // Chua Bing Quan
     public void toggleState() {
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 7; j++) {
@@ -47,6 +47,7 @@ public class Game{
     
 
     // to move piece and check if the movement is valid
+    // Denise Lee Chia Xuan, Lee Min Xuan, Tan Jia Qi
     public boolean movePiece(ChessTile chessTileClicked, int timeClicked) {
         
         Coordinate[][] coordinate = boardFrame.getGameBoard().getCoordinateArray();
@@ -126,6 +127,7 @@ public class Game{
     }
 
     // change arrow state when arrow reaches the other edge of gameboard
+    // Denise Lee Chia Xuan
     private void changeArrowState(Piece arrow) {
         if (arrow instanceof Arrow) {
             ((Arrow) arrow).changeMovement();
@@ -133,10 +135,12 @@ public class Game{
         }
     }
 
+    // Denise Lee Chia Xuan
     private boolean hasWin(Piece pieceKilled) {
         return pieceKilled instanceof Sun ? true : false;
     }
 
+    // Denise Lee Chia Xuan
 	private void gameOver() {
         String playerWon = isRedPlayer ? "Red" : "Blue";
         new GameOver(boardFrame, playerWon);
@@ -144,6 +148,7 @@ public class Game{
         boardFrame.setVisible(false);
     }
 
+    // Lee Min Xuan
     private void drawGame() {
         String playerWon = "Draw";
         new GameOver(boardFrame, playerWon);
@@ -151,19 +156,21 @@ public class Game{
         boardFrame.setVisible(false);
     }
 
+    // Tan Jia Qi
     private void checkmateRed() {
         String playerWon = "BlueCheckmateRed";
         new GameOver(boardFrame, playerWon);
     }
 
+    // Tan Jia Qi
     private void checkmateBlue() {
         String playerWon = "RedCheckmateBlue";
         new GameOver(boardFrame, playerWon);
     }
 
+    // Denise Lee Chia Xuan
     public void playSound(String soundName){
         try{
-           //AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(soundName).getAbsoluteFile( ));
            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(getClass().getResource(soundName));
            
            Clip clip = AudioSystem.getClip();

@@ -1,4 +1,5 @@
 // This class is for chess piece, Chevron that inherited from abstract class Piece.
+// Koh Han Yi
 
 package webale;
 

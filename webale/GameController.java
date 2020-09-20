@@ -23,6 +23,7 @@ public class GameController {
     }
 
     // setting actionlistener for every button in homeframe
+    // Denise Lee Chia Xuan
     public void setHomeFrameListener() {
         homeFrame.getStartButton().addActionListener(startBtnListener);
         homeFrame.getContinueButton().addActionListener(continueBtnListener);
@@ -32,6 +33,7 @@ public class GameController {
     }
 
     // setting actionlistener for every button in boardframe
+    // Denise Lee Chia Xuan
     public void setBoardFrameListener() {
         boardFrame.getToolbar().getBackButton().addActionListener(backBtnListener);
         boardFrame.getToolbar().getSaveButton().addActionListener(saveBtnListener);
@@ -45,6 +47,7 @@ public class GameController {
         }
     }
 
+    // Denise Lee Chia Xuan
     ActionListener startBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -59,6 +62,7 @@ public class GameController {
         }
     };
 
+    // Denise Lee Chia Xuan
     ActionListener continueBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -67,7 +71,7 @@ public class GameController {
         }
     };
 
-
+    // Koh Han Yi, Lee Min Xuan
     ActionListener loadFileBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -86,6 +90,7 @@ public class GameController {
         }
     };
 
+    // Denise Lee Chia Xuan
     ActionListener instructionBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -95,6 +100,7 @@ public class GameController {
         }
     };
 
+    // Tan Jia Qi
     ActionListener defeatBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -106,6 +112,7 @@ public class GameController {
         }
     };
 
+    // Lee Min Xuan
     ActionListener quitBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -114,6 +121,7 @@ public class GameController {
         }
     };
 
+    // Denise Lee Chia Xuan
     ActionListener backBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -123,6 +131,7 @@ public class GameController {
         }
     };
 
+    // Denise Lee Chia Xuan
     ActionListener saveBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -134,6 +143,7 @@ public class GameController {
     };
     
     // counting of moves made by players
+    // Denise Lee Chia Xuan, Chua Bing Quan
     ActionListener chessTileListener = new ActionListener() {
         int timeClicked = 0;
         boolean isValidMove = false;

@@ -21,6 +21,7 @@ public class GameBoard extends JPanel {
     private Coordinate coordinate[][] = new Coordinate[8][7];
     private boolean hasFlipped = false;
 
+    // Koh Han Yi, Chua Bing Quan
     public GameBoard() {
 
         // Define the size of the game board
@@ -105,6 +106,7 @@ public class GameBoard extends JPanel {
     }
 
     // put piece icon on tileArray
+    // Koh Han Yi, Denise Lee Chia Xuan
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -122,6 +124,7 @@ public class GameBoard extends JPanel {
     }
 
     // checking of draw game (both players only left with the sun)
+    // Lee Min Xuan
     public void checkDraw() {
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
@@ -133,11 +136,13 @@ public class GameBoard extends JPanel {
     }
 
     // reset the arraylist
+    // Lee Min Xuan
     public void resetCheckDraw() {
         remainingCoordinates.removeAll(remainingCoordinates);
     }
 
     // checking of checkmate condition (one player only left with the sun)
+    // Tan Jia Qi
     public void checkmate() {
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
@@ -151,12 +156,14 @@ public class GameBoard extends JPanel {
     }
 
     // reset the arraylist
+    // Tan Jia Qi
     public void resetCheckmate() {
         remainingRedPiece.removeAll(remainingRedPiece);
         remainingBluePiece.removeAll(remainingBluePiece);
     }
 
     // reset the gameboard (when starting a new game)
+    // Lee Min Xuan
     public void resetBoard() {
         for (int y = 0; y < 8; y++) {
             for (int x = 0; x < 7; x++) {
@@ -167,6 +174,7 @@ public class GameBoard extends JPanel {
     }
 
     // rotate the gameboard when changing player's turn
+    // Denise Lee Chia Xuan
     public void rotateBoard() {
         hasFlipped = !hasFlipped;
 

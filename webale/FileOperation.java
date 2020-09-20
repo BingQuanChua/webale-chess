@@ -20,6 +20,7 @@ public class FileOperation {
         this.boardFrame= boardFrame;
     }
 
+    // Denise Lee Chia Xuan
     public void writeSaveFile(File fileToSave) {
         if (fileToSave == null) {
             return;
@@ -68,6 +69,7 @@ public class FileOperation {
     }
 
     // read the saved txt file 
+    // Koh Han Yi
     public void readFile(File file) {
         if (file == null) {
             return;
@@ -158,6 +160,7 @@ public class FileOperation {
     }
 
     // restore the game board from saved txt file
+    // Koh Han Yi
     public void initPiece(String line) throws IOException {
         if (line.startsWith("B") || line.startsWith("R")) {
             String[] tokens = line.split(" ");

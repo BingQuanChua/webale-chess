@@ -1,4 +1,5 @@
 // This class is for chess piece, Arrow that inherited from abstract class Piece.
+// Tan Jia Qi
 
 package webale;
 

@@ -1,4 +1,5 @@
 // This class is for chess piece, Sun that inherited from abstract class Piece.
+// Lee Min Xuan
 
 package webale;
 

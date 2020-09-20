@@ -1,4 +1,5 @@
 // This is a class for storing the pieces and its respective position on the gameboard
+// Koh Han Yi
 
 package webale;
 

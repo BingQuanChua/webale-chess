@@ -1,4 +1,5 @@
 // This class is for the GUI will be seen by user in the beginning, containing all images in the program except pieces images
+// Denise Lee Chia Xuan, Lee Min Xuan
 
 package webale;
 
