@@ -10,7 +10,7 @@ public class Game{
     
     private BoardFrame boardFrame;
     private HomeFrame homeFrame;
-    private boolean isRedPlayer;
+    private boolean isRedPlayer = true;
       
     // startPoint -> first tile clicked (source coordinate)
     // endPoint -> second tile clicked (destination coordinate)
@@ -50,12 +50,10 @@ public class Game{
     public boolean movePiece(ChessTile chessTileClicked, int timeClicked) {
         
         Coordinate[][] coordinate = boardFrame.getGameBoard().getCoordinateArray();
-
         // check if the chesstile selected as startPoint is valid
         if (timeClicked % 2 != 0) {
             // if chesstile clicked as startPoint is empty, return false.
             if (coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()].getChessPiece() == null){
-                System.out.println("moved1");
                 return false;
             }
                 
@@ -63,8 +61,6 @@ public class Game{
             // piece of player on move, return false.
             else if (coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()].getChessPiece()
                     .getIsRedColor() != isRedPlayer) {
-                        
-                System.out.println("moved2");
                 return false;
             }
         }
@@ -85,8 +81,6 @@ public class Game{
                 }
                 
                 // replace piece at the endPoint with the piece at the startPoint
-                System.out.println("start: " + startPoint);
-                System.out.println("end:" + endPoint);
                 endPoint.setChessPiece(startPoint.getChessPiece());
                 startPoint.setChessPiece(null);
                 boardFrame.getGameBoard().repaint();
