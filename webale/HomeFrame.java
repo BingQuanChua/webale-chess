@@ -97,7 +97,7 @@ public class HomeFrame extends JFrame {
         add(panel);
 
         setSize(width, height);
-        setResizable(false);
+        setResizable(true);
         // setLocationRelativeTo(null);
         setVisible(true);
         setTitle("WEBALE CHESS");
