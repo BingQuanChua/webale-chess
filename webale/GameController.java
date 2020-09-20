@@ -132,7 +132,6 @@ public class GameController {
             fileOp.writeSaveFile(file);
         }
     };
-
     
     // counting of moves made by players
     ActionListener chessTileListener = new ActionListener() {
@@ -185,7 +184,6 @@ public class GameController {
                         game.playSound("./sounds/wrong.wav"); 
                         //can change the path to "./sounds/wrong2.wav" or "./sounds/wrong3.wav" or "./sounds/wrong4.wav"for different sound effects.
                     }
-
                 }
             }
         }
