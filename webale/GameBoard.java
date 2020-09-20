@@ -219,6 +219,7 @@ public class GameBoard extends JPanel {
         return tileArray;
     }
 
+    //  method to set boolean about the board has flipped or not
     public void setHasFlipped(boolean hasFlipped){
         this.hasFlipped = hasFlipped;
     }
