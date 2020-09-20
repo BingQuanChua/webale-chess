@@ -1,5 +1,6 @@
 // This class is the panel that contain button (back,save,help,admitdefeat), label (movecount, playertomove)
 // The panel is placed on the right of boardframe which is beside of gameboard
+// Denise Lee Chia Xuan
 
 package webale;
 
