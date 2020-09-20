@@ -10,10 +10,12 @@ public class StateChangingPiece extends Piece {
 
     public StateChangingPiece(boolean isRedColor, String imageURL) throws IOException {
         super(isRedColor, imageURL);
-        movement = null; // by default no movement type, need to be set
+        movement = null; // by default no movement type, need to be set, image is based on what is passed in
         color = isRedColor ? "red" : "blue";
     }
 
+    // This method enables this piece to switch its movement type based on the state
+    // It only accepts PlusMovement and TriangleMovement
     public void setState(Movement movement) throws IOException{
         this.movement = movement;
 
