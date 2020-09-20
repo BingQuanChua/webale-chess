@@ -9,10 +9,10 @@ import javax.swing.JOptionPane;
 import java.io.File;
 
 public class GameController {
-    BoardFrame boardFrame = null;
-    HomeFrame homeFrame = null;
-    Game game = null;    
-    FileOperation fileOp;
+    private BoardFrame boardFrame = null;
+    private HomeFrame homeFrame = null;
+    private Game game = null;    
+    private FileOperation fileOp;
 
     public GameController(HomeFrame homeFrame, BoardFrame boardFrame, Game game) {
         this.homeFrame = homeFrame;
@@ -183,7 +183,7 @@ public class GameController {
                     //if the piece movement to the endpoint is invalid
                     } else{
                         game.playSound("./sounds/wrong.wav"); 
-                        //can change the path to "./sounds/wrong2.wav" or "./sounds/wrong3.wav" or "./sounds/wrong4.wav"for different sound effects
+                        //can change the path to "./sounds/wrong2.wav" or "./sounds/wrong3.wav" or "./sounds/wrong4.wav"for different sound effects.
                     }
 
                 }

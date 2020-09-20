@@ -10,11 +10,9 @@ import java.io.IOException;
 import java.io.FileReader;
 
 public class FileOperation {
-    File file;
-    int moveCount;
-    boolean isRedPlayer;
-    BoardFrame boardFrame;
-    GameBoard gameBoard;
+    private int moveCount;
+    private boolean isRedPlayer;
+    private BoardFrame boardFrame;
     
     FileOperation(int moveCount, boolean isRedPlayer, BoardFrame boardFrame){
         this.moveCount = moveCount;
