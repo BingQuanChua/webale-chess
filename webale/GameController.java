@@ -98,7 +98,7 @@ public class GameController {
     ActionListener defeatBtnListener = new ActionListener() {
         @Override
         public void actionPerformed(ActionEvent e) {
-            //game.playSound("./sounds/admit_defeat.wav");
+            game.playSound("./sounds/admitdefeat.wav");
             JLabel defeatLabel = new JLabel(homeFrame.getDefeatImageIcon());
             JOptionPane.showMessageDialog(null, defeatLabel, "You have admitted defeat!", JOptionPane.PLAIN_MESSAGE, null);
             homeFrame.getContinueButton().setEnabled(false);
@@ -183,7 +183,7 @@ public class GameController {
                     //if the piece movement to the endpoint is invalid
                     } else{
                         game.playSound("./sounds/wrong.wav"); 
-                        //can change the path to "./sounds/wrong2.wav" or "./sounds/wrong3.wav" for different sound effects
+                        //can change the path to "./sounds/wrong2.wav" or "./sounds/wrong3.wav" or "./sounds/wrong4.wav"for different sound effects
                     }
 
                 }
