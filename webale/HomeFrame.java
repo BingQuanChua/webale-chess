@@ -12,18 +12,17 @@ import java.io.IOException;
 public class HomeFrame extends JFrame {
 
     private static final long serialVersionUID = 1L;
-    int width = 556;
-    int height = 574;
-    JLabel title = new JLabel("Welcome to Webale Chess Game!", SwingConstants.CENTER);
-    JButton startGame = new JButton("Start New Game");
-    JButton continueGame = new JButton("Continue Last Game");
-    JButton loadGame = new JButton("Load Game");
-    JButton instruction = new JButton("Instruction");
-    JButton quitGame = new JButton("Quit");
-    ImageIcon logoImageIcon;
-    ImageIcon instructionImageIcon;
-    ImageIcon bgImageIcon;
-    ImageIcon defeatImageIcon;
+    private int width = 556;
+    private int height = 574;
+    private JButton startGame = new JButton("Start New Game");
+    private JButton continueGame = new JButton("Continue Last Game");
+    private JButton loadGame = new JButton("Load Game");
+    private JButton instruction = new JButton("Instruction");
+    private JButton quitGame = new JButton("Quit");
+    private ImageIcon logoImageIcon;
+    private ImageIcon instructionImageIcon;
+    private ImageIcon bgImageIcon;
+    private ImageIcon defeatImageIcon;
 
     public HomeFrame() {
         super("Webale Chess");

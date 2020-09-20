@@ -15,9 +15,9 @@ public class Game{
     // startPoint -> first tile clicked (source coordinate)
     // endPoint -> second tile clicked (destination coordinate)
     // isCheckmated -> to identify the checkmate status of both players, if the Sun of one of the players is checkmated, then it will set to true
-    Coordinate startPoint = null;
-    Coordinate endPoint = null;
-    boolean isCheckmated = false;
+    private Coordinate startPoint = null;
+    private Coordinate endPoint = null;
+    private boolean isCheckmated = false;
     
     public Game(HomeFrame homeFrame, BoardFrame boardFrame){
         this.homeFrame = homeFrame;

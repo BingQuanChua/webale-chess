@@ -9,9 +9,9 @@ import javax.swing.*;
 public class BoardFrame extends JDialog {
 
     private static final long serialVersionUID = 1L;
-    private final JPanel gameboard;
-    private final JPanel toolbar;
-    private final JPanel gamePanel;
+    private JPanel gameboard;
+    private JPanel toolbar;
+    private JPanel gamePanel;
 
     public BoardFrame() {
         super(null, "WEBALE CHESS", ModalityType.MODELESS);

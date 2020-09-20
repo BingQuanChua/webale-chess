@@ -7,12 +7,12 @@ import java.io.IOException;
 public class Arrow extends Piece {
 	private Movement movement;
 
-	public Arrow(final boolean isRedColor, final String imageUrl) throws IOException {
+	public Arrow(boolean isRedColor, String imageUrl) throws IOException {
 		super(isRedColor, imageUrl);
 		movement = new ArrowForwardMovement();
 	}
 
-	public Arrow(final boolean isRedColor, final String imageUrl, final String movement) throws IOException {
+	public Arrow(boolean isRedColor, String imageUrl, String movement) throws IOException {
 		super(isRedColor, imageUrl);
 
 		if (movement.equals("Forward")) {

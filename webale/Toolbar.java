@@ -14,36 +14,34 @@ import java.io.File;
 public class Toolbar extends JPanel {
 
     private static final long serialVersionUID = 1L;
-    final int width = 200;
-    final int height = 200;
-    int moveCount;
-    JButton backButton = new JButton("Back");
-    JButton saveButton = new JButton("Save");
-    JButton helpButton = new JButton("Help");
-    JButton defeatButton = new JButton("Admit Defeat");
-    String playerToMove;
-    JLabel playerLabel = new JLabel("Player to Move : " + playerToMove);
-    JLabel moveCountLabel = new JLabel("Move Count : " + moveCount);
-    final Color darkBrown = new Color(74, 59, 47);
-    final Font buttonFont = new Font("Leelawadee", Font.BOLD, 15);
+    private int moveCount;
+    private JButton backButton = new JButton("Back");
+    private JButton saveButton = new JButton("Save");
+    private JButton helpButton = new JButton("Help");
+    private JButton defeatButton = new JButton("Admit Defeat");
+    private String playerToMove;
+    private JLabel playerLabel = new JLabel("Player to Move : " + playerToMove);
+    private JLabel moveCountLabel = new JLabel("Move Count : " + moveCount);
+    private final Color DARK_BROWN = new Color(74, 59, 47);
+    private Font BUTTON_FONT = new Font("Leelawadee", Font.BOLD, 15);
 
     public Toolbar() {
         playerToMove = "Red";
         moveCount = 0;
-        backButton.setBackground(darkBrown);
+        backButton.setBackground(DARK_BROWN);
         backButton.setForeground(Color.WHITE);
-        backButton.setFont(buttonFont);
-        saveButton.setBackground(darkBrown);
+        backButton.setFont(BUTTON_FONT);
+        saveButton.setBackground(DARK_BROWN);
         saveButton.setForeground(Color.WHITE);
-        saveButton.setFont(buttonFont);
-        helpButton.setBackground(darkBrown);
+        saveButton.setFont(BUTTON_FONT);
+        helpButton.setBackground(DARK_BROWN);
         helpButton.setForeground(Color.WHITE);
-        helpButton.setFont(buttonFont);
-        defeatButton.setBackground(darkBrown);
+        helpButton.setFont(BUTTON_FONT);
+        defeatButton.setBackground(DARK_BROWN);
         defeatButton.setForeground(Color.WHITE);
-        defeatButton.setFont(buttonFont);
-        playerLabel.setForeground(darkBrown);
-        moveCountLabel.setForeground(darkBrown);
+        defeatButton.setFont(BUTTON_FONT);
+        playerLabel.setForeground(DARK_BROWN);
+        moveCountLabel.setForeground(DARK_BROWN);
 
         setBorder(new EmptyBorder(0, 20, 0, 20)); // TLBR
         setLayout(new GridLayout(10, 1, 0, 10));

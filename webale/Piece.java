@@ -14,15 +14,10 @@ public abstract class Piece {
 	// rotated, then it will be set to true
 	private boolean isRedColor = false;
 	private boolean hasFlipped = false;
-	private ImageIcon imageIcon;
-	private ImageIcon flippedImageIcon;
+	private ImageIcon imageIcon = null;
+	private ImageIcon flippedImageIcon = null;
 
-	Piece() {
-		this.isRedColor = false;
-		this.imageIcon = null;
-		this.flippedImageIcon = null;
-	}
-
+	
 	// The constructor of this class, we initialize all the attribute here,
 	// including assigning picture for each pieces
 	Piece(boolean isRedColor, String imageUrl) throws IOException {

@@ -8,22 +8,22 @@ import javax.swing.*;
 public class ChessTile extends JButton {
 
 	private static final long serialVersionUID = 1L;
-	private final int coordinateX;
-	private final int coordinateY;
+	private final int COORDINATEX;
+	private final int COORDINATEY;
 
-	public ChessTile(final int coordinateX, final int coordinateY) {
-		this.coordinateX = coordinateX;
-		this.coordinateY = coordinateY;
+	public ChessTile(final int COORDINATEX, final int COORDINATEY) {
+		this.COORDINATEX = COORDINATEX;
+		this.COORDINATEY = COORDINATEY;
 	}
 
 	// Get the x coordinate relative to other ChessTile.
 	public int getCoorX() {
-		return coordinateX;
+		return COORDINATEX;
 	}
 
 	// Get the x coordinate relative to other ChessTile.
 	public int getCoorY() {
-		return coordinateY;
+		return COORDINATEY;
 	}
 
 }
