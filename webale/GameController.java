@@ -161,10 +161,6 @@ public class GameController {
                         //reset timeClicked to 0 and reselect the startpoint
                         timeClicked = 0;
                     }
-                    //if the chesstile clicked as startpoint is valid
-                    else{
-                        game.playSound("./sounds/pickup_chess.wav");
-                    }
                 }
 
                 //a chesstile to move to is selected when timeClicked == 2
@@ -173,7 +169,6 @@ public class GameController {
                     timeClicked = 0;
                     //if the piece movement to the endpoint is valid
                     if (isValidMove) {
-                        game.playSound("./sounds/drop_chess.wav");
                         // change gameboard state
                         boardFrame.getGameBoard().rotateBoard();
 
@@ -188,11 +183,6 @@ public class GameController {
                         }
 
                         boardFrame.repaint();
-
-                    //if the piece movement to the endpoint is invalid
-                    } else{
-                        game.playSound("./sounds/wrong.wav"); 
-                        //can change the path to "./sounds/wrong2.wav" or "./sounds/wrong3.wav" or "./sounds/wrong4.wav"for different sound effects.
                     }
                 }
             }

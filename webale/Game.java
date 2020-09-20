@@ -71,8 +71,16 @@ public class Game{
             endPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
             // if the movement to endPoint is valid
             if (startPoint != null && startPoint.getChessPiece().canMove(coordinate, startPoint, endPoint)) {
+                // if endPoint has Piece on it, play kill_piece.wav, else play drop_chess.wav
+                if(endPoint.getChessPiece() != null){
+                    playSound("./sounds/kill_piece.wav");
+                } else{
+                    playSound("./sounds/drop_chess.wav");
+                }
+
                 // if the Piece on endPoint is Sun, the player on move has won and game over
                 if (hasWin(endPoint.getChessPiece())) {
+                    playSound("./sounds/win.wav");
                     gameOver();
                 }
 
@@ -82,9 +90,6 @@ public class Game{
                 }
                 
                 // replace piece at the endPoint with the piece at the startPoint
-                if(endPoint.getChessPiece() != null){
-                    playSound("./sounds/kill_piece.wav");
-                }
                 endPoint.setChessPiece(startPoint.getChessPiece());
                 startPoint.setChessPiece(null);
                 boardFrame.getGameBoard().repaint();
@@ -114,14 +119,18 @@ public class Game{
                     }
                     boardFrame.getGameBoard().resetCheckmate();
                 }
-                // if the movement is valid and successfully moved return true, if not, return false.
                 return true;
+            // if the movement is invalid
             } else {
+                playSound("./sounds/wrong.wav"); 
+                //can change the path to "./sounds/wrong2.wav" or "./sounds/wrong3.wav" or "./sounds/wrong4.wav"for different sound effects.
+                
                 return false;
             }
+        // if startPoint is valid
         } else {
+            playSound("./sounds/pickup_chess.wav");
             startPoint = coordinate[chessTileClicked.getCoorY()][chessTileClicked.getCoorX()];
-            
             return true;
         }
     }
