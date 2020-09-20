@@ -1,13 +1,11 @@
 // This class is for controlling the game value, setting actionlistener, counting the number of moves by players, tracking the player to move, 
 // changing arrow state when needed, saving game in txt file, reading txt file, loading game from txt file, rotating gameboard, checking winning conditions.
 
-
 package webale;
 
 import java.awt.event.*;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -180,11 +178,7 @@ public class GameController {
                         // To add state change
                         if (moveCount % 4 == 0) {
                             toggleState();
-                            System.out.println("flip state"); // will comment out later
                         }
-
-                        //moveCount = boardFrame.getToolbar().getMoveCount() + 1;
-                        //boardFrame.getToolbar().setMoveCount(++moveCount);
 
                         boardFrame.repaint();
 

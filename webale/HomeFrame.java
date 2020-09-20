@@ -11,12 +11,9 @@ import java.io.IOException;
 
 public class HomeFrame extends JFrame {
 
-    /**
-     *
-     */
     private static final long serialVersionUID = 1L;
-    int width = 500;
-    int height = 500;
+    int width = 556;
+    int height = 574;
     JLabel title = new JLabel("Welcome to Webale Chess Game!", SwingConstants.CENTER);
     JButton startGame = new JButton("Start New Game");
     JButton continueGame = new JButton("Continue Last Game");
@@ -98,28 +95,10 @@ public class HomeFrame extends JFrame {
 
         setSize(width, height);
         setResizable(true);
-        // setLocationRelativeTo(null);
         setVisible(true);
         setTitle("WEBALE CHESS");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
-
-    // private Image getScaledImage(Image srcImg, int w, int h){
-    // BufferedImage resizedImg = new BufferedImage(w, h,
-    // BufferedImage.TYPE_INT_ARGB);
-    // Graphics2D g2 = resizedImg.createGraphics();
-
-    // g2.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
-    // RenderingHints.VALUE_INTERPOLATION_BILINEAR);
-    // g2.setRenderingHint(RenderingHints.KEY_RENDERING,
-    // RenderingHints.VALUE_RENDER_QUALITY);
-    // g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
-    // RenderingHints.VALUE_ANTIALIAS_ON);
-    // g2.drawImage(srcImg, 0, 0, w, h, null);
-    // g2.dispose();
-
-    // return resizedImg;
-    // }
 
     public JButton getStartButton() {
         return startGame;
@@ -151,7 +130,6 @@ public class HomeFrame extends JFrame {
 
     public File openLoadDialogAndGetFileToLoad() {
         JFileChooser fileChooser = new JFileChooser();
-        // fileChooser.setCurrentDirectory(new File(System.getProperty("user.home")));
         int result = fileChooser.showOpenDialog(null);
         if (result == JFileChooser.APPROVE_OPTION) {
             File file = fileChooser.getSelectedFile();

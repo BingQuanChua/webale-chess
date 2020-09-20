@@ -1,4 +1,4 @@
-// This class is for changing plus and triangle pieces （plus change to triangle & triangle change to plus）
+// This class is for changing plus and triangle pieces (plus change to triangle & triangle change to plus)
 
 package webale;
 

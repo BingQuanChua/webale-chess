@@ -12,21 +12,6 @@ public class Chevron extends Piece {
 		movement = new ChevronMovement();
 	}
 
-	// @Override
-	// public boolean canMove(GameBoard gameboard, Coordinate startpoint, Coordinate
-	// endpoint)
-	// {
-	// if (endpoint.getChessPiece().getColour() == this.getColour()) {
-	// return false;
-	// }
-
-	// int x = Math.abs(startpoint.getCoorX() - endpoint.getCoorX());
-	// int y = Math.abs(startpoint.getCoorY() - endpoint.getCoorY());
-	// if (x == y) {
-	// return true;
-	// }else return false;
-	// }
-
 	public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
 		return movement.move(coordinate, startPoint, endPoint);
 	}
