@@ -101,11 +101,13 @@ public class Game{
                     boardFrame.getGameBoard().checkmate(); 
                     // only left 1 blue piece (Sun)
                     if (boardFrame.getGameBoard().getRemainingBluePieceSize() == 1) {
+                        playSound("./sounds/checkmate.wav");
                         isCheckmated = true;
                         checkmateBlue();               
                     }
                     // only left 1 red piece (Sun)
                     else if (boardFrame.getGameBoard().getRemainingRedPieceSize() == 1) {
+                        playSound("./sounds/checkmate.wav");
                         isCheckmated = true;
                         checkmateRed();               
                     }
