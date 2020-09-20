@@ -94,6 +94,7 @@ public class Toolbar extends JPanel {
         return defeatButton;
     }
 
+    // method to pop out JFileChooser to prompt player to Save File
     public File openSaveFileDialogAndGetFileToSave() {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose a location to save your Webale file.");

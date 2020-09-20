@@ -27,7 +27,7 @@ public class Arrow extends Piece {
 		return movement;
 	}
 
-	// change movement to backward when arrow reaches the other edge of the gameboard
+	// change movement to backward when Arrow reaches the other edge of the gameboard
 	public void changeMovement() {
 		if (movement instanceof ArrowForwardMovement) {
 			movement = new ArrowBackwardMovement();
@@ -36,6 +36,8 @@ public class Arrow extends Piece {
 		}
 	}
 
+	// This boolean method is called in movePiece() method to confirm the Arrow Chess Piece can move
+	// It will return boolean method move in movement
 	@Override
 	public boolean canMove(final Coordinate[][] coordinate, final Coordinate startPoint, final Coordinate endPoint) {
 		return movement.move(coordinate, startPoint, endPoint);
@@ -50,7 +52,7 @@ public class Arrow extends Piece {
 		}
 	}
 
-	// arrow information for saving in file
+	// Arrow information for saving in file
 	public String toString() {
 		return (getIsRedColor() ? "Red " : "Blue ") + "Arrow " + movementToString();
 	}

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "CodeLens (Launch) - WebaleDriver",
+            "request": "launch",
+            "mainClass": "webale.WebaleDriver",
+            "projectName": "webale-chess_98f87e16"
+        },
+        {
+            "type": "java",
             "name": "CodeLens (Launch) - Game",
             "request": "launch",
             "mainClass": "webale.Game",

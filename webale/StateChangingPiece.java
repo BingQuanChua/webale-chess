@@ -1,4 +1,4 @@
-// This class is for changing plus and triangle pieces (plus change to triangle & triangle change to plus)
+// This class is for changing Plus and Triangle pieces (Plus change to Triangle & Triangle change to Plus)
 
 package webale;
 
@@ -11,7 +11,7 @@ public class StateChangingPiece extends Piece {
     public StateChangingPiece(boolean isRedColor, String imageURL) throws IOException {
         super(isRedColor, imageURL);
         movement = null; // by default no movement type, need to be set, image is based on what is passed in
-        color = isRedColor ? "red" : "blue";
+        color = isRedColor ? "red" : "blue"; // get the color of the piece, will be useful for toString() method
     }
 
     // This method enables this piece to switch its movement type based on the state
@@ -38,27 +38,29 @@ public class StateChangingPiece extends Piece {
             super.setIcon(imageURL, flippedImageUrl);
         } 
 
-        // if other movement are passed in, nothing will happen to the image
+        // if any other movements are passed in, nothing will happen to the image
     }
 
     public Movement getState() {
         return movement;
     }
 
+    // This boolean method is called in movePiece() method to confirm the Plus/Triangle Chess Piece can move
+	// It will return boolean method move in movement
     @Override
     public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
         return movement.move(coordinate, startPoint, endPoint);
     }
 
-    // plus and triangle information for saving in file
+    // Plus or Triangle information for saving in file
     public String toString() {
         String c = color.toUpperCase().charAt(0) + color.substring(1, color.length()) + " ";
-        if (movement instanceof TriangleMovement) {
-            return c + "Triangle";
+        if (movement instanceof PlusMovement) {
+            return c + "Plus";
         }
         else {
-            if (movement instanceof PlusMovement) {
-                return c + "Plus";
+            if (movement instanceof TriangleMovement) {
+                return c + "Triangle";
             }
             else {
                 return c + "Piece";  

@@ -1,5 +1,6 @@
 // This class is for containing the gameboard, toolbar and gamepanel, which will be viewed/used by user after starting a game
-
+// Toolbar is placed on the right of boardframe
+// Gameboard is placed on the left of boardframe, and occupies most space on the boardframe
 package webale;
 
 import java.awt.*;

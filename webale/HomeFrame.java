@@ -36,7 +36,7 @@ public class HomeFrame extends JFrame {
             bgImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/background.png")));
             defeatImageIcon = new ImageIcon(ImageIO.read(getClass().getResource("images/admit_defeat.png")));
         } catch (IOException ex) {
-            System.out.print("cant load image");
+            System.out.print("can't load image");
         }
 
         JPanel logoPanel = new JPanel();
@@ -100,34 +100,42 @@ public class HomeFrame extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    // method to get Start button
     public JButton getStartButton() {
         return startGame;
     }
 
+    // method to get continue button
     public JButton getContinueButton() {
         return continueGame;
     }
 
+    // method to get Load button
     public JButton getLoadButton() {
         return loadGame;
     }
 
+    // method to get Instruction button
     public JButton getInstructionButton() {
         return instruction;
     }
 
+    // method to get the Quit button 
     public JButton getQuitButton() {
         return quitGame;
     }
 
+    // method to get the instruction image in ImageIcon format
     public ImageIcon getInstructionImageIcon() {
         return instructionImageIcon;
     }
 
+    // method to get the defeat image in ImageIcon format
     public ImageIcon getDefeatImageIcon() {
         return defeatImageIcon;
     }
 
+    // method to pop out JFileChooser to prompt player to load an existing game .txt file
     public File openLoadDialogAndGetFileToLoad() {
         JFileChooser fileChooser = new JFileChooser();
         int result = fileChooser.showOpenDialog(null);

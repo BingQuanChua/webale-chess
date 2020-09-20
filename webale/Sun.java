@@ -12,22 +12,23 @@ public class Sun extends Piece {
 		movement = new SunMovement();
 	}
 
+	// This boolean method is called in movePiece() method to confirm the Sun Chess Piece can move
+	// It will return boolean method move in movement
 	@Override
 	public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
 		return movement.move(coordinate, startPoint, endPoint);
 	}
 
-	// sun information for saving in file
+	// Sun information for saving in file purpose
 	public String toString() {
 		return (getIsRedColor() ? "Red " : "Blue ") + "Sun";
 	}
-
+ 
 	public void setState(Movement movement) {
 
 	}
 
 	public Movement getState() {
-        return movement;
-    }
-} 
-
+		return movement;
+	}
+}

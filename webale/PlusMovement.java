@@ -3,7 +3,9 @@
 package webale;
 
 public class PlusMovement implements Movement {
-    
+
+    // This method is called by the method canMove() in the Plus class to verify if the Piece's movement is valid.
+    // If valid, return true; if invalid, return false.
     public boolean move(final Coordinate[][] coordinate, final Coordinate startPoint, final Coordinate endPoint) {
         final int sourceCoordinateX = startPoint.getCoorX();
         final int sourceCoordinateY = startPoint.getCoorY();
@@ -66,17 +68,17 @@ public class PlusMovement implements Movement {
             else {
                 for (int i = 1; i < distanceMovedOfX; i++) {
                     final Coordinate temp = coordinate[sourceCoordinateY][sourceCoordinateX + i];
-                    if (temp.getChessPiece() != null){
+                    if (temp.getChessPiece() != null) {
                         return false;
                     }
                 }
             }
-            
-			return true;
-        }      
-        
+
+            return true;
+        }
+
         return false;
-        
+
     }
 
 }

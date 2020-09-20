@@ -4,6 +4,9 @@ package webale;
 
 public class SunMovement implements Movement {
 
+	// This method is called by the method canMove() in the Sun class to verify if
+	// the Piece's movement is valid.
+	// If valid, return true; if invalid, return false.
 	public boolean move(final Coordinate[][] coordinate, final Coordinate startPoint, final Coordinate endPoint) {
 
 		final int sourceCoordinateX = startPoint.getCoorX();

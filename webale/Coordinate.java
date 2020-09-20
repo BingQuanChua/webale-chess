@@ -27,22 +27,27 @@ public class Coordinate {
 		this.coordinateY = coordinateY;
 	}
 
+	// method to get Coordinate - X
 	public int getCoorX() {
 		return coordinateX;
 	}
 
+	// method to get Coordinate - Y 
 	public int getCoorY() {
 		return coordinateY;
 	}
 
+	// method to get the Chess Piece
 	public Piece getChessPiece() {
 		return chessPiece;
 	}
 
+	// method to set a Chess Piece
 	public void setChessPiece(Piece chessPiece) {
 		this.chessPiece = chessPiece;
 	}
 
+	// method to print Coordinate in a Coordinate format : (x,y)
 	public String toString() {
 		return "(" + coordinateX + ", " + coordinateY + ")";
 	}

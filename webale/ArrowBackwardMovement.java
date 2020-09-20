@@ -3,12 +3,16 @@
 package webale;
 
 public class ArrowBackwardMovement implements Movement {
+
+        // This method is called by the method canMove() in the Arrow class to verify if the Piece's movement is valid. 
+	// If valid, return true; if invalid, return false.
         public boolean move(final Coordinate[][] coordinate, final Coordinate startPoint, final Coordinate endPoint) {
                 final int sourceCoordinateX = startPoint.getCoorX();
                 final int sourceCoordinateY = startPoint.getCoorY();
                 final int destCoordinateX = endPoint.getCoorX();
                 final int destCoordinateY = endPoint.getCoorY();
-                boolean success = true;
+                boolean success = true;                         // success -> the moving of arrow by players is valid: true; 
+                                                                // success -> the moving of arrow by players is not valid: false 
 
                 // check destination got piece or not, if got piece cannot move
                 if (coordinate[destCoordinateY][destCoordinateX].getChessPiece() != null) {

@@ -3,6 +3,9 @@
 package webale;
 
 public class ChevronMovement implements Movement {
+
+	// This method is called by the method canMove() in the Chevron class to verify if the Piece's movement is valid. 
+	// If valid, return true; if invalid, return false.
 	public boolean move(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
 		int sourceCoordinateX = startPoint.getCoorX();
 		int sourceCoordinateY = startPoint.getCoorY();

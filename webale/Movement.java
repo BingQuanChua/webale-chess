@@ -1,4 +1,5 @@
 // This is a interface to be used by different pieces for moving
+// It has a method to be overwritten for the classes that implement this class.
 
 package webale;
 

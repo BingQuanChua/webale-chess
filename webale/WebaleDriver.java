@@ -4,12 +4,13 @@ package webale;
 
 import java.io.IOException;
 
-public class Game {
+public class WebaleDriver {
+
+	//Main method
 	public static void main(String[] args) throws IOException {
 
 		HomeFrame homeFrame = new HomeFrame();
 		BoardFrame boardFrame = new BoardFrame();
 		new GameController(homeFrame, boardFrame);
 	}
-
 }

@@ -9,8 +9,8 @@ public class GameOver extends JOptionPane {
 
 	private static final long serialVersionUID = 1L;
 
+	// this constructor is called in gameOver() method in Controller class 
 	public GameOver(JDialog jDialog, String playerWon) {
-		
 		if (playerWon.equals("Draw")) {
 			showMessageDialog(jDialog, "Draw!");
 		} else if (playerWon.equals("RedCheckmateBlue")) {

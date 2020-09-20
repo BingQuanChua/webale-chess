@@ -12,6 +12,8 @@ public class Chevron extends Piece {
 		movement = new ChevronMovement();
 	}
 
+	// This boolean method is called in movePiece() method to confirm the Chevron Chess Piece can move
+	// It will return boolean method move in movement
 	public boolean canMove(Coordinate[][] coordinate, Coordinate startPoint, Coordinate endPoint) {
 		return movement.move(coordinate, startPoint, endPoint);
 	}
