@@ -1,4 +1,5 @@
 // This abstract class will be inherited by arrow, chevron, sun, statechangingpiece (plus & triangle)
+// Koh Han Yi
 
 package webale;
 
