@@ -69,7 +69,7 @@ public class FileOperation {
     }
 
     // read the saved txt file 
-    // Koh Han Yi
+    // Koh Han Yi, Denise Lee Chia Xuan
     public void readFile(File file) {
         if (file == null) {
             return;

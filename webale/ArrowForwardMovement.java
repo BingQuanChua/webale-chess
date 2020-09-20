@@ -1,5 +1,5 @@
 // This class is for arrow moving forward starting from its original position
-// Tan Jia Qi
+// Tan Jia Qi, Koh Han Yi
 
 package webale;
 
