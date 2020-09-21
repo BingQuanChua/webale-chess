@@ -1,4 +1,6 @@
 // This class is for changing Plus and Triangle pieces (Plus change to Triangle & Triangle change to Plus)
+//State design pattern applied here while this class change the state of Plus piece movement 
+// and Trangle piece movement through Movement interface
 // Chua Bing Quan
 
 package webale;

@@ -1,6 +1,7 @@
 // This class is for controlling the game value, setting actionlistener, counting the number of moves by players, tracking the player to move, 
 // calling the functions of changing arrow state when needed, saving game in txt file, reading txt file, loading game from txt file, rotating gameboard.
-
+// Observer design pattern is applied here in the way of implementing the Action Listener
+// whenever Game Controller receives instruction from player through Listener, it calls the Listener to perform action to make the game run smoothly
 package webale;
 
 import java.awt.event.*;
