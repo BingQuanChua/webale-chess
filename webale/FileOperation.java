@@ -160,7 +160,7 @@ public class FileOperation {
     }
 
     // restore the game board from saved txt file
-    // Koh Han Yi, Chua Bing Quan
+    // Koh Han Yi
     public void initPiece(String line) throws IOException {
         if (line.startsWith("B") || line.startsWith("R")) {
             String[] tokens = line.split(" ");

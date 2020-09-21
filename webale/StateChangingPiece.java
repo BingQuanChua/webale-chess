@@ -1,5 +1,4 @@
 // This class is for changing Plus and Triangle pieces (Plus change to Triangle & Triangle change to Plus)
-// This class uses the State design pattern to switch the type of Movement during the game
 // Chua Bing Quan
 
 package webale;

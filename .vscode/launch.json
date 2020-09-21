@@ -9,13 +9,6 @@
             "name": "CodeLens (Launch) - WebaleDriver",
             "request": "launch",
             "mainClass": "webale.WebaleDriver",
-            "projectName": "webale-chess_2434418"
-        },
-        {
-            "type": "java",
-            "name": "CodeLens (Launch) - WebaleDriver",
-            "request": "launch",
-            "mainClass": "webale.WebaleDriver",
             "projectName": "webale-chess_cb5df3ec"
         },
         {
