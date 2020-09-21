@@ -1,5 +1,7 @@
 // This class is for initializing the chess pieces on the gameboard, check for self-added different conditions of webale chess game (checkDraw, checkmate).
 
+// Builder design pattern is applied here while it build a list of 56 Chess Tile 
+// and of the chess Tile contains own individual coordinate and chess piece
 package webale;
 
 import java.awt.*;
