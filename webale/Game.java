@@ -97,6 +97,7 @@ public class Game{
                 // check if the game is draw
                 boardFrame.getGameBoard().checkDraw();
                 if (boardFrame.getGameBoard().getRemainingPieceSize() == 2) {
+                    playSound("./sounds/Rubber-Duck.wav");
                     drawGame();
                 } else {
                     boardFrame.getGameBoard().resetCheckDraw();
